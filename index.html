@@ -5,35 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jordan Ioannoni | Digital Portfolio</title>
     <style>
-        /* Light / Dark Mode Theme Variables */
         :root {
-            --bg-surface: rgba(24, 24, 27, 0.85);
-            --bg-surface-elevated: rgba(39, 39, 42, 0.75);
+            --bg-surface: rgba(28, 28, 32, 0.78);
+            --bg-surface-elevated: rgba(44, 44, 48, 0.7);
             --text-primary: #ffffff;
-            --text-secondary: #d4d4d8;
+            --text-secondary: #e4e4e7;
             --text-muted: #a1a1aa;
             --accent-blue: #38bdf8;
             --accent-green: #34d399;
             --accent-amber: #fbbf24;
-            --border-subtle: rgba(255, 255, 255, 0.15);
-            --border-highlight: rgba(255, 255, 255, 0.3);
-            --overlay-bg: rgba(9, 9, 11, 0.72);
+            --border-subtle: rgba(255, 255, 255, 0.16);
+            --border-highlight: rgba(255, 255, 255, 0.32);
+            --overlay-bg: rgba(9, 9, 11, 0.35); /* Much brighter background photo visibility */
             --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
 
         [data-theme="light"] {
-            --bg-surface: rgba(255, 255, 255, 0.88);
-            --bg-surface-elevated: rgba(244, 244, 245, 0.85);
+            --bg-surface: rgba(255, 255, 255, 0.85);
+            --bg-surface-elevated: rgba(244, 244, 245, 0.82);
             --text-primary: #18181b;
-            --text-secondary: #3f3f46;
-            --text-muted: #71717a;
+            --text-secondary: #27272a;
+            --text-muted: #52525b;
             --accent-blue: #0284c7;
             --accent-green: #059669;
             --accent-amber: #d97706;
             --border-subtle: rgba(0, 0, 0, 0.12);
             --border-highlight: rgba(0, 0, 0, 0.22);
-            --overlay-bg: rgba(240, 240, 242, 0.75);
+            --overlay-bg: rgba(245, 245, 247, 0.35);
         }
 
         html {
@@ -78,7 +77,7 @@
         }
 
         .nav-container {
-            max-width: 1060px;
+            max-width: 1080px;
             margin: 0 auto;
             height: 100%;
             display: flex;
@@ -101,12 +100,12 @@
             box-shadow: 0 0 10px var(--accent-green);
         }
 
-        .logo {
-            font-weight: 600;
-            font-size: 15px;
-            color: var(--text-primary);
-            text-decoration: none;
-            letter-spacing: -0.02em;
+        /* Signature Logo SVG */
+        .signature-logo {
+            height: 28px;
+            width: auto;
+            fill: var(--text-primary);
+            transition: fill 0.3s ease;
         }
 
         .nav-menu {
@@ -136,40 +135,45 @@
         .nav-right-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .theme-toggle-btn {
+        /* Sliding Theme Switcher */
+        .theme-switch {
+            position: relative;
+            width: 52px;
+            height: 28px;
             background: var(--bg-surface-elevated);
-            color: var(--text-primary);
             border: 1px solid var(--border-subtle);
-            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: var(--font-family);
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            transition: background 0.3s ease;
         }
 
-        .theme-toggle-btn:hover {
-            background: var(--border-subtle);
+        .theme-switch-thumb {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         }
 
-        .course-pill {
-            font-size: 12px;
-            color: var(--accent-blue);
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            padding: 6px 14px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: 600;
+        [data-theme="light"] .theme-switch-thumb {
+            transform: translateX(24px);
+            background: var(--accent-amber);
         }
 
-        /* Hero Section with Trackside Portrait */
+        /* Hero Section */
         .hero {
-            max-width: 1060px;
+            max-width: 1080px;
             margin: 60px auto 40px auto;
             padding: 0 24px;
             display: grid;
@@ -284,7 +288,7 @@
 
         /* Quick Metrics Row */
         .metrics-grid {
-            max-width: 1060px;
+            max-width: 1080px;
             margin: 0 auto 36px auto;
             padding: 0 24px;
             display: grid;
@@ -317,7 +321,7 @@
 
         /* Philosophy & Quote Banner */
         .statement-banner {
-            max-width: 1012px;
+            max-width: 1032px;
             margin: 0 auto 40px auto;
             background-color: var(--bg-surface);
             backdrop-filter: blur(25px) saturate(140%);
@@ -375,7 +379,7 @@
 
         /* Main Bento Grid */
         .showcase-grid {
-            max-width: 1060px;
+            max-width: 1080px;
             margin: 0 auto 80px auto;
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -596,10 +600,6 @@
             transform: scale(1.05);
         }
 
-        .gallery-item:hover img.crop-ig-overlay {
-            transform: scale(1.19);
-        }
-
         .gallery-label {
             position: absolute;
             bottom: 12px;
@@ -667,7 +667,7 @@
             box-shadow: 0 0 12px var(--accent-green);
         }
 
-        /* Mini Data Table for Operations Card */
+        /* Mini Data Table */
         .data-table-wrap {
             margin-top: 18px;
             background: var(--bg-surface-elevated);
@@ -748,6 +748,73 @@
             color: var(--text-secondary);
         }
 
+        /* Bot-Proof Hold-to-Reveal Contact Button */
+        .hold-contact-container {
+            margin-top: 24px;
+        }
+
+        .hold-btn {
+            position: relative;
+            background: var(--bg-surface-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border-highlight);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            user-select: none;
+            -webkit-user-select: none;
+            font-family: var(--font-family);
+            transition: border-color 0.2s ease;
+        }
+
+        .hold-btn:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .hold-progress {
+            position: absolute;
+            inset: 0;
+            background: rgba(41, 151, 255, 0.25);
+            width: 0%;
+            transition: width 0.05s linear;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hold-btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-revealed {
+            display: none;
+            margin-top: 14px;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--accent-green);
+            border-radius: 16px;
+            padding: 14px 18px;
+            font-size: 14px;
+            font-family: var(--font-mono);
+            color: var(--text-primary);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .contact-revealed a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Lightbox Modal */
         .lightbox {
             display: none;
@@ -790,7 +857,7 @@
 
         /* Footer */
         footer {
-            max-width: 1060px;
+            max-width: 1080px;
             margin: 0 auto;
             padding: 32px 24px 64px 24px;
             border-top: 1px solid var(--border-subtle);
@@ -841,7 +908,10 @@
         <div class="nav-container">
             <div class="brand-wrap">
                 <span class="status-dot"></span>
-                <a href="#" class="logo">Jordan Ioannoni</a>
+                <!-- Inline Cursive Signature Logo -->
+                <svg class="signature-logo" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15,42 C18,32 22,18 28,15 C33,12 30,35 24,42 C18,49 32,50 38,40 C45,28 42,15 48,12 C53,9 50,30 45,45 C52,32 58,15 65,12 C70,10 67,35 62,44 C58,52 74,48 80,35 C88,18 84,12 90,10 C95,8 92,30 88,44 C95,30 102,15 108,12 C113,10 110,32 105,42 C101,50 116,42 122,30 C130,15 126,10 132,10 C137,10 134,35 130,44 C138,30 144,15 150,12 C155,10 152,32 148,42 C145,50 160,42 166,30 C174,15 170,10 176,10 C181,10 178,35 174,44 C182,30 188,15 194,12 C199,10 196,32 192,42 C188,52 205,45 212,32 C220,15 216,10 222,10 C227,10 224,35 220,44 C228,30 234,15 240,12 C245,10 242,32 238,42 C235,50 248,42 255,30 C262,18 260,15 265,15 C270,15 268,35 264,44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
 
             <nav class="nav-menu">
@@ -853,13 +923,15 @@
             </nav>
 
             <div class="nav-right-controls">
-                <button class="theme-toggle-btn" onclick="toggleTheme()" id="theme-btn">☀️ Light Mode</button>
-                <a href="#literacy" class="course-pill">STDV 1115</a>
+                <!-- Sliding Theme Switcher -->
+                <div class="theme-switch" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
+                    <div class="theme-switch-thumb" id="theme-thumb">🌙</div>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section with Trackside Portrait -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-text">
             <div class="eyebrow">St. Catharines, ON &bull; Niagara College &bull; ID 4382028</div>
@@ -871,11 +943,25 @@
                 <span class="hero-tag">Motive Power &amp; Durability Lab</span>
                 <span class="hero-tag">Operations &amp; Supply Chain Focus</span>
             </div>
+
+            <!-- Bot-Proof Hold-to-Reveal Contact Button -->
+            <div class="hold-contact-container">
+                <button class="hold-btn" id="hold-contact-btn" 
+                    onmousedown="startHolding()" onmouseup="stopHolding()" onmouseleave="stopHolding()"
+                    ontouchstart="startHolding()" ontouchend="stopHolding()">
+                    <div class="hold-progress" id="hold-progress-bar"></div>
+                    <span>🔒 Hold 2s to Reveal Contact Info</span>
+                </button>
+                <div class="contact-revealed" id="contact-info-box">
+                    📧 Email: <a href="mailto:jordan.ioannoni@outlook.com">jordan.ioannoni@outlook.com</a><br>
+                    📱 Phone: <a href="tel:4036673728">403-667-3728</a>
+                </div>
+            </div>
         </div>
 
         <div class="hero-portrait-card" onclick="openLightbox(this)">
             <div class="hero-portrait-inner">
-                <img data-src="IMG_2955_2.jpg" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
+                <img src="IMG_2955_2.jpg" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
                 <span class="portrait-badge">Trackside &bull; Canon 1DX + L-Series Telephoto</span>
             </div>
         </div>
@@ -952,7 +1038,7 @@
                 </div>
             </div>
 
-            <!-- Section A: Arena & Tournament Sports (2x2 Landscape Grid) -->
+            <!-- Section A: Arena & Tournament Sports -->
             <div id="gal-sports" class="gallery-section">
                 <div class="sub-heading">
                     Arena &amp; Tournament Action
@@ -960,25 +1046,25 @@
                 </div>
                 <div class="photo-gallery-work">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="2DPX4122.jpg" alt="Brock Jr. Badgers On Ice Action">
+                        <img src="2DPX4122.jpg" alt="Brock Jr. Badgers On Ice Action">
                         <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="1000000644.jpg" alt="Crease Save Action Shot">
+                        <img src="1000000644.jpg" alt="Crease Save Action Shot">
                         <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="1000000041.jpg" alt="Ioannoni Visuals Bench Celebration">
+                        <img src="1000000041.jpg" alt="Ioannoni Visuals Bench Celebration">
                         <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="1000000642.jpg" alt="Huskies Bench Coaching Moment">
+                        <img src="1000000642.jpg" alt="Huskies Bench Coaching Moment">
                         <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Section B: Studio Portraiture & Automotive Lifestyle (3x2 Portrait Grid) -->
+            <!-- Section B: Studio Portraiture & Automotive Lifestyle -->
             <div id="gal-studio" class="gallery-section">
                 <div class="sub-heading">
                     Studio Portraiture &amp; Automotive Lifestyle
@@ -986,33 +1072,33 @@
                 </div>
                 <div class="photo-gallery-studio">
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img data-src="JIOA9998.jpg" alt="Studio Portrait Key Light">
+                        <img src="JIOA9998.jpg" alt="Studio Portrait Key Light">
                         <span class="gallery-label">Studio Portrait &bull; Controlled Key Lighting</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img data-src="JIOA9946.jpg" alt="Moody Studio Profile Portrait">
+                        <img src="JIOA9946.jpg" alt="Moody Studio Profile Portrait">
                         <span class="gallery-label">Studio Profile &bull; Directional Shadow Grade</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img data-src="IMG_1978.jpg" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
+                        <img src="IMG_1978.jpg" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
                         <span class="gallery-label">Mercedes-Benz Cockpit &bull; Automotive Detail</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img data-src="_DSC5239.jpg" alt="Automotive Lifestyle Open Door Portrait">
+                        <img src="_DSC5239.jpg" alt="Automotive Lifestyle Open Door Portrait">
                         <span class="gallery-label">Automotive Lifestyle &bull; Autumn Color Grade</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img data-src="_DSC5253.jpg" alt="Side Mirror Window Framing">
+                        <img src="_DSC5253.jpg" alt="Side Mirror Window Framing">
                         <span class="gallery-label">Window Framing &bull; Shallow Depth of Field</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img data-src="_DSC5262.jpg" alt="Outdoor Autumn Portrait with Mercedes">
+                        <img src="_DSC5262.jpg" alt="Outdoor Autumn Portrait with Mercedes">
                         <span class="gallery-label">Location Portrait &bull; Natural Backlight</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Section C: Behind the Lens POV (4-Column Strip) -->
+            <!-- Section C: Behind the Lens POV -->
             <div id="gal-pov" class="gallery-section">
                 <div class="sub-heading">
                     Behind the Lens &bull; Field, Track &amp; Arena Operations
@@ -1020,19 +1106,19 @@
                 </div>
                 <div class="photo-gallery-pov">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="IMG_5669_2.jpg" alt="Trackside Fence POV with Canon 1DX">
+                        <img src="IMG_5669_2.jpg" alt="Trackside Fence POV with Canon 1DX">
                         <span class="gallery-label">Motorsport Trackside &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="20250112_102145~2.jpg" alt="Rinkside Bench POV with Canon 1DX">
+                        <img src="20250112_102145~2.jpg" alt="Rinkside Bench POV with Canon 1DX">
                         <span class="gallery-label">Rinkside Bench POV &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="20260807_101658.jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
+                        <img src="20260807_101658.jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
                         <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="1000000129.jpg" alt="Rinkside Setup with Canon 1DX and 300mm">
+                        <img src="1000000129.jpg" alt="Rinkside Setup with Canon 1DX and 300mm">
                         <span class="gallery-label">Arena Assignment &bull; 300mm f/2.8 Rig</span>
                     </div>
                 </div>
@@ -1225,54 +1311,58 @@
     </footer>
 
     <script>
-        // Multi-Fallback Image Loader: Automatically checks exact name, (1) suffix, _2 suffix, and alternate extensions
-        document.querySelectorAll('img[data-src]').forEach(function(img) {
-            var raw = img.getAttribute('data-src');
-            var dotIndex = raw.lastIndexOf('.');
-            var namePart = raw.substring(0, dotIndex);
-            var extPart = raw.substring(dotIndex);
-            var cleanBase = namePart.replace(' (1)', '').replace('_2', '');
-
-            var candidates = [
-                raw,
-                namePart + ' (1)' + extPart,
-                cleanBase + extPart,
-                cleanBase + '_2' + extPart,
-                cleanBase + '_2 (1)' + extPart,
-                cleanBase + ' (1)' + extPart,
-                cleanBase + '.JPG',
-                cleanBase + '_2.JPG',
-                cleanBase + '.jpeg',
-                cleanBase + '_2.jpeg'
-            ];
-
-            var uniqueCandidates = candidates.filter(function(item, pos) {
-                return candidates.indexOf(item) === pos;
-            });
-
-            var attempt = 0;
-            img.onerror = function() {
-                attempt++;
-                if (attempt < uniqueCandidates.length) {
-                    this.src = uniqueCandidates[attempt];
-                } else {
-                    this.onerror = null;
-                }
-            };
-            this.src = uniqueCandidates[0];
-        });
-
-        // Light / Dark Mode Toggle Functionality
+        // Smooth Sliding Light / Dark Mode Toggle
         function toggleTheme() {
             var body = document.body;
-            var btn = document.getElementById('theme-btn');
+            var thumb = document.getElementById('theme-thumb');
             if (body.getAttribute('data-theme') === 'dark') {
                 body.setAttribute('data-theme', 'light');
-                btn.textContent = '🌙 Dark Mode';
+                thumb.textContent = '☀️';
             } else {
                 body.setAttribute('data-theme', 'dark');
-                btn.textContent = '☀️ Light Mode';
+                thumb.textContent = '🌙';
             }
+        }
+
+        // Bot-Proof Hold-to-Reveal Logic (2 Seconds)
+        var holdTimer = null;
+        var holdDuration = 2000; // 2 seconds
+        var startTime = 0;
+        var progressInterval = null;
+
+        function startHolding() {
+            var bar = document.getElementById('hold-progress-bar');
+            var btn = document.getElementById('hold-contact-btn');
+            startTime = Date.now();
+            btn.style.borderColor = 'var(--accent-blue)';
+
+            progressInterval = setInterval(function() {
+                var elapsed = Date.now() - startTime;
+                var pct = Math.min((elapsed / holdDuration) * 100, 100);
+                bar.style.width = pct + '%';
+
+                if (pct >= 100) {
+                    clearInterval(progressInterval);
+                    revealContact();
+                }
+            }, 30);
+        }
+
+        function stopHolding() {
+            if (progressInterval) {
+                clearInterval(progressInterval);
+            }
+            var bar = document.getElementById('hold-progress-bar');
+            var btn = document.getElementById('hold-contact-btn');
+            bar.style.width = '0%';
+            btn.style.borderColor = 'var(--border-highlight)';
+        }
+
+        function revealContact() {
+            var btnContainer = document.getElementById('hold-contact-btn').parentElement;
+            var box = document.getElementById('contact-info-box');
+            btnContainer.style.display = 'none';
+            box.style.display = 'block';
         }
 
         // Interactive Category Filter for Photography Showcase
