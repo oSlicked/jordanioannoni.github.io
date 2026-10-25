@@ -7,2166 +7,560 @@
     <!-- Authentic Cursive Signature Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-surface: rgba(24, 24, 28, 0.75);
-            --bg-surface-elevated: rgba(38, 38, 44, 0.70);
-            --bg-modal: rgba(20, 20, 24, 0.94);
+            --bg-surface: rgba(18, 18, 22, 0.4);
+            --bg-surface-elevated: rgba(30, 30, 38, 0.6);
+            --bg-modal: rgba(15, 15, 18, 0.96);
             --text-primary: #ffffff;
-            --text-secondary: #e4e4e7;
+            --text-secondary: #d4d4d8;
             --text-muted: #a1a1aa;
-            --accent-blue: #38bdf8;
-            --accent-green: #34d399;
-            --accent-amber: #fbbf24;
+            --accent-blue: #0ea5e9;
+            --accent-green: #10b981;
+            --accent-amber: #f59e0b;
             --accent-red: #f43f5e;
-            --border-subtle: rgba(255, 255, 255, 0.12);
-            --border-highlight: rgba(255, 255, 255, 0.28);
-            --overlay-bg: rgba(9, 9, 11, 0.25);
-            --hero-text-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
-            /* Premium Spotlight Glow Color */
-            --spotlight-color: rgba(255, 255, 255, 0.07);
-            --font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-            --font-signature: "Alex Brush", "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
-            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            
-            /* Apple-style buttery easing curve */
-            --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.25);
+            --overlay-bg: rgba(5, 5, 8, 0.4);
+            --font-family: "Plus Jakarta Sans", sans-serif;
+            --font-signature: "Alex Brush", cursive;
+            --font-mono: "Space Mono", monospace;
         }
 
         [data-theme="light"] {
-            --bg-surface: rgba(255, 255, 255, 0.80);
-            --bg-surface-elevated: rgba(244, 244, 246, 0.85);
-            --bg-modal: rgba(255, 255, 255, 0.96);
-            --text-primary: #18181b;
-            --text-secondary: #27272a;
-            --text-muted: #52525b;
+            --bg-surface: rgba(255, 255, 255, 0.6);
+            --bg-surface-elevated: rgba(244, 244, 246, 0.7);
+            --bg-modal: rgba(255, 255, 255, 0.98);
+            --text-primary: #09090b;
+            --text-secondary: #3f3f46;
+            --text-muted: #71717a;
             --accent-blue: #0284c7;
             --accent-green: #059669;
             --accent-amber: #d97706;
             --accent-red: #e11d48;
-            --border-subtle: rgba(0, 0, 0, 0.10);
-            --border-highlight: rgba(0, 0, 0, 0.22);
-            --overlay-bg: rgba(255, 255, 255, 0.15);
-            --hero-text-shadow: 0 4px 16px rgba(255, 255, 255, 0.9);
-            --spotlight-color: rgba(0, 0, 0, 0.04);
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --border-highlight: rgba(0, 0, 0, 0.2);
+            --overlay-bg: rgba(255, 255, 255, 0.1);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* HIDE DEFAULT CURSOR FOR CUSTOM FLUID CURSOR */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            cursor: none !important; 
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Cinematic Film Grain Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 99999;
         }
 
         body {
-            background-color: #09090b;
-            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg?v=5');
+            background-color: #000;
+            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, rgba(0,0,0,0.8) 100%), url('1000000769.jpg?v=6');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
-            background-repeat: no-repeat;
             color: var(--text-primary);
             font-family: var(--font-family);
-            letter-spacing: -0.011em;
+            letter-spacing: -0.02em;
             line-height: 1.5;
-            padding-top: 64px;
+            padding-top: 80px;
             -webkit-font-smoothing: antialiased;
-            transition: color 0.4s var(--apple-ease), background-color 0.4s var(--apple-ease);
+            overflow-x: hidden;
+            transition: color 0.3s ease;
         }
 
-        /* --- PREMIUM ANIMATIONS --- */
-        
-        /* Initial Hero Load Animation (Staggered) */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1.2s var(--apple-ease) forwards;
-        }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Scroll Reveal Classes (Triggered by JS) */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(60px) scale(0.98);
-            transition: opacity 1.2s var(--apple-ease), transform 1.2s var(--apple-ease);
-            will-change: opacity, transform;
-        }
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        /* -------------------------- */
-
-        /* Top Scroll Progress Bar */
-        .scroll-progress {
+        /* --- MAGNETIC CUSTOM CURSOR --- */
+        .cursor-dot, .cursor-ring {
             position: fixed;
-            top: 0;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
-            width: 0%;
-            z-index: 10001;
-            transition: width 0.1s ease-out;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100000;
+        }
+        .cursor-dot {
+            width: 6px; height: 6px;
+            background: var(--accent-blue);
+            transition: width 0.2s, height 0.2s, background 0.2s;
+        }
+        .cursor-ring {
+            width: 36px; height: 36px;
+            border: 1px solid var(--accent-blue);
+            transition: width 0.3s, height 0.3s, transform 0.1s ease-out, border-color 0.3s;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+        }
+        /* Hover states applied via JS */
+        .cursor-hover .cursor-dot { width: 0; height: 0; }
+        .cursor-hover .cursor-ring { 
+            width: 50px; height: 50px; 
+            background: rgba(14, 165, 233, 0.1); 
+            border-color: var(--accent-green);
+            backdrop-filter: blur(2px);
         }
 
-        /* Sticky Glass Navigation */
+        /* Header */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 60px;
-            background: var(--bg-surface);
-            backdrop-filter: saturate(180%) blur(24px);
-            -webkit-backdrop-filter: saturate(180%) blur(24px);
+            top: 0; left: 0; width: 100%; height: 70px;
+            background: linear-gradient(to bottom, var(--bg-surface) 0%, transparent 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 9999;
             border-bottom: 1px solid var(--border-subtle);
-            transition: background 0.4s ease, border-color 0.4s ease;
         }
-
         .nav-container {
-            max-width: 1080px;
-            margin: 0 auto;
-            height: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 24px;
+            max-width: 1200px; margin: 0 auto; height: 100%;
+            display: flex; justify-content: space-between; align-items: center; padding: 0 32px;
         }
-
-        .brand-wrap {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-green);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-green);
-            animation: pulseDot 2.4s infinite ease-in-out;
-        }
-
-        @keyframes pulseDot {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.25); opacity: 0.7; }
-        }
-
-        /* Nav Cursive Signature Logo */
-        .nav-signature {
-            font-family: var(--font-signature);
-            font-size: 30px;
-            font-weight: 400;
-            color: var(--text-primary);
-            line-height: 1;
-            letter-spacing: 0.01em;
-            position: relative;
-            padding-top: 4px;
-            transition: color 0.3s ease, transform 0.25s ease;
-        }
-
-        .brand-wrap:hover .nav-signature {
-            color: var(--accent-blue);
-            transform: translateY(-1px);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 4px;
-            background: var(--bg-surface-elevated);
-            padding: 4px;
-            border-radius: 30px;
-            border: 1px solid var(--border-subtle);
-        }
-
+        .nav-signature { font-family: var(--font-signature); font-size: 32px; color: var(--text-primary); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        
+        .nav-menu { display: flex; gap: 8px; }
         .nav-btn {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 6px 14px;
-            border-radius: 20px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            font-family: var(--font-family);
+            color: var(--text-secondary); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 8px 16px; border-radius: 8px; background: transparent; border: 1px solid transparent; transition: 0.3s;
         }
-
-        .nav-btn:hover, .nav-btn.active {
-            color: var(--text-primary);
-            background: var(--border-subtle);
-        }
-
-        .nav-right-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        /* Upgraded Animated Sliding Theme Switcher */
-        .theme-switch {
-            position: relative;
-            width: 62px;
-            height: 32px;
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-highlight);
-            border-radius: 999px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7px;
-            transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-            user-select: none;
-        }
-
-        .theme-switch:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
-        }
-
-        .theme-icon-track {
-            font-size: 12px;
-            line-height: 1;
-            z-index: 1;
-            opacity: 0.65;
-            transition: opacity 0.3s ease;
-        }
-
-        .theme-switch-thumb {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, #38bdf8, #0284c7);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            z-index: 2;
-            transition: transform 0.5s var(--apple-ease), background 0.4s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-        }
-
-        [data-theme="light"] .theme-switch-thumb {
-            transform: translateX(30px) rotate(360deg);
-            background: linear-gradient(135deg, #fbbf24, #d97706);
-        }
+        .nav-btn:hover { border-color: var(--border-highlight); background: var(--bg-surface-elevated); color: var(--text-primary); }
 
         /* Hero Section */
         .hero {
-            max-width: 1080px;
-            margin: 48px auto 40px auto;
-            padding: 0 24px;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 36px;
-            align-items: center;
+            max-width: 1200px; margin: 60px auto 80px auto; padding: 0 32px;
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center;
         }
-
         .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--accent-blue);
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            padding: 6px 14px;
-            border-radius: 30px;
-            margin-bottom: 14px;
+            display: inline-block; font-family: var(--font-mono); font-size: 12px; color: var(--accent-green);
+            text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;
+            border-left: 2px solid var(--accent-green); padding-left: 12px;
         }
-
-        .hero-signature-wrap {
-            margin-bottom: 14px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero h1.signature-heading {
-            font-family: var(--font-signature);
-            font-size: 86px;
-            font-weight: 400;
-            letter-spacing: 0.01em;
-            line-height: 1.02;
-            color: var(--text-primary);
-            padding-right: 12px;
-            text-shadow: var(--hero-text-shadow);
-        }
-
-        .signature-flourish {
-            width: 100%;
-            max-width: 420px;
-            height: 18px;
-            margin-top: -8px;
-            display: block;
-            color: var(--accent-blue);
-        }
-
-        .signature-flourish path {
-            stroke-dasharray: 500;
-            stroke-dashoffset: 500;
-            animation: drawFlourish 2s var(--apple-ease) 0.5s forwards;
-        }
-
-        @keyframes drawFlourish {
-            to { stroke-dashoffset: 0; }
+        
+        /* Hacker Decode Text Class */
+        .scramble-text {
+            font-size: 5rem; font-weight: 800; line-height: 1; letter-spacing: -0.04em;
+            margin-bottom: 24px; color: var(--text-primary);
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            min-height: 1em;
         }
 
         .hero p {
-            font-size: 20px;
-            color: var(--text-primary);
-            font-weight: 500;
-            line-height: 1.52;
-            letter-spacing: -0.01em;
-            margin-bottom: 22px;
-            text-shadow: var(--hero-text-shadow);
+            font-size: 22px; color: #fff; font-weight: 500; line-height: 1.5;
+            text-shadow: 0 4px 16px rgba(0,0,0,0.9); margin-bottom: 32px;
         }
 
-        .hero-Quick-Tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .hero-tag {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-primary);
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            padding: 6px 14px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Race Car Hold-to-Reveal Contact Button */
-        .hold-contact-container {
-            margin-top: 26px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .race-hold-btn {
-            position: relative;
-            width: 340px;
-            max-width: 100%;
-            height: 54px;
-            background: linear-gradient(180deg, rgba(24, 24, 28, 0.92), rgba(14, 14, 18, 0.96));
-            color: #ffffff;
-            border: 1.5px solid var(--border-highlight);
-            border-radius: 999px;
-            cursor: pointer;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            user-select: none;
-            -webkit-user-select: none;
-            font-family: var(--font-family);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-            transition: border-color 0.3s ease, transform 0.3s var(--apple-ease), box-shadow 0.3s ease;
-        }
-
-        .race-hold-btn:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 12px 34px rgba(56, 189, 248, 0.35);
-            transform: scale(1.02);
-        }
-
-        .race-hold-btn.holding {
-            border-color: var(--accent-amber);
-            animation: engineRev 0.08s infinite alternate;
-        }
-
-        .race-hold-btn.unlocked {
-            border-color: var(--accent-green);
-            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.35);
-        }
-
-        @keyframes engineRev {
-            from { transform: translateY(-0.5px) scale(1.02); }
-            to { transform: translateY(0.5px) scale(1.02); }
-        }
-
-        .race-track-lines {
-            position: absolute;
-            left: 16px;
-            right: 44px;
-            top: 50%;
-            height: 2px;
-            transform: translateY(-50%);
-            background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0px, rgba(255, 255, 255, 0.12) 10px, transparent 10px, transparent 20px);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .race-progress-streak {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 0%;
-            background: linear-gradient(90deg, rgba(56, 189, 248, 0.15) 0%, rgba(56, 189, 248, 0.4) 70%, rgba(251, 191, 36, 0.55) 100%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .race-car-wrapper {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 56px;
-            height: 26px;
-            z-index: 4;
-            pointer-events: none;
-            transition: filter 0.2s ease;
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
-        }
-
-        .race-hold-btn.holding .race-car-wrapper {
-            filter: drop-shadow(-6px 0 10px rgba(251, 191, 36, 0.85));
-        }
-
-        .exhaust-flame { opacity: 0; transition: opacity 0.15s ease; }
-        .race-hold-btn.holding .exhaust-flame { opacity: 1; }
-
-        .finish-flag-strip {
-            position: absolute;
-            right: 12px;
-            top: 8px;
-            bottom: 8px;
-            width: 12px;
-            border-radius: 6px;
-            background-image: conic-gradient(rgba(255, 255, 255, 0.75) 90deg, rgba(0, 0, 0, 0.6) 90deg 180deg, rgba(255, 255, 255, 0.75) 180deg 270deg, rgba(0, 0, 0, 0.6) 270deg);
-            background-size: 8px 8px;
-            opacity: 0.55;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .race-btn-label {
-            position: relative;
-            z-index: 5;
-            width: 100%;
-            text-align: center;
-            padding-left: 38px;
-            padding-right: 16px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            pointer-events: none;
-        }
-
-        .race-timer-badge {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--accent-blue);
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2px 7px;
-            border-radius: 8px;
-        }
-
-        /* Hero Portrait Card */
+        /* 3D Hero Portrait */
+        .hero-portrait-scene { perspective: 1000px; }
         .hero-portrait-card {
-            position: relative;
-            background: var(--bg-surface);
-            backdrop-filter: blur(24px) saturate(150%);
-            -webkit-backdrop-filter: blur(24px) saturate(150%);
-            border: 1px solid var(--border-highlight);
-            border-radius: 26px;
-            padding: 10px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            transition: transform 0.4s var(--apple-ease), box-shadow 0.4s var(--apple-ease);
+            position: relative; border-radius: 20px; padding: 12px;
+            background: var(--bg-surface); border: 1px solid var(--border-highlight);
+            transform-style: preserve-3d; transition: transform 0.1s;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
-
-        .hero-portrait-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-
         .hero-portrait-inner {
-            position: relative;
-            aspect-ratio: 4 / 3;
-            border-radius: 18px;
-            overflow: hidden;
-            background: var(--bg-surface-elevated);
+            border-radius: 12px; overflow: hidden; transform: translateZ(30px); /* Pops out in 3D */
+            position: relative; aspect-ratio: 4/3;
         }
-
-        .hero-portrait-inner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 0.6s var(--apple-ease);
-        }
-
-        .hero-portrait-card:hover .hero-portrait-inner img {
-            transform: scale(1.05);
-        }
-
-        .portrait-badge {
-            position: absolute;
-            bottom: 12px;
-            left: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 7px 12px;
-            border-radius: 14px;
-            font-size: 11px;
-            font-weight: 500;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-        }
-
-        /* Quick Metrics Row */
-        .metrics-grid {
-            max-width: 1080px;
-            margin: 0 auto 36px auto;
-            padding: 0 24px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-
-        .metric-card {
-            background: var(--bg-surface);
-            backdrop-filter: blur(24px) saturate(150%);
-            -webkit-backdrop-filter: blur(24px) saturate(150%);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 22px 24px;
-            transition: transform 0.4s var(--apple-ease), border-color 0.4s ease;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--border-highlight);
-        }
-
-        .metric-value {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-            margin-bottom: 4px;
-        }
-
-        .metric-label {
-            font-size: 13px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* Philosophy & Quote Banner */
-        .statement-banner {
-            max-width: 1032px;
-            margin: 0 auto 40px auto;
-            background-color: var(--bg-surface);
-            backdrop-filter: blur(25px) saturate(140%);
-            -webkit-backdrop-filter: blur(25px) saturate(140%);
-            border-radius: 28px;
-            padding: 44px;
-            border: 1px solid var(--border-subtle);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-            transition: transform 0.4s var(--apple-ease), box-shadow 0.4s var(--apple-ease);
-        }
+        .hero-portrait-inner img { width: 100%; height: 100%; object-fit: cover; }
         
-        .statement-banner:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        .hero-glare {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.2) 25%, transparent 30%);
+            transform: translateZ(40px); pointer-events: none; mix-blend-mode: overlay;
         }
 
-        .statement-banner h3 {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--accent-blue);
-            margin-bottom: 12px;
+        /* Race Car Button (Snappier) */
+        .race-hold-btn {
+            position: relative; width: 360px; max-width: 100%; height: 60px;
+            background: rgba(10, 10, 15, 0.8); border: 1px solid var(--border-highlight);
+            border-radius: 12px; overflow: hidden; display: flex; align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+        }
+        .race-progress-streak {
+            position: absolute; left: 0; top: 0; bottom: 0; width: 0%;
+            background: linear-gradient(90deg, transparent, var(--accent-blue)); opacity: 0.5;
+        }
+        .race-car-wrapper { position: absolute; left: 14px; z-index: 4; }
+        .race-btn-label {
+            position: relative; z-index: 5; width: 100%; display: flex; justify-content: space-between;
+            padding: 0 24px 0 80px; font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #fff;
         }
 
-        .statement-banner p {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--text-primary);
-            line-height: 1.52;
-            margin-bottom: 28px;
-        }
-
-        .quote-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border-subtle);
-        }
-
-        .quote-box {
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 18px;
-            transition: transform 0.3s var(--apple-ease);
-        }
-        
-        .quote-box:hover {
-            transform: scale(1.02);
-            border-color: var(--border-highlight);
-        }
-
-        .quote-text {
-            font-size: 14px;
-            font-style: italic;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            line-height: 1.45;
-        }
-
-        .quote-author {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--accent-blue);
-        }
-
-        /* Main Bento Grid */
+        /* 3D Bento Grid */
         .showcase-grid {
-            max-width: 1080px;
-            margin: 0 auto 80px auto;
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 20px;
-            padding: 0 24px;
-        }
-
-        .anchor-section {
-            scroll-margin-top: 76px;
-        }
-
-        /* --- APPLE DYNAMIC SPOTLIGHT CARDS --- */
-        .bento-card {
-            position: relative;
-            background-color: var(--bg-surface);
-            backdrop-filter: blur(30px) saturate(150%);
-            -webkit-backdrop-filter: blur(30px) saturate(150%);
-            border-radius: 28px;
-            padding: 36px;
-            border: 1px solid var(--border-subtle);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden; /* Contains the spotlight */
-            transition: transform 0.4s var(--apple-ease), border-color 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        /* The Spatial Spotlight Engine */
-        .bento-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(800px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), var(--spotlight-color), transparent 40%);
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .bento-card:hover {
-            border-color: var(--border-highlight);
-            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.28);
-            transform: translateY(-4px);
+            max-width: 1200px; margin: 0 auto 100px auto; padding: 0 32px;
+            display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;
         }
         
-        .bento-card:hover::before {
-            opacity: 1;
+        .bento-card {
+            position: relative; border-radius: 24px; padding: 40px;
+            background: var(--bg-surface); backdrop-filter: blur(30px); border: 1px solid var(--border-subtle);
+            transform-style: preserve-3d; transition: border-color 0.3s;
         }
-
-        /* Ensure content sits above the spotlight glow */
-        .card-content, .gallery-section, .credentials-grid {
-            position: relative;
-            z-index: 1;
-        }
-        /* ------------------------------------- */
+        .bento-card:hover { border-color: var(--border-highlight); }
+        
+        /* The floating content inside the 3D card */
+        .card-content { transform: translateZ(40px); pointer-events: none; }
+        .card-content * { pointer-events: auto; }
 
         .size-wide { grid-column: span 12; }
         .size-left { grid-column: span 7; }
         .size-right { grid-column: span 5; }
-        .size-half { grid-column: span 6; }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-            gap: 8px;
+        .bento-card h2 { font-size: 32px; font-weight: 700; margin: 16px 0; color: var(--text-primary); }
+        .bento-card p { color: var(--text-secondary); font-size: 16px; line-height: 1.6; }
+
+        /* THE AMBILIGHT PHOTO ENGINE */
+        .photo-gallery-work, .photo-gallery-studio, .photo-gallery-pov {
+            display: grid; gap: 20px; margin-top: 30px; transform: translateZ(30px);
         }
+        .photo-gallery-work { grid-template-columns: repeat(2, 1fr); }
+        .photo-gallery-studio { grid-template-columns: repeat(3, 1fr); }
+        .photo-gallery-pov { grid-template-columns: repeat(4, 1fr); }
 
-        .card-meta {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .ambi-wrap {
+            position: relative; aspect-ratio: 16/10; border-radius: 16px; 
+            border: 1px solid var(--border-highlight); transition: 0.3s ease;
         }
-
-        .card-badge {
-            font-size: 11px;
-            font-family: var(--font-mono);
-            color: var(--text-secondary);
-            background: var(--bg-surface-elevated);
-            padding: 4px 10px;
-            border-radius: 12px;
-            border: 1px solid var(--border-subtle);
-        }
-
-        .bento-card h2 {
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: -0.015em;
-            margin-bottom: 14px;
-            line-height: 1.2;
-        }
-
-        .sub-heading {
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--accent-blue);
-            margin-top: 28px;
-            margin-bottom: 14px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border-subtle);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .sub-heading span {
-            color: var(--text-muted);
-            font-size: 12px;
-            text-transform: none;
-            letter-spacing: 0;
-            font-weight: 400;
-        }
-
-        .card-content p {
-            color: var(--text-secondary);
-            font-size: 15px;
-            margin-bottom: 14px;
-            line-height: 1.5;
-        }
-
-        .card-content strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* Interactive Gallery Filter Tabs */
-        .filter-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 20px;
-            padding-top: 18px;
-            border-top: 1px solid var(--border-subtle);
-        }
-
-        .filter-btn {
-            background: var(--bg-surface-elevated);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-subtle);
-            padding: 7px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: var(--font-family);
-        }
-
-        .filter-btn:hover {
-            color: var(--text-primary);
-            background: var(--border-subtle);
-        }
-
-        .filter-btn.active {
-            background: var(--accent-blue);
-            color: #ffffff;
-            border-color: var(--accent-blue);
-            box-shadow: 0 4px 14px rgba(41, 151, 255, 0.35);
-        }
-
-        /* Skill & Spec Pills */
-        .pill-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 16px;
-        }
-
-        .pill {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-primary);
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            padding: 5px 12px;
-            border-radius: 16px;
-        }
-
-        /* Photo Galleries */
-        .gallery-section {
-            transition: opacity 0.4s var(--apple-ease);
-        }
-
-        .gallery-section.hidden {
-            display: none;
-        }
-
-        .photo-gallery-work {
-            margin-top: 16px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            width: 100%;
-        }
-
-        /* Studio Gallery now perfectly balanced for 3 items */
-        .photo-gallery-studio {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            width: 100%;
-        }
-
-        .photo-gallery-pov {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            width: 100%;
-        }
-
-        .gallery-item {
-            position: relative;
-            aspect-ratio: 16 / 10;
-            background: var(--bg-surface-elevated);
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid var(--border-subtle);
-            cursor: pointer;
-        }
-
-        .gallery-item.portrait-ratio {
-            aspect-ratio: 4 / 5;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 20%;
-            transition: transform 0.6s var(--apple-ease);
-            display: block;
-        }
-
-        .gallery-item img.crop-ig-overlay {
-            transform: scale(1.14);
-            object-position: center center;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.06);
-        }
-
-        .gallery-label {
-            position: absolute;
-            bottom: 12px;
-            left: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 6px 12px;
-            border-radius: 14px;
-            font-size: 11px;
-            font-weight: 500;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            z-index: 2;
-        }
-
-        /* Benchmark / Time Comparison Widget */
-        .benchmark-box {
-            margin-top: 18px;
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 18px;
-        }
-
-        .bench-row {
-            margin-bottom: 12px;
-        }
-
-        .bench-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .bench-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            margin-bottom: 6px;
-            color: var(--text-secondary);
-        }
-
-        .bench-bar-bg {
-            width: 100%;
-            height: 8px;
-            background: var(--border-subtle);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .bench-bar-fill-slow {
-            width: 100%;
-            height: 100%;
-            background: var(--text-muted);
-            border-radius: 8px;
-        }
-
-        .bench-bar-fill-fast {
-            width: 6%;
-            height: 100%;
-            background: var(--accent-green);
-            border-radius: 8px;
-            box-shadow: 0 0 12px var(--accent-green);
-        }
-
-        /* Mini Data Table & Interactive Model Toggle */
-        .model-toggle-row {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            margin-bottom: 12px;
-        }
-
-        .mini-toggle-btn {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 5px 12px;
-            border-radius: 14px;
-            border: 1px solid var(--border-subtle);
-            background: var(--bg-surface-elevated);
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-family: var(--font-family);
-            transition: all 0.2s ease;
-        }
-
-        .mini-toggle-btn.active {
-            background: var(--accent-blue);
-            color: #ffffff;
-            border-color: var(--accent-blue);
-        }
-
-        .data-table-wrap {
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            text-align: left;
-        }
-
-        .data-table th {
-            background: var(--border-subtle);
-            color: var(--text-secondary);
-            font-weight: 600;
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .data-table td {
-            padding: 10px 14px;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border-subtle);
-            font-family: var(--font-mono);
-        }
-
-        .data-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .highlight-warn {
-            color: var(--accent-amber);
-            font-weight: 600;
-        }
-
-        .highlight-blue {
-            color: var(--accent-blue);
-            font-weight: 600;
-        }
-
-        .highlight-green {
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-
-        /* Education & Credentials Timeline Grid */
-        .credentials-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            margin-top: 20px;
-        }
-
-        .cred-item {
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 18px;
-            transition: transform 0.3s var(--apple-ease);
+        .ambi-wrap.portrait { aspect-ratio: 4/5; }
+        
+        /* The actual photo */
+        .ambi-front {
+            position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 15px; z-index: 2;
         }
         
-        .cred-item:hover {
-            transform: scale(1.02);
-            border-color: var(--border-highlight);
+        /* The magical glowing aura behind it */
+        .ambi-glow {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+            filter: blur(25px) saturate(150%) brightness(1.2); opacity: 0; z-index: 1;
+            transition: opacity 0.4s ease, transform 0.4s ease; transform: scale(0.9);
         }
 
-        .cred-year {
-            font-size: 11px;
-            font-family: var(--font-mono);
-            color: var(--accent-blue);
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
+        .ambi-wrap:hover { transform: scale(1.03) translateY(-5px); border-color: #fff; }
+        .ambi-wrap:hover .ambi-glow { opacity: 1; transform: scale(1.1); }
 
-        .cred-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-            line-height: 1.3;
-        }
+        /* Data Tables */
+        .data-table-wrap { transform: translateZ(20px); margin-top: 24px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-subtle); }
+        .data-table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.4); font-family: var(--font-mono); font-size: 13px; }
+        .data-table th { background: rgba(255,255,255,0.05); padding: 12px; text-align: left; color: var(--text-muted); }
+        .data-table td { padding: 12px; border-top: 1px solid var(--border-subtle); color: var(--text-secondary); }
+        .highlight-warn { color: var(--accent-amber); font-weight: bold; }
+        .highlight-green { color: var(--accent-green); font-weight: bold; }
 
-        .cred-sub {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        /* Professional Contact Modal Popup */
+        /* Contact Modal */
         .contact-modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            z-index: 10005;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            animation: modalFadeIn 0.3s var(--apple-ease);
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px); z-index: 10005; align-items: center; justify-content: center;
         }
-
-        .contact-modal-overlay.active {
-            display: flex;
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
+        .contact-modal-overlay.active { display: flex; }
         .contact-modal-card {
-            width: 100%;
-            max-width: 480px;
-            background: var(--bg-modal);
-            border: 1px solid var(--border-highlight);
-            border-radius: 28px;
-            padding: 32px;
-            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
-            position: relative;
-            animation: modalCardPop 0.5s var(--apple-ease);
+            width: 100%; max-width: 500px; background: var(--bg-surface); border: 1px solid var(--border-highlight);
+            border-radius: 24px; padding: 40px; text-align: center; font-family: var(--font-mono);
         }
-
-        @keyframes modalCardPop {
-            from { transform: scale(0.9) translateY(20px); opacity: 0; }
-            to { transform: scale(1) translateY(0); opacity: 1; }
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: 1px solid var(--border-subtle);
-            background: var(--bg-surface-elevated);
-            color: var(--text-primary);
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s ease;
-        }
-
-        .modal-close-btn:hover {
-            background: var(--border-highlight);
-        }
-
-        .verified-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--accent-green);
-            background: rgba(52, 211, 153, 0.14);
-            border: 1px solid rgba(52, 211, 153, 0.35);
-            padding: 5px 12px;
-            border-radius: 20px;
-            margin-bottom: 12px;
-        }
-
-        .modal-signature-title {
-            font-family: var(--font-signature);
-            font-size: 52px;
-            font-weight: 400;
-            color: var(--text-primary);
-            line-height: 1.05;
-            margin-bottom: 4px;
-        }
-
-        .modal-subtitle {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 22px;
-        }
-
-        .contact-method-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 22px;
-        }
-
-        .contact-method-row {
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            border-radius: 18px;
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .method-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            min-width: 0;
-        }
-
-        .method-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .method-val {
-            font-family: var(--font-mono);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .method-val:hover {
-            color: var(--accent-blue);
-        }
-
-        .method-actions {
-            display: flex;
-            gap: 6px;
-            flex-shrink: 0;
-        }
-
-        .action-chip {
-            background: var(--bg-surface);
-            color: var(--text-primary);
-            border: 1px solid var(--border-highlight);
-            padding: 6px 12px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            font-family: var(--font-family);
-            transition: all 0.2s ease;
-        }
-
-        .action-chip:hover {
-            border-color: var(--accent-blue);
-            color: var(--accent-blue);
-        }
-
+        .method-val { font-size: 18px; color: var(--accent-blue); display: block; margin: 10px 0 20px 0; text-decoration: none; }
         .vcard-btn {
-            width: 100%;
-            background: var(--accent-blue);
-            color: #ffffff;
-            border: none;
-            padding: 13px 20px;
-            border-radius: 16px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: var(--font-family);
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            background: var(--text-primary); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold;
+            border: none; width: 100%; margin-top: 20px; font-family: var(--font-family);
         }
 
-        .vcard-btn:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
-        }
+        /* Lightbox */
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10000; align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 85vh; border-radius: 12px; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
 
-        /* Lightbox Modal */
-        .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            z-index: 10000;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 32px;
-            cursor: zoom-out;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 78vh;
-            object-fit: contain;
-            border-radius: 16px;
-            border: 1px solid var(--border-highlight);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
-            cursor: default;
-        }
-
-        .lightbox-meta-bar {
-            margin-top: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-            cursor: default;
-        }
-
-        .lightbox-caption {
-            font-size: 13px;
-            font-weight: 600;
-            color: #ffffff;
-            background: rgba(24, 24, 28, 0.9);
-            padding: 8px 18px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .lightbox-nav-btn {
-            background: rgba(255, 255, 255, 0.12);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: var(--font-family);
-            transition: background 0.2s ease;
-        }
-
-        .lightbox-nav-btn:hover {
-            background: rgba(255, 255, 255, 0.24);
-        }
-
-        /* Footer */
-        footer {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 32px 24px 64px 24px;
-            border-top: 1px solid var(--border-subtle);
-            font-size: 13px;
-            color: var(--text-secondary);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        footer a {
-            color: var(--accent-blue);
-            text-decoration: none;
-        }
-
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-            .hero-portrait-card {
-                max-width: 380px;
-            }
-            .metrics-grid, .quote-grid, .credentials-grid, .photo-gallery-work, .photo-gallery-studio, .photo-gallery-pov {
-                grid-template-columns: 1fr;
-            }
-            .showcase-grid {
-                display: flex;
-                flex-direction: column;
-            }
-            .hero h1.signature-heading {
-                font-size: 64px;
-            }
-            .hero p {
-                font-size: 17px;
-            }
-            .nav-menu {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body data-theme="dark">
 
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress" id="scroll-progress"></div>
+    <!-- Magnetic Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
 
-    <!-- Top Navigation -->
     <header>
         <div class="nav-container">
-            <a href="#" class="brand-wrap" title="Jordan Ioannoni">
+            <a href="#" class="brand-wrap magnetic" title="Jordan Ioannoni">
                 <span class="status-dot"></span>
                 <span class="nav-signature">Jordan Ioannoni</span>
             </a>
-
             <nav class="nav-menu">
-                <a href="#photography" class="nav-btn">Media Production</a>
-                <a href="#automation" class="nav-btn">Systems &amp; Tech</a>
-                <a href="#operations" class="nav-btn">Business &amp; HR</a>
-                <a href="#credentials" class="nav-btn">Credentials</a>
-                <button type="button" class="nav-btn" onclick="scrollToContact()">Contact</button>
+                <a href="#photography" class="nav-btn magnetic">Media</a>
+                <a href="#automation" class="nav-btn magnetic">Systems</a>
+                <a href="#operations" class="nav-btn magnetic">Operations</a>
+                <button type="button" class="nav-btn magnetic" onclick="scrollToContact()">Contact</button>
             </nav>
-
-            <div class="nav-right-controls">
-                <!-- Animated Sliding Theme Switcher -->
-                <div class="theme-switch" onclick="toggleTheme()" title="Toggle Light / Dark Mode" role="button" aria-label="Toggle Theme">
-                    <span class="theme-icon-track">🌙</span>
-                    <span class="theme-icon-track">☀️</span>
-                    <div class="theme-switch-thumb" id="theme-thumb">🌙</div>
-                </div>
-            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-text">
-            <div class="eyebrow fade-in-up delay-1">St. Catharines, ON &bull; Niagara College &bull; ID 4382028</div>
+            <div class="eyebrow">St. Catharines, ON &bull; Niagara College &bull; ID 4382028</div>
+            <!-- Matrix Scramble Text -->
+            <h1 class="scramble-text" data-scramble="Jordan Ioannoni">Jordan Ioannoni</h1>
+            <p>Business General student combining hands-on automotive trades, custom systems automation, operations forecasting, and professional digital photography.</p>
 
-            <!-- Real Cursive Signature Heading + Hand-Drawn Flourish -->
-            <div class="hero-signature-wrap fade-in-up delay-2">
-                <h1 class="signature-heading">Jordan Ioannoni</h1>
-                <svg class="signature-flourish" viewBox="0 0 420 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 15C95 3 245 4 405 11C355 15 280 18 220 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                </svg>
-            </div>
-
-            <p class="fade-in-up delay-3">Business General student combining hands on automotive trades, custom systems automation, operations forecasting, and professional sports, studio, and automotive photography.</p>
-
-            <div class="hero-Quick-Tags fade-in-up delay-4">
-                <span class="hero-tag">Ioannoni Visuals</span>
-                <span class="hero-tag">Digital Sports Photography</span>
-                <span class="hero-tag">Motive Power &amp; Durability Lab</span>
-                <span class="hero-tag">Operations &amp; Supply Chain Focus</span>
-            </div>
-
-            <!-- Bot-Proof Race Car Hold-to-Reveal Contact Button -->
-            <div class="hold-contact-container fade-in-up delay-4" id="contact-trigger-area">
-                <button type="button" class="race-hold-btn" id="hold-contact-btn"
-                    onmousedown="startHolding(event)" onmouseup="stopHolding()" onmouseleave="stopHolding()"
-                    ontouchstart="startHolding(event)" ontouchend="stopHolding()" ontouchcancel="stopHolding()">
+            <div class="hold-contact-container" id="contact-trigger-area">
+                <button type="button" class="race-hold-btn magnetic" id="hold-contact-btn"
+                    onmousedown="startHolding()" onmouseup="stopHolding()" onmouseleave="stopHolding()">
                     <div class="race-track-lines"></div>
                     <div class="race-progress-streak" id="hold-progress-bar"></div>
-
-                    <!-- Inline Motorsport Race Car SVG -->
                     <div class="race-car-wrapper" id="race-car-icon">
-                        <svg viewBox="0 0 64 28" width="56" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 64 28" width="56" height="26" fill="none">
                             <path class="exhaust-flame" d="M0 16 L7 13 L5 16 L7 19 Z" fill="#fbbf24"/>
                             <path d="M7 8 H13 L11 15 H8 Z" fill="#38bdf8"/>
                             <path d="M8 15 L17 12 L27 9 H41 L51 13 L61 15 L62 19 H8 Z" fill="#f8fafc"/>
                             <path d="M26 10.2 H39 L46 13.5 H22 Z" fill="#0f172a"/>
-                            <path d="M12 16 H59" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M12 16 H59" stroke="#38bdf8" stroke-width="2"/>
                             <circle cx="18" cy="19" r="5" fill="#18181b" stroke="#e4e4e7" stroke-width="1.5"/>
-                            <circle cx="18" cy="19" r="2" fill="#38bdf8"/>
                             <circle cx="49" cy="19" r="5" fill="#18181b" stroke="#e4e4e7" stroke-width="1.5"/>
-                            <circle cx="49" cy="19" r="2" fill="#38bdf8"/>
                         </svg>
                     </div>
-
                     <div class="finish-flag-strip"></div>
-
                     <div class="race-btn-label">
-                        <span id="race-btn-text">Hold 2s to Launch Contact</span>
+                        <span id="race-btn-text">Hold to Decrypt Contact</span>
                         <span class="race-timer-badge" id="race-timer-text">0.0s</span>
                     </div>
                 </button>
             </div>
         </div>
 
-        <div class="hero-portrait-card fade-in-up delay-2" onclick="openLightbox(this)">
-            <div class="hero-portrait-inner">
-                <img src="IMG_2955.jpg?v=5" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
-                <span class="portrait-badge">Trackside &bull; Canon 1DX + L-Series Telephoto</span>
+        <!-- 3D Hero Card -->
+        <div class="hero-portrait-scene magnetic">
+            <div class="hero-portrait-card">
+                <div class="hero-glare"></div>
+                <div class="hero-portrait-inner ambi-wrap">
+                    <img src="IMG_2955.jpg" class="ambi-glow">
+                    <img src="IMG_2955.jpg" class="ambi-front" onclick="openLightbox(this)" alt="Jordan Ioannoni Trackside">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Quick Metrics Strip -->
-    <section class="metrics-grid">
-        <div class="metric-card scroll-reveal">
-            <div class="metric-value">3.5</div>
-            <div class="metric-label">College Credentials Completed &amp; In Progress</div>
-        </div>
-        <div class="metric-card scroll-reveal" style="transition-delay: 0.1s;">
-            <div class="metric-value">2018</div>
-            <div class="metric-label">Active Since in Event &amp; Sports Photography</div>
-        </div>
-        <div class="metric-card scroll-reveal" style="transition-delay: 0.2s;">
-            <div class="metric-value">48x</div>
-            <div class="metric-label">Faster Cloud Migration via Custom AI LLM</div>
-        </div>
-        <div class="metric-card scroll-reveal" style="transition-delay: 0.3s;">
-            <div class="metric-value">720 Hrs</div>
-            <div class="metric-label">Motive Power Post Secondary Shop Training</div>
-        </div>
-    </section>
-
-    <!-- Philosophy & Manifesto Banner -->
-    <section class="statement-banner scroll-reveal">
-        <h3>Why This Portfolio Exists</h3>
-        <p>A traditional one page resume is just a flat list of old jobs and classes that never shows how you actually think, organize a workflow, or solve problems. Instead of relying on a standard piece of paper or a generic template slideshow, I coded this site from scratch to put real proof of my work in one place.</p>
-
-        <div class="quote-grid">
-            <div class="quote-box">
-                <div class="quote-text">"Keep your head down. Follow the rules. Do as you're told. Play it safe. Wait your turn... This is terrible advice."</div>
-                <div class="quote-author">Casey Neistat &bull; Do What You Can't</div>
-            </div>
-            <div class="quote-box">
-                <div class="quote-text">"Imagine if your next boss didn't have to read your resume because he already reads your blog... All you have to do is show your work."</div>
-                <div class="quote-author">Austin Kleon &bull; Show Your Work!</div>
-            </div>
-            <div class="quote-box">
-                <div class="quote-text">"Degrees and credentials matter far less than tangible output because your work is your pitch deck."</div>
-                <div class="quote-author">Peter McKinnon &bull; Creator Philosophy</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Bento Grid -->
     <main class="showcase-grid">
 
-        <!-- 1. Multi-Genre Media Production Card -->
-        <article id="photography" class="bento-card size-wide anchor-section scroll-reveal">
+        <!-- Media Production (Ambilight Gallery) -->
+        <article id="photography" class="bento-card size-wide">
             <div class="card-content">
-                <div class="card-header">
-                    <span class="card-meta">Media Production &bull; Ioannoni Visuals</span>
-                    <span class="card-badge">Sports &bull; Studio &bull; Automotive</span>
-                </div>
-                <h2>Visual Production &amp; Lightroom Workflow</h2>
-                <p>Shooting high speed tournament sports, controlled studio portraits, and automotive photography since 2018. My workflow covers on location lighting and fast telephoto tracking with a <strong>Canon 1DX</strong> and <strong>Canon EF 300mm f/2.8L IS II</strong> through to RAW color grading and client delivery in <strong>Adobe Lightroom Classic</strong> and <strong>Photoshop</strong>.</p>
+                <div class="eyebrow">Ioannoni Visuals</div>
+                <h2 class="scramble-text" style="font-size: 2.5rem;" data-scramble="Visual Production Engine">Visual Production Engine</h2>
+                <p>High-speed tournament sports, studio portraiture, and automotive photography powered by Canon 1DX and L-Series telemetry, processed through Adobe CC.</p>
                 
-                <div class="pill-row">
-                    <span class="pill">Canon EOS 1DX</span>
-                    <span class="pill">Canon EF 300mm f/2.8L IS II</span>
-                    <span class="pill">Studio Strobe &amp; Key Lighting</span>
-                    <span class="pill">Automotive &amp; Motorsport</span>
-                    <span class="pill">Adobe Lightroom Classic</span>
-                </div>
-
-                <!-- Interactive Filter Buttons -->
-                <div class="filter-bar">
-                    <button type="button" class="filter-btn active" onclick="filterGallery('all', this)">All Captures (11)</button>
-                    <button type="button" class="filter-btn" onclick="filterGallery('sports', this)">Arena &amp; Sports (4)</button>
-                    <button type="button" class="filter-btn" onclick="filterGallery('studio', this)">Studio &amp; Automotive (3)</button>
-                    <button type="button" class="filter-btn" onclick="filterGallery('pov', this)">Behind the Lens POV (4)</button>
-                </div>
-            </div>
-
-            <!-- Section A: Arena & Tournament Sports -->
-            <div id="gal-sports" class="gallery-section">
-                <div class="sub-heading">
-                    Arena &amp; Tournament Action
-                    <span>High Shutter Speed &bull; 300mm f/2.8L IS II</span>
-                </div>
                 <div class="photo-gallery-work">
-                    <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="2DPX4122 (1).jpg?v=5" alt="Brock Jr. Badgers On Ice Action">
-                        <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000644 (1).jpg?v=5" alt="Crease Save Action Shot">
-                        <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000041 (1).jpg?v=5" alt="Ioannoni Visuals Bench Celebration">
-                        <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000642 (1).jpg?v=5" alt="Huskies Bench Coaching Moment">
-                        <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
-                    </div>
+                    <div class="ambi-wrap magnetic"><img src="2DPX4122 (1).jpg" class="ambi-glow"><img src="2DPX4122 (1).jpg" class="ambi-front" onclick="openLightbox(this)"></div>
+                    <div class="ambi-wrap magnetic"><img src="1000000644 (1).jpg" class="ambi-glow"><img src="1000000644 (1).jpg" class="ambi-front" onclick="openLightbox(this)"></div>
+                    <div class="ambi-wrap magnetic"><img src="1000000041 (1).jpg" class="ambi-glow"><img src="1000000041 (1).jpg" class="ambi-front" onclick="openLightbox(this)"></div>
+                    <div class="ambi-wrap magnetic"><img src="1000000642 (1).jpg" class="ambi-glow"><img src="1000000642 (1).jpg" class="ambi-front" onclick="openLightbox(this)"></div>
                 </div>
-            </div>
 
-            <!-- Section B: Studio Portraiture & Automotive Lifestyle -->
-            <div id="gal-studio" class="gallery-section">
-                <div class="sub-heading">
-                    Studio Portraiture &amp; Automotive Lifestyle
-                    <span>Controlled Lighting &bull; Automotive Framing &amp; Color Grading</span>
-                </div>
                 <div class="photo-gallery-studio">
-                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9998.JPG?v=5" alt="Studio Portrait Key Light">
-                        <span class="gallery-label">Studio Portrait &bull; Controlled Key Lighting</span>
-                    </div>
-                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9946.JPG?v=5" alt="Moody Studio Profile Portrait">
-                        <span class="gallery-label">Studio Profile &bull; Directional Shadow Grade</span>
-                    </div>
-                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="IMG_1978.jpg?v=5" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
-                        <span class="gallery-label">Mercedes-Benz Cockpit &bull; Automotive Detail</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section C: Behind the Lens POV -->
-            <div id="gal-pov" class="gallery-section">
-                <div class="sub-heading">
-                    Behind the Lens &bull; Field, Track &amp; Arena Operations
-                    <span>On Location Gear &amp; Setup</span>
-                </div>
-                <div class="photo-gallery-pov">
-                    <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="IMG_5669.jpg?v=5" alt="Trackside Fence POV with Canon 1DX">
-                        <span class="gallery-label">Motorsport Trackside &bull; Canon 1DX</span>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).jpg?v=5" alt="Rinkside Over the Shoulder POV">
-                        <span class="gallery-label">Rinkside POV &bull; Canon 1DX</span>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="20260807_101658 (1).jpg?v=5" alt="Outdoor Turf Field Coverage in Rain Gear">
-                        <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000129 (1).jpg?v=5" alt="Rinkside Setup with Canon 1DX and 300mm">
-                        <span class="gallery-label">Arena Assignment &bull; 300mm f/2.8 Rig</span>
-                    </div>
+                    <div class="ambi-wrap portrait magnetic"><img src="JIOA9998.JPG" class="ambi-glow"><img src="JIOA9998.JPG" class="ambi-front" onclick="openLightbox(this)"></div>
+                    <div class="ambi-wrap portrait magnetic"><img src="JIOA9946.JPG" class="ambi-glow"><img src="JIOA9946.JPG" class="ambi-front" onclick="openLightbox(this)"></div>
+                    <div class="ambi-wrap portrait magnetic"><img src="IMG_1978.jpg" class="ambi-glow"><img src="IMG_1978.jpg" class="ambi-front" onclick="openLightbox(this)"></div>
+                    <div class="ambi-wrap portrait magnetic"><img src="_DSC5284.jpg" class="ambi-glow"><img src="_DSC5284.jpg" class="ambi-front" onclick="openLightbox(this)"></div>
+                    <div class="ambi-wrap portrait magnetic"><img src="_DSC5253.jpg" class="ambi-glow"><img src="_DSC5253.jpg" class="ambi-front" onclick="openLightbox(this)"></div>
+                    <div class="ambi-wrap portrait magnetic"><img src="_DSC5272.jpg" class="ambi-glow"><img src="_DSC5272.jpg" class="ambi-front" onclick="openLightbox(this)"></div>
                 </div>
             </div>
         </article>
 
-        <!-- 2. Systems Architecture & AI Automation -->
-        <article id="automation" class="bento-card size-left anchor-section scroll-reveal">
+        <!-- Automation -->
+        <article id="automation" class="bento-card size-left">
             <div class="card-content">
-                <div class="card-header">
-                    <span class="card-meta">Systems Architecture</span>
-                    <span class="card-badge">Custom Workflow</span>
-                </div>
-                <h2>AI File Sorting &amp; Cloud Server Build</h2>
-                <p>When instructed to organize a company hard drive and upload the entire archive to a cloud server, the manual job was estimated to take <strong>2 full days</strong> of sorting folders by hand.</p>
-                <p>Instead, I deployed a custom coded <strong>AI LLM script</strong> that automatically sorted every file by type, date, internal data, file size, and priority while I built the web based cloud server in parallel.</p>
-
-                <div class="benchmark-box">
-                    <div class="bench-row">
-                        <div class="bench-labels">
-                            <span>Estimated Manual Sorting &amp; Upload</span>
-                            <span>48 Hours (2 Days)</span>
-                        </div>
-                        <div class="bench-bar-bg"><div class="bench-bar-fill-slow"></div></div>
-                    </div>
-                    <div class="bench-row">
-                        <div class="bench-labels">
-                            <span>Custom AI LLM + Web Cloud Deployment</span>
-                            <span style="color: var(--accent-green); font-weight: 600;">1 Hour Total</span>
-                        </div>
-                        <div class="bench-bar-bg"><div class="bench-bar-fill-fast"></div></div>
-                    </div>
-                </div>
+                <div class="eyebrow">Systems Architecture</div>
+                <h2 class="scramble-text" style="font-size: 2rem;" data-scramble="AI Script Deployment">AI Script Deployment</h2>
+                <p>Replaced a 48-hour manual hard drive sorting process with a custom Python/LLM script that organized, tagged, and deployed the archive to a cloud server in under 60 minutes.</p>
             </div>
         </article>
 
-        <!-- 3. Motive Power & Hardware Diagnostics -->
-        <article class="bento-card size-right scroll-reveal" style="transition-delay: 0.1s;">
+        <!-- Operations -->
+        <article id="operations" class="bento-card size-right">
             <div class="card-content">
-                <div class="card-header">
-                    <span class="card-meta">Technical Diagnostics</span>
-                    <span class="card-badge">Shop &amp; Lab Tested</span>
-                </div>
-                <h2>Motive Power &amp; Hardware Tuning</h2>
-                <p>Hands on experience in engineering durability lab testing, automotive electrical and mechanical service, and custom PC thermal and hardware diagnostics.</p>
-                <div class="pill-row">
-                    <span class="pill">OBDII Fault Diagnostics</span>
-                    <span class="pill">Multimeters &amp; Schematics</span>
-                    <span class="pill">Durability Lab Testing</span>
-                    <span class="pill">HWiNFO64 &amp; Cinebench 2024</span>
-                    <span class="pill">WHMIS &amp; ODP Certified</span>
-                </div>
-            </div>
-        </article>
-
-        <!-- 4. Operations Management Forecasting -->
-        <article id="operations" class="bento-card size-left anchor-section scroll-reveal">
-            <div class="card-content">
-                <div class="card-header">
-                    <span class="card-meta">Operations Management</span>
-                    <span class="card-badge">OPER1401</span>
-                </div>
-                <h2>Trend Projection &amp; Outlier Analysis</h2>
-                <p>Built quantitative regression models in Excel to project multi year product demand (Years 15 &amp; 16). Beyond running the formulas, I identified how a single Year 2 demand spike (1,438 units) skewed the slope downward by 30.83 units per year, recommending a baseline reset at Year 3 for accurate inventory planning.</p>
-
-                <!-- Interactive Scenario Switcher -->
+                <div class="eyebrow">OPER1401</div>
+                <h2 class="scramble-text" style="font-size: 2rem;" data-scramble="Data Forecasting">Data Forecasting</h2>
+                <p>Quantitative regression modeling in Excel identifying demand outliers to prevent massive safety-stock over-ordering.</p>
                 <div class="model-toggle-row">
-                    <button type="button" class="mini-toggle-btn active" onclick="setForecastMode('raw', this)">Raw Model (With Yr 2 Outlier)</button>
-                    <button type="button" class="mini-toggle-btn" onclick="setForecastMode('adjusted', this)">Adjusted Baseline (Yr 3 Reset)</button>
+                    <button type="button" class="mini-toggle-btn magnetic active" onclick="setForecastMode('raw', this)">Raw Model</button>
+                    <button type="button" class="mini-toggle-btn magnetic" onclick="setForecastMode('adjusted', this)">Adjusted Baseline</button>
                 </div>
-
                 <div class="data-table-wrap">
                     <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Metric / Period</th>
-                                <th>Model Output</th>
-                                <th>Operational Note</th>
-                            </tr>
-                        </thead>
                         <tbody id="forecast-table-body">
-                            <tr>
-                                <td>Years 1, 3 to 6 Range</td>
-                                <td>1,004 to 1,043</td>
-                                <td>Stable baseline demand</td>
-                            </tr>
-                            <tr>
-                                <td>Year 2 Spike</td>
-                                <td class="highlight-warn">1,438 units</td>
-                                <td class="highlight-warn">Outlier skewing regression</td>
-                            </tr>
-                            <tr>
-                                <td>Trend Slope (b)</td>
-                                <td>-30.83 / yr</td>
-                                <td>Y-Intercept (a) = 1,199.4</td>
-                            </tr>
-                            <tr>
-                                <td>Year 15 &amp; 16 Forecast</td>
-                                <td class="highlight-blue">736.97 / 706.14</td>
-                                <td>Under-forecasts true demand</td>
-                            </tr>
+                            <tr><td>Yr 2 Spike</td><td class="highlight-warn">1,438 units</td></tr>
+                            <tr><td>Slope</td><td>-30.83 / yr</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </article>
 
-        <!-- 5. Human Resources & Job Analysis -->
-        <article class="bento-card size-right scroll-reveal" style="transition-delay: 0.1s;">
-            <div class="card-content">
-                <div class="card-header">
-                    <span class="card-meta">Human Resources</span>
-                    <span class="card-badge">PERS1301</span>
-                </div>
-                <h2>Technical Job Analysis &amp; KSA Mapping</h2>
-                <p>Designed an objective HR Job Analysis framework for an Automotive Service Technician Apprentice role, connecting daily shop tasks and safety compliance directly to onboarding, liability protection, and fair pay progression.</p>
-                <div class="pill-row">
-                    <span class="pill">KSA Recruitment Standards</span>
-                    <span class="pill">Work Order Documentation</span>
-                    <span class="pill">Hoist &amp; Hazmat Risk Control</span>
-                    <span class="pill">Supply Chain &amp; Dispatch Focus</span>
-                </div>
-            </div>
-        </article>
-
-        <!-- 6. Digital Literacy & Semi Analog Workflow -->
-        <article id="literacy" class="bento-card size-half anchor-section scroll-reveal">
-            <div class="card-content">
-                <div class="card-header">
-                    <span class="card-meta">Information Literacy</span>
-                </div>
-                <h2>CRAAP Source Verification &amp; Media Analysis</h2>
-                <p>Evaluated national reporting and public inquiry findings on foreign interference using the <strong>CRAAP framework</strong> (Currency, Relevance, Authority, Accuracy, Purpose) to separate verified intelligence from political disinformation.</p>
-            </div>
-        </article>
-
-        <article class="bento-card size-half scroll-reveal" style="transition-delay: 0.1s;">
-            <div class="card-content">
-                <div class="card-header">
-                    <span class="card-meta">Digital Wellbeing</span>
-                </div>
-                <h2>The Semi Analog Focus System</h2>
-                <p>Balancing a heavy online course load by stepping outside the digital echo chamber. I pair digital tools with handwriting notes in an <strong>A5 leather bound notebook</strong> using a knurled metal <strong>rOtring 600 pen</strong> and shooting on film to stay grounded and sharp.</p>
-            </div>
-        </article>
-
-        <!-- 7. Education & Credentials Progression -->
-        <article id="credentials" class="bento-card size-wide anchor-section scroll-reveal">
-            <div class="card-content">
-                <div class="card-header">
-                    <span class="card-meta">Academic &amp; Trade Progression</span>
-                    <span class="card-badge">Niagara College</span>
-                </div>
-                <h2>Multidisciplinary Education</h2>
-                <p>Combining business administration, sales, and hands on mechanical trade schooling to bridge the gap between shop floor operations and office management.</p>
-
-                <div class="credentials-grid">
-                    <div class="cred-item">
-                        <div class="cred-year">IN PROGRESS</div>
-                        <div class="cred-title">Business General Diploma</div>
-                        <div class="cred-sub">Operations, HR, Forecasting &amp; Digital Systems</div>
-                    </div>
-                    <div class="cred-item">
-                        <div class="cred-year">COMPLETED 2026</div>
-                        <div class="cred-title">Office Administration Certificate</div>
-                        <div class="cred-sub">Administrative Systems &amp; Digital Workflows</div>
-                    </div>
-                    <div class="cred-item">
-                        <div class="cred-year">COMPLETED 2025</div>
-                        <div class="cred-title">Motive Power Techniques</div>
-                        <div class="cred-sub">720 Hrs Mechanical, Electrical &amp; Hydraulic Service</div>
-                    </div>
-                    <div class="cred-item">
-                        <div class="cred-year">COMPLETED 2021</div>
-                        <div class="cred-title">Business Sales &amp; Marketing</div>
-                        <div class="cred-sub">Client Negotiation &amp; Commercial Strategy</div>
-                    </div>
-                </div>
-            </div>
-        </article>
-
     </main>
 
-    <!-- Professional Contact Popup Modal Window -->
+    <!-- Contact Modal -->
     <div id="contact-modal" class="contact-modal-overlay" onclick="handleModalBackdropClick(event)">
         <div class="contact-modal-card">
-            <button type="button" class="modal-close-btn" onclick="closeContactModal()" aria-label="Close modal">&times;</button>
-            <div class="verified-pill">🏁 Checkered Flag &bull; Human Verified</div>
-            <div class="modal-signature-title">Jordan Ioannoni</div>
-            <div class="modal-subtitle">Business Operations &bull; Motive Power &bull; Ioannoni Visuals &bull; St. Catharines, ON</div>
-
-            <div class="contact-method-list">
-                <div class="contact-method-row">
-                    <div class="method-info">
-                        <span class="method-label">Direct Email</span>
-                        <a href="mailto:jordan.ioannoni@outlook.com" class="method-val">jordan.ioannoni@outlook.com</a>
-                    </div>
-                    <div class="method-actions">
-                        <button type="button" class="action-chip" onclick="copyText('jordan.ioannoni@outlook.com', this)">Copy</button>
-                        <a href="mailto:jordan.ioannoni@outlook.com" class="action-chip">Email &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="contact-method-row">
-                    <div class="method-info">
-                        <span class="method-label">Mobile / Direct Line</span>
-                        <a href="tel:4036673728" class="method-val">403-667-3728</a>
-                    </div>
-                    <div class="method-actions">
-                        <button type="button" class="action-chip" onclick="copyText('403-667-3728', this)">Copy</button>
-                        <a href="tel:4036673728" class="action-chip">Call &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-            <button type="button" class="vcard-btn" onclick="downloadVCard()">📇 Save Contact Card (.vcf)</button>
+            <div class="eyebrow" style="margin-bottom: 0;">Identity Verified</div>
+            <h2 style="margin: 20px 0;">Jordan Ioannoni</h2>
+            <p>jordan.ioannoni@outlook.com</p>
+            <p style="margin-bottom: 30px;">403-667-3728</p>
+            <button class="vcard-btn magnetic" onclick="downloadVCard()">Download Root Credentials (.vcf)</button>
         </div>
     </div>
 
-    <!-- Lightbox Modal for Photos -->
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
         <img id="lightbox-img" src="" alt="Expanded View">
-        <div class="lightbox-meta-bar">
-            <button type="button" class="lightbox-nav-btn" onclick="stepLightbox(-1, event)">&larr; Prev</button>
-            <div id="lightbox-caption" class="lightbox-caption"></div>
-            <button type="button" class="lightbox-nav-btn" onclick="stepLightbox(1, event)">Next &rarr;</button>
-        </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <span>Jordan Ioannoni &bull; Niagara College Student ID 4382028 &bull; St. Catharines, ON</span>
-        <span>Custom HTML &amp; CSS Portfolio &bull; <a href="#">Back to Top &uarr;</a></span>
-    </footer>
-
     <script>
-        // --- 1. Apple-style Scroll Reveals (Intersection Observer) ---
-        document.addEventListener("DOMContentLoaded", function() {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -60px 0px', // Triggers slightly before element comes fully into view
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target); // Run once
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.scroll-reveal').forEach((el) => {
-                observer.observe(el);
-            });
+        // --- 1. HACKER TEXT SCRAMBLE ENGINE ---
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!<>-_\\/[]{}—=+*^?#_";
+        document.querySelectorAll('.scramble-text').forEach(el => {
+            let iterations = 0;
+            const originalText = el.dataset.scramble;
+            const interval = setInterval(() => {
+                el.innerText = originalText.split("").map((letter, index) => {
+                    if(index < iterations) return originalText[index];
+                    return letters[Math.floor(Math.random() * 26)];
+                }).join("");
+                if(iterations >= originalText.length) clearInterval(interval);
+                iterations += 1 / 3;
+            }, 30);
         });
 
-        // --- 2. Apple TV style Spatial Spotlight on Cards ---
-        document.querySelectorAll('.bento-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
+        // --- 2. MAGNETIC & FLUID CURSOR ---
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+        });
+
+        // Smooth trailing ring loop
+        function renderCursor() {
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top = ringY + 'px';
+            requestAnimationFrame(renderCursor);
+        }
+        requestAnimationFrame(renderCursor);
+
+        // Magnetic Hover Effect
+        document.querySelectorAll('.magnetic').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+
+        // --- 3. 3D GLASS PARALLAX ENGINE ---
+        document.querySelectorAll('.bento-card, .hero-portrait-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+                
+                // Calculate rotation (max 6 degrees)
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -6;
+                const rotateY = ((x - centerX) / centerX) * 6;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
             });
         });
 
-        // 3. Smooth Sliding Light / Dark Mode Toggle
-        function toggleTheme() {
-            var body = document.body;
-            var thumb = document.getElementById('theme-thumb');
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                thumb.textContent = '☀️';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                thumb.textContent = '🌙';
-            }
-        }
+        // --- 4. RACE CAR BOOTUP SEQUENCE ---
+        let holdTimer, holdDuration = 1500, startTime;
+        let isHolding = false, isUnlocked = false;
 
-        // 4. Scroll Progress Bar
-        window.addEventListener('scroll', function() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-            document.getElementById('scroll-progress').style.width = scrolled + '%';
-        });
-
-        // 5. Race Car 2-Second Hold-to-Reveal Contact Logic
-        var holdDuration = 2000; // 2.0 seconds
-        var startTime = 0;
-        var progressInterval = null;
-        var contactUnlocked = false;
-
-        function startHolding(e) {
-            if (e && e.type === 'touchstart') {
-                e.preventDefault();
-            }
-            if (contactUnlocked) {
-                openContactModal();
-                return;
-            }
-
-            var btn = document.getElementById('hold-contact-btn');
-            var bar = document.getElementById('hold-progress-bar');
-            var car = document.getElementById('race-car-icon');
-            var timerText = document.getElementById('race-timer-text');
-            var btnText = document.getElementById('race-btn-text');
-
+        function startHolding() {
+            if(isUnlocked) { document.getElementById('contact-modal').classList.add('active'); return; }
+            isHolding = true; startTime = Date.now();
+            const bar = document.getElementById('hold-progress-bar');
+            const car = document.getElementById('race-car-icon');
+            const timer = document.getElementById('race-timer-text');
+            const btn = document.getElementById('hold-contact-btn');
+            
             btn.classList.add('holding');
-            btnText.textContent = 'Accelerating... Keep Holding!';
-            startTime = Date.now();
+            
+            holdTimer = setInterval(() => {
+                if(!isHolding) return;
+                let elapsed = Date.now() - startTime;
+                let ratio = Math.min(elapsed / holdDuration, 1);
+                bar.style.width = (ratio * 100) + '%';
+                car.style.left = (14 + ratio * (btn.clientWidth - 78)) + 'px';
+                timer.innerText = (elapsed / 1000).toFixed(1) + 's';
 
-            var maxTravel = btn.clientWidth - 78; // Distance from start to checkered flag
-
-            if (progressInterval) clearInterval(progressInterval);
-            progressInterval = setInterval(function() {
-                var elapsed = Date.now() - startTime;
-                var ratio = Math.min(elapsed / holdDuration, 1);
-                var pct = ratio * 100;
-
-                bar.style.width = pct + '%';
-                car.style.left = (14 + ratio * maxTravel) + 'px';
-                timerText.textContent = (elapsed / 1000).toFixed(1) + 's';
-
-                if (ratio >= 1) {
-                    clearInterval(progressInterval);
-                    progressInterval = null;
-                    completeRaceUnlock();
+                if(ratio >= 1) {
+                    clearInterval(holdTimer);
+                    isUnlocked = true;
+                    btn.classList.remove('holding');
+                    btn.classList.add('unlocked');
+                    document.getElementById('race-btn-text').innerText = "Access Granted";
+                    document.getElementById('contact-modal').classList.add('active');
                 }
             }, 16);
         }
 
         function stopHolding() {
-            if (contactUnlocked) return;
-            if (progressInterval) {
-                clearInterval(progressInterval);
-                progressInterval = null;
-            }
-            var btn = document.getElementById('hold-contact-btn');
-            var bar = document.getElementById('hold-progress-bar');
-            var car = document.getElementById('race-car-icon');
-            var timerText = document.getElementById('race-timer-text');
-            var btnText = document.getElementById('race-btn-text');
-
-            btn.classList.remove('holding');
-            bar.style.width = '0%';
-            car.style.left = '14px';
-            timerText.textContent = '0.0s';
-            btnText.textContent = 'Hold 2s to Launch Contact';
-        }
-
-        function completeRaceUnlock() {
-            contactUnlocked = true;
-            var btn = document.getElementById('hold-contact-btn');
-            var bar = document.getElementById('hold-progress-bar');
-            var timerText = document.getElementById('race-timer-text');
-            var btnText = document.getElementById('race-btn-text');
-
-            btn.classList.remove('holding');
-            btn.classList.add('unlocked');
-            bar.style.width = '100%';
-            timerText.textContent = '2.0s 🏁';
-            btnText.textContent = 'Contact Unlocked — Click to View';
-
-            openContactModal();
-        }
-
-        function openContactModal() {
-            document.getElementById('contact-modal').classList.add('active');
-        }
-
-        function closeContactModal() {
-            document.getElementById('contact-modal').classList.remove('active');
+            isHolding = false;
+            if(isUnlocked) return;
+            clearInterval(holdTimer);
+            document.getElementById('hold-contact-btn').classList.remove('holding');
+            document.getElementById('hold-progress-bar').style.width = '0%';
+            document.getElementById('race-car-icon').style.left = '14px';
+            document.getElementById('race-timer-text').innerText = '0.0s';
         }
 
         function handleModalBackdropClick(e) {
-            if (e.target.id === 'contact-modal') {
-                closeContactModal();
+            if(e.target.id === 'contact-modal') e.target.classList.remove('active');
+        }
+
+        // --- 5. LIGHTBOX & DATA TOGGLES ---
+        function setForecastMode(mode, btn) {
+            document.querySelectorAll('.mini-toggle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const tbody = document.getElementById('forecast-table-body');
+            if(mode === 'raw') {
+                tbody.innerHTML = '<tr><td>Yr 2 Spike</td><td class="highlight-warn">1,438 units</td></tr><tr><td>Slope</td><td>-30.83 / yr</td></tr>';
+            } else {
+                tbody.innerHTML = '<tr><td>Yr 2 Spike</td><td class="highlight-green">Filtered Out</td></tr><tr><td>Adjusted Slope</td><td class="highlight-green">+8.40 / yr</td></tr>';
             }
         }
 
-        function scrollToContact() {
-            var area = document.getElementById('contact-trigger-area');
-            area.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            if (contactUnlocked) {
-                openContactModal();
-            }
+        function openLightbox(img) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = img.src;
+            lb.classList.add('active');
         }
-
-        function copyText(text, btnEl) {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text);
-            }
-            var original = btnEl.textContent;
-            btnEl.textContent = 'Copied ✓';
-            btnEl.style.borderColor = 'var(--accent-green)';
-            btnEl.style.color = 'var(--accent-green)';
-            setTimeout(function() {
-                btnEl.textContent = original;
-                btnEl.style.borderColor = '';
-                btnEl.style.color = '';
-            }, 1800);
-        }
-
-        function downloadVCard() {
-            var vcard = [
-                'BEGIN:VCARD',
-                'VERSION:3.0',
-                'N:Ioannoni;Jordan;;;',
-                'FN:Jordan Ioannoni',
-                'ORG:Ioannoni Visuals / Niagara College',
-                'TITLE:Business Operations, Motive Power & Photography',
-                'TEL;TYPE=CELL:403-667-3728',
-                'EMAIL;TYPE=INTERNET:jordan.ioannoni@outlook.com',
-                'ADR;TYPE=WORK:;;St. Catharines;ON;;Canada',
-                'END:VCARD'
-            ].join('\r\n');
-
-            var blob = new Blob([vcard], { type: 'text/vcard' });
-            var url = URL.createObjectURL(blob);
-            var a = document.createElement('a');
-            a.href = url;
-            a.download = 'Jordan_Ioannoni.vcf';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+        function closeLightbox(e) {
+            if(e.target.tagName !== 'IMG') document.getElementById('lightbox').classList.remove('active');
         }
         
-        // 6. Interactive Category Filter for Photography Showcase
-        function filterGallery(category, btn) {
-            document.querySelectorAll('.filter-btn').forEach(function(b) {
-                b.classList.remove('active');
-            });
-            btn.classList.add('active');
-
-            var sports = document.getElementById('gal-sports');
-            var studio = document.getElementById('gal-studio');
-            var pov = document.getElementById('gal-pov');
-
-            if (category === 'all') {
-                sports.classList.remove('hidden');
-                studio.classList.remove('hidden');
-                pov.classList.remove('hidden');
-            } else if (category === 'sports') {
-                sports.classList.remove('hidden');
-                studio.classList.add('hidden');
-                pov.classList.add('hidden');
-            } else if (category === 'studio') {
-                sports.classList.add('hidden');
-                studio.classList.remove('hidden');
-                pov.classList.add('hidden');
-            } else if (category === 'pov') {
-                sports.classList.add('hidden');
-                studio.classList.add('hidden');
-                pov.classList.remove('hidden');
-            }
+        function downloadVCard() {
+            const vcard = 'BEGIN:VCARD\nVERSION:3.0\nN:Ioannoni;Jordan;;;\nFN:Jordan Ioannoni\nORG:Ioannoni Visuals\nTEL;TYPE=CELL:403-667-3728\nEMAIL:jordan.ioannoni@outlook.com\nEND:VCARD';
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'Jordan_Ioannoni.vcf';
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
         }
-
-        // 7. Interactive Operations Management Outlier Toggle
-        function setForecastMode(mode, btn) {
-            btn.parentElement.querySelectorAll('.mini-toggle-btn').forEach(function(b) {
-                b.classList.remove('active');
-            });
-            btn.classList.add('active');
-
-            var tbody = document.getElementById('forecast-table-body');
-            if (mode === 'raw') {
-                tbody.innerHTML = '' +
-                    '<tr><td>Years 1, 3 to 6 Range</td><td>1,004 to 1,043</td><td>Stable baseline demand</td></tr>' +
-                    '<tr><td>Year 2 Spike</td><td class="highlight-warn">1,438 units</td><td class="highlight-warn">Outlier skewing regression</td></tr>' +
-                    '<tr><td>Trend Slope (b)</td><td>-30.83 / yr</td><td>Y-Intercept (a) = 1,199.4</td></tr>' +
-                    '<tr><td>Year 15 &amp; 16 Forecast</td><td class="highlight-blue">736.97 / 706.14</td><td>Under-forecasts true demand</td></tr>';
-            } else {
-                tbody.innerHTML = '' +
-                    '<tr><td>Years 3 to 6 Baseline</td><td>1,010 to 1,043</td><td>Outlier excluded from model</td></tr>' +
-                    '<tr><td>Year 2 Spike (Removed)</td><td class="highlight-green">Filtered Out</td><td class="highlight-green">Prevents artificial negative slope</td></tr>' +
-                    '<tr><td>Adjusted Slope (b)</td><td>+8.40 / yr</td><td>Reflects steady organic growth</td></tr>' +
-                    '<tr><td>Year 15 &amp; 16 Forecast</td><td class="highlight-green">~1,115 / 1,123</td><td>Accurate safety-stock target</td></tr>';
-            }
-        }
-
-        // 8. Enhanced Lightbox Viewer with Next/Prev & Keyboard Support
-        var currentLightboxIndex = 0;
-
-        function getVisibleGalleryCards() {
-            return Array.from(document.querySelectorAll('.hero-portrait-card, .gallery-section:not(.hidden) .gallery-item'));
-        }
-
-        function openLightbox(element) {
-            var cards = getVisibleGalleryCards();
-            currentLightboxIndex = cards.indexOf(element);
-            if (currentLightboxIndex === -1) currentLightboxIndex = 0;
-            renderLightboxSlide(cards[currentLightboxIndex]);
-            document.getElementById('lightbox').classList.add('active');
-        }
-
-        function renderLightboxSlide(cardElement) {
-            var img = cardElement.querySelector('img');
-            var label = cardElement.querySelector('.gallery-label, .portrait-badge');
-            var lightboxImg = document.getElementById('lightbox-img');
-            var lightboxCaption = document.getElementById('lightbox-caption');
-
-            lightboxImg.src = img.src;
-            lightboxCaption.textContent = label ? label.textContent : img.alt;
-        }
-
-        function stepLightbox(direction, event) {
-            if (event) event.stopPropagation();
-            var cards = getVisibleGalleryCards();
-            if (!cards.length) return;
-            currentLightboxIndex = (currentLightboxIndex + direction + cards.length) % cards.length;
-            renderLightboxSlide(cards[currentLightboxIndex]);
-        }
-
-        function closeLightbox(event) {
-            if (event && (event.target.tagName === 'IMG' || event.target.tagName === 'BUTTON')) return;
-            document.getElementById('lightbox').classList.remove('active');
-        }
-
-        document.addEventListener('keydown', function(e) {
-            var lb = document.getElementById('lightbox');
-            if (lb.classList.contains('active')) {
-                if (e.key === 'Escape') lb.classList.remove('active');
-                if (e.key === 'ArrowRight') stepLightbox(1);
-                if (e.key === 'ArrowLeft') stepLightbox(-1);
-            }
-            var cm = document.getElementById('contact-modal');
-            if (cm.classList.contains('active') && e.key === 'Escape') {
-                closeContactModal();
-            }
-        });
     </script>
-
 </body>
 </html>
