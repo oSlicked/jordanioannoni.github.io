@@ -22,7 +22,6 @@
             --accent-red: #f43f5e;
             --border-subtle: rgba(255, 255, 255, 0.16);
             --border-highlight: rgba(255, 255, 255, 0.34);
-            /* Low opacity dark overlay so background photo is vivid */
             --overlay-bg: rgba(9, 9, 11, 0.18);
             --font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
             --font-signature: "Alex Brush", "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
@@ -42,7 +41,6 @@
             --accent-red: #e11d48;
             --border-subtle: rgba(0, 0, 0, 0.12);
             --border-highlight: rgba(0, 0, 0, 0.25);
-            /* Very low opacity white gradient so background photo stays crisp in light mode */
             --overlay-bg: rgba(255, 255, 255, 0.08);
         }
 
@@ -58,7 +56,7 @@
 
         body {
             background-color: #09090b;
-            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg');
+            /* Background image loads via Auto-Fix script below to ignore extension case */
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
@@ -375,7 +373,6 @@
             to { transform: translateY(0.5px); }
         }
 
-        /* Dashed Center Track Line */
         .race-track-lines {
             position: absolute;
             left: 16px;
@@ -394,7 +391,6 @@
             pointer-events: none;
         }
 
-        /* Glowing Exhaust / Speed Streak Behind Car */
         .race-progress-streak {
             position: absolute;
             left: 0;
@@ -406,7 +402,6 @@
             pointer-events: none;
         }
 
-        /* SVG Race Car */
         .race-car-wrapper {
             position: absolute;
             left: 14px;
@@ -433,7 +428,6 @@
             opacity: 1;
         }
 
-        /* Checkered Finish Strip on Right */
         .finish-flag-strip {
             position: absolute;
             right: 12px;
@@ -1549,7 +1543,6 @@
                         <img src="IMG_1978.jpg" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
                         <span class="gallery-label">Mercedes-Benz Cockpit &bull; Automotive Detail</span>
                     </div>
-                    <!-- FIXED .JPG EXTENSIONS HERE -->
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
                         <img src="_DSC5239.jpg" alt="Automotive Lifestyle Open Door Portrait">
                         <span class="gallery-label">Automotive Lifestyle &bull; Autumn Color Grade</span>
@@ -1984,6 +1977,62 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
+
+        // 4. Case-Insensitive Image Fallback Script (Auto-Fixer)
+        // This script automatically tests different file extensions if the original fails on GitHub
+        document.addEventListener("DOMContentLoaded", function() {
+            var images = document.querySelectorAll("img");
+            
+            images.forEach(function(img) {
+                var originalSrc = img.getAttribute("src");
+                if (!originalSrc) return;
+                
+                var lastDot = originalSrc.lastIndexOf('.');
+                if (lastDot === -1) return;
+                
+                var basePath = originalSrc.substring(0, lastDot);
+                
+                // Common extension variations
+                var attempts = [
+                    basePath + '.jpg',
+                    basePath + '.JPG',
+                    basePath + '.jpeg',
+                    basePath + '.JPEG',
+                    basePath + '.png',
+                    basePath + '.PNG'
+                ];
+                
+                var currentAttempt = 0;
+                
+                img.onerror = function() {
+                    currentAttempt++;
+                    if (currentAttempt < attempts.length) {
+                        img.src = attempts[currentAttempt];
+                    } else {
+                        img.onerror = null; // stop looping if all fail
+                    }
+                };
+            });
+
+            // Auto-Fixer for the Background Image
+            var bgBasePath = "1000000769";
+            var bgAttempts = ['.jpg', '.JPG', '.jpeg', '.JPEG'];
+            var bgIndex = 0;
+            
+            function tryNextBg() {
+                if (bgIndex >= bgAttempts.length) return;
+                var testImg = new Image();
+                testImg.onload = function() {
+                    document.body.style.backgroundImage = "linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('" + testImg.src + "')";
+                };
+                testImg.onerror = function() {
+                    bgIndex++;
+                    tryNextBg();
+                };
+                testImg.src = bgBasePath + bgAttempts[bgIndex];
+            }
+            tryNextBg();
+        });
         
         // 5. Interactive Category Filter for Photography Showcase
         function filterGallery(category, btn) {
