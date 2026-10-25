@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jordan Ioannoni | Portfolio</title>
+    <style>
+        /* Apple Premium Light/Structural Design System */
+        :root {
+            --bg-base: #f5f5f7;
+            --bg-surface: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-blue: #0066cc;
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            letter-spacing: -0.011em;
+            line-height: 1.47059;
+            padding-top: 48px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Apple Compact Global Navigation Bar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 48px;
+            background: rgba(245, 245, 247, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 9999;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-container {
+            max-width: 1024px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 22px;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        /* Contextual Segmented Content Filter Buttons */
+        .nav-menu {
+            display: flex;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.04);
+            padding: 4px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-btn {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-btn.active {
+            background: var(--bg-surface);
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .git-profile {
+            font-size: 12px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .git-profile:hover {
+            text-decoration: underline;
+        }
+
+        /* Bold Hero Segment */
+        .hero {
+            max-width: 1024px;
+            margin: 90px auto 60px auto;
+            padding: 0 40px;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.07;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            max-width: 750px;
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+        }
+
+        /* Statement Philosophy Panel */
+        .statement-banner {
+            max-width: 944px;
+            margin: 0 auto 50px auto;
+            background-color: var(--bg-surface);
+            border-radius: 28px;
+            padding: 50px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .statement-banner p {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .statement-banner a {
+            font-size: 15px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .statement-banner a:hover span {
+            transform: translateX(4px);
+        }
+
+        .statement-banner a span {
+            transition: transform 0.2s ease;
+            margin-left: 5px;
+        }
+
+        /* Interlocking Structural Grid layout */
+        .showcase-grid {
+            max-width: 944px;
+            margin: 0 auto 100px auto;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .bento-card {
+            background-color: var(--bg-surface);
+            border-radius: 28px;
+            padding: 40px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Setting up varying structural sizes (Bento Grid Style) */
+        .size-wide { grid-column: span 12; min-height: 280px; }
+        .size-left { grid-column: span 7; min-height: 340px; }
+        .size-right { grid-column: span 5; min-height: 340px; }
+
+        .card-meta {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
+        }
+
+        .bento-card h2 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+
+        .card-content p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 14px;
+            line-height: 1.45;
+        }
+
+        .card-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Apple System Footer layout */
+        footer {
+            max-width: 944px;
+            margin: 0 auto;
+            padding: 30px 40px 60px 40px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .showcase-grid { display: flex; flex-direction: column; padding: 0 20px; }
+            .hero h1 { font-size: 40px; }
+            .hero p { font-size: 18px; }
+            .statement-banner { margin: 0 20px 40px 20px; padding: 30px; }
+            .nav-menu { display: none; } /* Keeps layout clean on mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Jordan Ioannoni</a>
+            
+            <!-- Segmented Control Navigation Menu -->
+            <nav class="nav-menu">
+                <a href="#photography" class="nav-btn">Media Production</a>
+                <a href="#automation" class="nav-btn">Systems Architecture</a>
+                <a href="#operations" class="nav-btn">Business Assets</a>
+            </nav>
+
+            <a href="https://github.com" target="_blank" class="git-profile">GitHub</a>
+        </div>
+    </header>
+
+    
+    <section class="hero">
+        <h1>Built with my own hands.</h1>
+        <p>A traditional resume is just a flat piece of paper. This space offers direct empirical proof of asset execution, system builds, and custom production workflows.</p>
+    </section>
+
+    <!-- Philosophy Quote Block -->
+    <section class="statement-banner">
+        <p>"Keep your head down. Follow the rules. Do as you're told. Play it safe. Wait your turn. Ask permission. Learn to compromise. This is terrible advice."</p>
+        <a href="https://youtube.com" target="_blank">Casey Neistat — DO WHAT YOU CAN'T <span>&rarr;</span></a>
+    </section>
+
+    <!-- Asymmetric Bento Grid Layout Section -->
+    <main class="showcase-grid">
+        
+        <!-- Grid Item 1: Media (Spans Wide across the top layout) -->
+        <div class="bento-card size-wide" id="photography">
+            <div class="card-content">
+                <div class="card-meta">Media Production</div>
+                <h2>Photography & Digital Asset Pipelines</h2>
+                <p><strong>The Core Workflow:</strong> Engineered asset ingestion architectures managing sports and event photography frameworks using uncompressed RAW asset streams.</p>
+                <p><strong>The Execution Profile:</strong> Building absolute end-to-end collection sorting, non-destructive color grading matrices, and lighting adjustments natively inside local Adobe Lightroom catalogs. Traditional certificates do not match visual reality because <strong>your work is your pitch deck</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Grid Item 2: Technology (Asymmetric Left Card Setup) -->
+        <div class="bento-card size-left" id="automation">
+            <div class="card-content">
+                <div class="card-meta">Systems Architecture</div>
+                <h2>Automation & Scripting</h2>
