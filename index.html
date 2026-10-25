@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-surface: rgba(24, 24, 28, 0.78);
-            --bg-surface-elevated: rgba(38, 38, 44, 0.76);
+            --bg-surface: rgba(24, 24, 28, 0.75);
+            --bg-surface-elevated: rgba(38, 38, 44, 0.70);
             --bg-modal: rgba(20, 20, 24, 0.94);
             --text-primary: #ffffff;
             --text-secondary: #e4e4e7;
@@ -20,18 +20,23 @@
             --accent-green: #34d399;
             --accent-amber: #fbbf24;
             --accent-red: #f43f5e;
-            --border-subtle: rgba(255, 255, 255, 0.16);
-            --border-highlight: rgba(255, 255, 255, 0.34);
-            --overlay-bg: rgba(9, 9, 11, 0.18);
-            --hero-text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75); /* Dark shadow to lift text off bright clouds */
+            --border-subtle: rgba(255, 255, 255, 0.12);
+            --border-highlight: rgba(255, 255, 255, 0.28);
+            --overlay-bg: rgba(9, 9, 11, 0.25);
+            --hero-text-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
+            /* Premium Spotlight Glow Color */
+            --spotlight-color: rgba(255, 255, 255, 0.07);
             --font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
             --font-signature: "Alex Brush", "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
             --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            
+            /* Apple-style buttery easing curve */
+            --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         [data-theme="light"] {
-            --bg-surface: rgba(255, 255, 255, 0.84);
-            --bg-surface-elevated: rgba(244, 244, 246, 0.88);
+            --bg-surface: rgba(255, 255, 255, 0.80);
+            --bg-surface-elevated: rgba(244, 244, 246, 0.85);
             --bg-modal: rgba(255, 255, 255, 0.96);
             --text-primary: #18181b;
             --text-secondary: #27272a;
@@ -40,10 +45,11 @@
             --accent-green: #059669;
             --accent-amber: #d97706;
             --accent-red: #e11d48;
-            --border-subtle: rgba(0, 0, 0, 0.12);
-            --border-highlight: rgba(0, 0, 0, 0.25);
-            --overlay-bg: rgba(255, 255, 255, 0.08);
-            --hero-text-shadow: 0 2px 12px rgba(255, 255, 255, 0.9); /* White glow for dark backgrounds */
+            --border-subtle: rgba(0, 0, 0, 0.10);
+            --border-highlight: rgba(0, 0, 0, 0.22);
+            --overlay-bg: rgba(255, 255, 255, 0.15);
+            --hero-text-shadow: 0 4px 16px rgba(255, 255, 255, 0.9);
+            --spotlight-color: rgba(0, 0, 0, 0.04);
         }
 
         html {
@@ -58,7 +64,7 @@
 
         body {
             background-color: #09090b;
-            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg?v=4');
+            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg?v=5');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
@@ -69,8 +75,39 @@
             line-height: 1.5;
             padding-top: 64px;
             -webkit-font-smoothing: antialiased;
-            transition: color 0.35s ease, background-color 0.35s ease;
+            transition: color 0.4s var(--apple-ease), background-color 0.4s var(--apple-ease);
         }
+
+        /* --- PREMIUM ANIMATIONS --- */
+        
+        /* Initial Hero Load Animation (Staggered) */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.2s var(--apple-ease) forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scroll Reveal Classes (Triggered by JS) */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(60px) scale(0.98);
+            transition: opacity 1.2s var(--apple-ease), transform 1.2s var(--apple-ease);
+            will-change: opacity, transform;
+        }
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* -------------------------- */
 
         /* Top Scroll Progress Bar */
         .scroll-progress {
@@ -92,11 +129,11 @@
             width: 100%;
             height: 60px;
             background: var(--bg-surface);
-            backdrop-filter: saturate(180%) blur(22px);
-            -webkit-backdrop-filter: saturate(180%) blur(22px);
+            backdrop-filter: saturate(180%) blur(24px);
+            -webkit-backdrop-filter: saturate(180%) blur(24px);
             z-index: 9999;
             border-bottom: 1px solid var(--border-subtle);
-            transition: background 0.35s ease, border-color 0.35s ease;
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
         .nav-container {
@@ -196,13 +233,13 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 7px;
-            transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.3s ease;
+            transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
             user-select: none;
         }
 
         .theme-switch:hover {
             border-color: var(--accent-blue);
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
         }
 
         .theme-icon-track {
@@ -226,7 +263,7 @@
             justify-content: center;
             font-size: 12px;
             z-index: 2;
-            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.35s ease;
+            transition: transform 0.5s var(--apple-ease), background 0.4s ease;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
         }
 
@@ -262,7 +299,6 @@
             margin-bottom: 14px;
         }
 
-        /* Hero Cursive Signature Heading */
         .hero-signature-wrap {
             margin-bottom: 14px;
             position: relative;
@@ -292,7 +328,7 @@
         .signature-flourish path {
             stroke-dasharray: 500;
             stroke-dashoffset: 500;
-            animation: drawFlourish 1.6s ease-out 0.2s forwards;
+            animation: drawFlourish 2s var(--apple-ease) 0.5s forwards;
         }
 
         @keyframes drawFlourish {
@@ -300,13 +336,13 @@
         }
 
         .hero p {
-            font-size: 20px; /* Made slightly larger */
-            color: var(--text-primary); /* Changed to pure white */
-            font-weight: 500; /* Made slightly thicker */
-            line-height: 1.48;
+            font-size: 20px;
+            color: var(--text-primary);
+            font-weight: 500;
+            line-height: 1.52;
             letter-spacing: -0.01em;
             margin-bottom: 22px;
-            text-shadow: var(--hero-text-shadow); /* Drop shadow to pop off the clouds */
+            text-shadow: var(--hero-text-shadow);
         }
 
         .hero-Quick-Tags {
@@ -323,6 +359,7 @@
             border: 1px solid var(--border-subtle);
             padding: 6px 14px;
             border-radius: 20px;
+            backdrop-filter: blur(10px);
         }
 
         /* Race Car Hold-to-Reveal Contact Button */
@@ -352,13 +389,14 @@
             user-select: none;
             -webkit-user-select: none;
             font-family: var(--font-family);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
-            transition: border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            transition: border-color 0.3s ease, transform 0.3s var(--apple-ease), box-shadow 0.3s ease;
         }
 
         .race-hold-btn:hover {
             border-color: var(--accent-blue);
-            box-shadow: 0 12px 34px rgba(56, 189, 248, 0.22);
+            box-shadow: 0 12px 34px rgba(56, 189, 248, 0.35);
+            transform: scale(1.02);
         }
 
         .race-hold-btn.holding {
@@ -368,12 +406,12 @@
 
         .race-hold-btn.unlocked {
             border-color: var(--accent-green);
-            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.28);
+            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.35);
         }
 
         @keyframes engineRev {
-            from { transform: translateY(-0.5px); }
-            to { transform: translateY(0.5px); }
+            from { transform: translateY(-0.5px) scale(1.02); }
+            to { transform: translateY(0.5px) scale(1.02); }
         }
 
         .race-track-lines {
@@ -383,13 +421,7 @@
             top: 50%;
             height: 2px;
             transform: translateY(-50%);
-            background: repeating-linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0.12) 0px,
-                rgba(255, 255, 255, 0.12) 10px,
-                transparent 10px,
-                transparent 20px
-            );
+            background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0px, rgba(255, 255, 255, 0.12) 10px, transparent 10px, transparent 20px);
             z-index: 1;
             pointer-events: none;
         }
@@ -422,14 +454,8 @@
             filter: drop-shadow(-6px 0 10px rgba(251, 191, 36, 0.85));
         }
 
-        .exhaust-flame {
-            opacity: 0;
-            transition: opacity 0.15s ease;
-        }
-
-        .race-hold-btn.holding .exhaust-flame {
-            opacity: 1;
-        }
+        .exhaust-flame { opacity: 0; transition: opacity 0.15s ease; }
+        .race-hold-btn.holding .exhaust-flame { opacity: 1; }
 
         .finish-flag-strip {
             position: absolute;
@@ -438,12 +464,7 @@
             bottom: 8px;
             width: 12px;
             border-radius: 6px;
-            background-image: conic-gradient(
-                rgba(255, 255, 255, 0.75) 90deg,
-                rgba(0, 0, 0, 0.6) 90deg 180deg,
-                rgba(255, 255, 255, 0.75) 180deg 270deg,
-                rgba(0, 0, 0, 0.6) 270deg
-            );
+            background-image: conic-gradient(rgba(255, 255, 255, 0.75) 90deg, rgba(0, 0, 0, 0.6) 90deg 180deg, rgba(255, 255, 255, 0.75) 180deg 270deg, rgba(0, 0, 0, 0.6) 270deg);
             background-size: 8px 8px;
             opacity: 0.55;
             z-index: 2;
@@ -479,19 +500,19 @@
         .hero-portrait-card {
             position: relative;
             background: var(--bg-surface);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px) saturate(150%);
+            -webkit-backdrop-filter: blur(24px) saturate(150%);
             border: 1px solid var(--border-highlight);
             border-radius: 26px;
             padding: 10px;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
             cursor: pointer;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.4s var(--apple-ease), box-shadow 0.4s var(--apple-ease);
         }
 
         .hero-portrait-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
 
         .hero-portrait-inner {
@@ -507,11 +528,11 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            transition: transform 0.4s ease;
+            transition: transform 0.6s var(--apple-ease);
         }
 
         .hero-portrait-card:hover .hero-portrait-inner img {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
 
         .portrait-badge {
@@ -543,16 +564,16 @@
 
         .metric-card {
             background: var(--bg-surface);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px) saturate(150%);
+            -webkit-backdrop-filter: blur(24px) saturate(150%);
             border: 1px solid var(--border-subtle);
             border-radius: 20px;
             padding: 22px 24px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            transition: transform 0.4s var(--apple-ease), border-color 0.4s ease;
         }
 
         .metric-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-4px);
             border-color: var(--border-highlight);
         }
 
@@ -581,6 +602,12 @@
             padding: 44px;
             border: 1px solid var(--border-subtle);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s var(--apple-ease), box-shadow 0.4s var(--apple-ease);
+        }
+        
+        .statement-banner:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         .statement-banner h3 {
@@ -612,6 +639,12 @@
             border: 1px solid var(--border-subtle);
             border-radius: 16px;
             padding: 18px;
+            transition: transform 0.3s var(--apple-ease);
+        }
+        
+        .quote-box:hover {
+            transform: scale(1.02);
+            border-color: var(--border-highlight);
         }
 
         .quote-text {
@@ -642,10 +675,12 @@
             scroll-margin-top: 76px;
         }
 
+        /* --- APPLE DYNAMIC SPOTLIGHT CARDS --- */
         .bento-card {
+            position: relative;
             background-color: var(--bg-surface);
-            backdrop-filter: blur(25px) saturate(140%);
-            -webkit-backdrop-filter: blur(25px) saturate(140%);
+            backdrop-filter: blur(30px) saturate(150%);
+            -webkit-backdrop-filter: blur(30px) saturate(150%);
             border-radius: 28px;
             padding: 36px;
             border: 1px solid var(--border-subtle);
@@ -653,13 +688,38 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            overflow: hidden; /* Contains the spotlight */
+            transition: transform 0.4s var(--apple-ease), border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* The Spatial Spotlight Engine */
+        .bento-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(800px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), var(--spotlight-color), transparent 40%);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
         .bento-card:hover {
             border-color: var(--border-highlight);
             box-shadow: 0 16px 50px rgba(0, 0, 0, 0.28);
+            transform: translateY(-4px);
         }
+        
+        .bento-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Ensure content sits above the spotlight glow */
+        .card-content, .gallery-section, .credentials-grid {
+            position: relative;
+            z-index: 1;
+        }
+        /* ------------------------------------- */
 
         .size-wide { grid-column: span 12; }
         .size-left { grid-column: span 7; }
@@ -791,7 +851,7 @@
 
         /* Photo Galleries */
         .gallery-section {
-            transition: opacity 0.25s ease;
+            transition: opacity 0.4s var(--apple-ease);
         }
 
         .gallery-section.hidden {
@@ -806,6 +866,7 @@
             width: 100%;
         }
 
+        /* Studio Gallery now perfectly balanced for 3 items */
         .photo-gallery-studio {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -839,7 +900,7 @@
             height: 100%;
             object-fit: cover;
             object-position: center 20%;
-            transition: transform 0.45s ease;
+            transition: transform 0.6s var(--apple-ease);
             display: block;
         }
 
@@ -849,7 +910,7 @@
         }
 
         .gallery-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
 
         .gallery-label {
@@ -1008,6 +1069,12 @@
             border: 1px solid var(--border-subtle);
             border-radius: 16px;
             padding: 18px;
+            transition: transform 0.3s var(--apple-ease);
+        }
+        
+        .cred-item:hover {
+            transform: scale(1.02);
+            border-color: var(--border-highlight);
         }
 
         .cred-year {
@@ -1043,7 +1110,7 @@
             align-items: center;
             justify-content: center;
             padding: 24px;
-            animation: modalFadeIn 0.25s ease;
+            animation: modalFadeIn 0.3s var(--apple-ease);
         }
 
         .contact-modal-overlay.active {
@@ -1064,11 +1131,11 @@
             padding: 32px;
             box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
             position: relative;
-            animation: modalCardPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: modalCardPop 0.5s var(--apple-ease);
         }
 
         @keyframes modalCardPop {
-            from { transform: scale(0.9) translateY(14px); opacity: 0; }
+            from { transform: scale(0.9) translateY(20px); opacity: 0; }
             to { transform: scale(1) translateY(0); opacity: 1; }
         }
 
@@ -1364,19 +1431,19 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-text">
-            <div class="eyebrow">St. Catharines, ON &bull; Niagara College &bull; ID 4382028</div>
+            <div class="eyebrow fade-in-up delay-1">St. Catharines, ON &bull; Niagara College &bull; ID 4382028</div>
 
             <!-- Real Cursive Signature Heading + Hand-Drawn Flourish -->
-            <div class="hero-signature-wrap">
+            <div class="hero-signature-wrap fade-in-up delay-2">
                 <h1 class="signature-heading">Jordan Ioannoni</h1>
                 <svg class="signature-flourish" viewBox="0 0 420 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 15C95 3 245 4 405 11C355 15 280 18 220 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                 </svg>
             </div>
 
-            <p>Business General student combining hands on automotive trades, custom systems automation, operations forecasting, and professional sports, studio, and automotive photography.</p>
+            <p class="fade-in-up delay-3">Business General student combining hands on automotive trades, custom systems automation, operations forecasting, and professional sports, studio, and automotive photography.</p>
 
-            <div class="hero-Quick-Tags">
+            <div class="hero-Quick-Tags fade-in-up delay-4">
                 <span class="hero-tag">Ioannoni Visuals</span>
                 <span class="hero-tag">Digital Sports Photography</span>
                 <span class="hero-tag">Motive Power &amp; Durability Lab</span>
@@ -1384,7 +1451,7 @@
             </div>
 
             <!-- Bot-Proof Race Car Hold-to-Reveal Contact Button -->
-            <div class="hold-contact-container" id="contact-trigger-area">
+            <div class="hold-contact-container fade-in-up delay-4" id="contact-trigger-area">
                 <button type="button" class="race-hold-btn" id="hold-contact-btn"
                     onmousedown="startHolding(event)" onmouseup="stopHolding()" onmouseleave="stopHolding()"
                     ontouchstart="startHolding(event)" ontouchend="stopHolding()" ontouchcancel="stopHolding()">
@@ -1394,17 +1461,11 @@
                     <!-- Inline Motorsport Race Car SVG -->
                     <div class="race-car-wrapper" id="race-car-icon">
                         <svg viewBox="0 0 64 28" width="56" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Exhaust Flame -->
                             <path class="exhaust-flame" d="M0 16 L7 13 L5 16 L7 19 Z" fill="#fbbf24"/>
-                            <!-- Rear Wing -->
                             <path d="M7 8 H13 L11 15 H8 Z" fill="#38bdf8"/>
-                            <!-- Main Chassis / Aero Body -->
                             <path d="M8 15 L17 12 L27 9 H41 L51 13 L61 15 L62 19 H8 Z" fill="#f8fafc"/>
-                            <!-- Cockpit Canopy -->
                             <path d="M26 10.2 H39 L46 13.5 H22 Z" fill="#0f172a"/>
-                            <!-- Racing Livery Stripe -->
                             <path d="M12 16 H59" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
-                            <!-- Rear & Front Wheels -->
                             <circle cx="18" cy="19" r="5" fill="#18181b" stroke="#e4e4e7" stroke-width="1.5"/>
                             <circle cx="18" cy="19" r="2" fill="#38bdf8"/>
                             <circle cx="49" cy="19" r="5" fill="#18181b" stroke="#e4e4e7" stroke-width="1.5"/>
@@ -1422,10 +1483,9 @@
             </div>
         </div>
 
-        <div class="hero-portrait-card" onclick="openLightbox(this)">
+        <div class="hero-portrait-card fade-in-up delay-2" onclick="openLightbox(this)">
             <div class="hero-portrait-inner">
-                <!-- Auto-Fixer: tries .jpg, then .JPG -->
-                <img src="IMG_2955.jpg?v=4" onerror="this.onerror=null; this.src='IMG_2955.JPG?v=4';" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
+                <img src="IMG_2955.jpg?v=5" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
                 <span class="portrait-badge">Trackside &bull; Canon 1DX + L-Series Telephoto</span>
             </div>
         </div>
@@ -1433,26 +1493,26 @@
 
     <!-- Quick Metrics Strip -->
     <section class="metrics-grid">
-        <div class="metric-card">
+        <div class="metric-card scroll-reveal">
             <div class="metric-value">3.5</div>
             <div class="metric-label">College Credentials Completed &amp; In Progress</div>
         </div>
-        <div class="metric-card">
+        <div class="metric-card scroll-reveal" style="transition-delay: 0.1s;">
             <div class="metric-value">2018</div>
             <div class="metric-label">Active Since in Event &amp; Sports Photography</div>
         </div>
-        <div class="metric-card">
+        <div class="metric-card scroll-reveal" style="transition-delay: 0.2s;">
             <div class="metric-value">48x</div>
             <div class="metric-label">Faster Cloud Migration via Custom AI LLM</div>
         </div>
-        <div class="metric-card">
+        <div class="metric-card scroll-reveal" style="transition-delay: 0.3s;">
             <div class="metric-value">720 Hrs</div>
             <div class="metric-label">Motive Power Post Secondary Shop Training</div>
         </div>
     </section>
 
     <!-- Philosophy & Manifesto Banner -->
-    <section class="statement-banner">
+    <section class="statement-banner scroll-reveal">
         <h3>Why This Portfolio Exists</h3>
         <p>A traditional one page resume is just a flat list of old jobs and classes that never shows how you actually think, organize a workflow, or solve problems. Instead of relying on a standard piece of paper or a generic template slideshow, I coded this site from scratch to put real proof of my work in one place.</p>
 
@@ -1476,7 +1536,7 @@
     <main class="showcase-grid">
 
         <!-- 1. Multi-Genre Media Production Card -->
-        <article id="photography" class="bento-card size-wide anchor-section">
+        <article id="photography" class="bento-card size-wide anchor-section scroll-reveal">
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Media Production &bull; Ioannoni Visuals</span>
@@ -1510,19 +1570,19 @@
                 </div>
                 <div class="photo-gallery-work">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="2DPX4122 (1).jpg?v=4" onerror="this.onerror=null; this.src='2DPX4122 (1).JPG?v=4';" alt="Brock Jr. Badgers On Ice Action">
+                        <img src="2DPX4122 (1).jpg?v=5" alt="Brock Jr. Badgers On Ice Action">
                         <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000644 (1).jpg?v=4" onerror="this.onerror=null; this.src='1000000644 (1).JPG?v=4';" alt="Crease Save Action Shot">
+                        <img src="1000000644 (1).jpg?v=5" alt="Crease Save Action Shot">
                         <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000041 (1).jpg?v=4" onerror="this.onerror=null; this.src='1000000041 (1).JPG?v=4';" alt="Ioannoni Visuals Bench Celebration">
+                        <img src="1000000041 (1).jpg?v=5" alt="Ioannoni Visuals Bench Celebration">
                         <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000642 (1).jpg?v=4" onerror="this.onerror=null; this.src='1000000642 (1).JPG?v=4';" alt="Huskies Bench Coaching Moment">
+                        <img src="1000000642 (1).jpg?v=5" alt="Huskies Bench Coaching Moment">
                         <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
                     </div>
                 </div>
@@ -1536,15 +1596,15 @@
                 </div>
                 <div class="photo-gallery-studio">
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9998.JPG?v=4" onerror="this.onerror=null; this.src='JIOA9998.jpg?v=4';" alt="Studio Portrait Key Light">
+                        <img src="JIOA9998.JPG?v=5" alt="Studio Portrait Key Light">
                         <span class="gallery-label">Studio Portrait &bull; Controlled Key Lighting</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9946.JPG?v=4" onerror="this.onerror=null; this.src='JIOA9946.jpg?v=4';" alt="Moody Studio Profile Portrait">
+                        <img src="JIOA9946.JPG?v=5" alt="Moody Studio Profile Portrait">
                         <span class="gallery-label">Studio Profile &bull; Directional Shadow Grade</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="IMG_1978.jpg?v=4" onerror="this.onerror=null; this.src='IMG_1978.JPG?v=4';" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
+                        <img src="IMG_1978.jpg?v=5" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
                         <span class="gallery-label">Mercedes-Benz Cockpit &bull; Automotive Detail</span>
                     </div>
                 </div>
@@ -1558,19 +1618,19 @@
                 </div>
                 <div class="photo-gallery-pov">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="IMG_5669.jpg?v=4" onerror="this.onerror=null; this.src='IMG_5669.JPG?v=4';" alt="Trackside Fence POV with Canon 1DX">
+                        <img src="IMG_5669.jpg?v=5" alt="Trackside Fence POV with Canon 1DX">
                         <span class="gallery-label">Motorsport Trackside &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).jpg?v=4" onerror="this.onerror=null; this.src='cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).JPG?v=4';" alt="Rinkside Over the Shoulder POV">
+                        <img src="cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).jpg?v=5" alt="Rinkside Over the Shoulder POV">
                         <span class="gallery-label">Rinkside POV &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="20260807_101658 (1).jpg?v=4" onerror="this.onerror=null; this.src='20260807_101658 (1).JPG?v=4';" alt="Outdoor Turf Field Coverage in Rain Gear">
+                        <img src="20260807_101658 (1).jpg?v=5" alt="Outdoor Turf Field Coverage in Rain Gear">
                         <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000129 (1).jpg?v=4" onerror="this.onerror=null; this.src='1000000129 (1).JPG?v=4';" alt="Rinkside Setup with Canon 1DX and 300mm">
+                        <img src="1000000129 (1).jpg?v=5" alt="Rinkside Setup with Canon 1DX and 300mm">
                         <span class="gallery-label">Arena Assignment &bull; 300mm f/2.8 Rig</span>
                     </div>
                 </div>
@@ -1578,7 +1638,7 @@
         </article>
 
         <!-- 2. Systems Architecture & AI Automation -->
-        <article id="automation" class="bento-card size-left anchor-section">
+        <article id="automation" class="bento-card size-left anchor-section scroll-reveal">
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Systems Architecture</span>
@@ -1608,7 +1668,7 @@
         </article>
 
         <!-- 3. Motive Power & Hardware Diagnostics -->
-        <article class="bento-card size-right">
+        <article class="bento-card size-right scroll-reveal" style="transition-delay: 0.1s;">
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Technical Diagnostics</span>
@@ -1627,7 +1687,7 @@
         </article>
 
         <!-- 4. Operations Management Forecasting -->
-        <article id="operations" class="bento-card size-left anchor-section">
+        <article id="operations" class="bento-card size-left anchor-section scroll-reveal">
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Operations Management</span>
@@ -1679,7 +1739,7 @@
         </article>
 
         <!-- 5. Human Resources & Job Analysis -->
-        <article class="bento-card size-right">
+        <article class="bento-card size-right scroll-reveal" style="transition-delay: 0.1s;">
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Human Resources</span>
@@ -1697,7 +1757,7 @@
         </article>
 
         <!-- 6. Digital Literacy & Semi Analog Workflow -->
-        <article id="literacy" class="bento-card size-half anchor-section">
+        <article id="literacy" class="bento-card size-half anchor-section scroll-reveal">
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Information Literacy</span>
@@ -1707,7 +1767,7 @@
             </div>
         </article>
 
-        <article class="bento-card size-half">
+        <article class="bento-card size-half scroll-reveal" style="transition-delay: 0.1s;">
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Digital Wellbeing</span>
@@ -1718,7 +1778,7 @@
         </article>
 
         <!-- 7. Education & Credentials Progression -->
-        <article id="credentials" class="bento-card size-wide anchor-section">
+        <article id="credentials" class="bento-card size-wide anchor-section scroll-reveal">
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Academic &amp; Trade Progression</span>
@@ -1807,7 +1867,40 @@
     </footer>
 
     <script>
-        // 1. Smooth Sliding Light / Dark Mode Toggle
+        // --- 1. Apple-style Scroll Reveals (Intersection Observer) ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -60px 0px', // Triggers slightly before element comes fully into view
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Run once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+
+        // --- 2. Apple TV style Spatial Spotlight on Cards ---
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // 3. Smooth Sliding Light / Dark Mode Toggle
         function toggleTheme() {
             var body = document.body;
             var thumb = document.getElementById('theme-thumb');
@@ -1820,7 +1913,7 @@
             }
         }
 
-        // 2. Scroll Progress Bar
+        // 4. Scroll Progress Bar
         window.addEventListener('scroll', function() {
             var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1828,7 +1921,7 @@
             document.getElementById('scroll-progress').style.width = scrolled + '%';
         });
 
-        // 3. Race Car 2-Second Hold-to-Reveal Contact Logic
+        // 5. Race Car 2-Second Hold-to-Reveal Contact Logic
         var holdDuration = 2000; // 2.0 seconds
         var startTime = 0;
         var progressInterval = null;
@@ -1970,7 +2063,7 @@
             URL.revokeObjectURL(url);
         }
         
-        // 5. Interactive Category Filter for Photography Showcase
+        // 6. Interactive Category Filter for Photography Showcase
         function filterGallery(category, btn) {
             document.querySelectorAll('.filter-btn').forEach(function(b) {
                 b.classList.remove('active');
@@ -2000,7 +2093,7 @@
             }
         }
 
-        // 6. Interactive Operations Management Outlier Toggle
+        // 7. Interactive Operations Management Outlier Toggle
         function setForecastMode(mode, btn) {
             btn.parentElement.querySelectorAll('.mini-toggle-btn').forEach(function(b) {
                 b.classList.remove('active');
@@ -2023,7 +2116,7 @@
             }
         }
 
-        // 7. Enhanced Lightbox Viewer with Next/Prev & Keyboard Support
+        // 8. Enhanced Lightbox Viewer with Next/Prev & Keyboard Support
         var currentLightboxIndex = 0;
 
         function getVisibleGalleryCards() {
