@@ -58,7 +58,8 @@
 
         body {
             background-color: #09090b;
-            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg');
+            /* Using one of the provided outdoor shots as a fallback if 1000000769.jpg doesn't exist */
+            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('_DSC5280.jpg');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
@@ -233,54 +234,6 @@
         [data-theme="light"] .theme-switch-thumb {
             transform: translateX(30px) rotate(360deg);
             background: linear-gradient(135deg, #fbbf24, #d97706);
-        }
-
-        /* Photo Folder Relink Banner (Only visible if local photos fail to load) */
-        .photo-rescue-banner {
-            display: none;
-            max-width: 1032px;
-            margin: 12px auto 0 auto;
-            padding: 12px 20px;
-            background: var(--bg-surface);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--accent-amber);
-            border-radius: 18px;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .photo-rescue-banner.visible {
-            display: flex;
-        }
-
-        .rescue-text {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        .rescue-text strong {
-            color: var(--accent-amber);
-        }
-
-        .rescue-btn {
-            background: var(--accent-amber);
-            color: #09090b;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: none;
-            cursor: pointer;
-            font-family: var(--font-family);
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .rescue-btn:hover {
-            transform: translateY(-1px);
-            opacity: 0.92;
         }
 
         /* Hero Section */
@@ -923,23 +876,6 @@
             z-index: 2;
         }
 
-        /* Sleek Viewfinder Placeholder if Image is Missing */
-        .img-fallback-card {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.12), rgba(9, 9, 11, 0.85));
-            color: var(--text-secondary);
-            font-family: var(--font-mono);
-            font-size: 11px;
-            gap: 6px;
-        }
-
         /* Benchmark / Time Comparison Widget */
         .benchmark-box {
             margin-top: 18px;
@@ -1429,17 +1365,6 @@
         </div>
     </header>
 
-    <!-- Local Photo Folder Relinker (Appears automatically if images can't be found in the current directory) -->
-    <div id="photo-rescue-banner" class="photo-rescue-banner">
-        <div class="rescue-text">
-            <strong>Photos not showing?</strong> Make sure this HTML file is saved in the same folder as your images, or link your photo folder directly:
-        </div>
-        <div>
-            <input type="file" id="folder-picker" webkitdirectory directory multiple style="display:none" onchange="handleLocalFolderSelect(event)">
-            <button type="button" class="rescue-btn" onclick="document.getElementById('folder-picker').click()">📁 Select Photo Folder to Load Images</button>
-        </div>
-    </div>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-text">
@@ -1503,8 +1428,7 @@
 
         <div class="hero-portrait-card" onclick="openLightbox(this)">
             <div class="hero-portrait-inner">
-                <!-- UPDATED FILE NAME HERE -->
-                <img src="IMG_2955.jpg" data-filename="IMG_2955.jpg" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
+                <img src="IMG_2955.jpg" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
                 <span class="portrait-badge">Trackside &bull; Canon 1DX + L-Series Telephoto</span>
             </div>
         </div>
@@ -1589,19 +1513,19 @@
                 </div>
                 <div class="photo-gallery-work">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="2DPX4122.jpg" data-filename="2DPX4122.jpg" alt="Brock Jr. Badgers On Ice Action">
+                        <img src="2DPX4122 (1).jpg" alt="Brock Jr. Badgers On Ice Action">
                         <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000644.jpg" data-filename="1000000644.jpg" alt="Crease Save Action Shot">
+                        <img src="1000000644 (1).jpg" alt="Crease Save Action Shot">
                         <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000041.jpg" data-filename="1000000041.jpg" alt="Ioannoni Visuals Bench Celebration">
+                        <img src="1000000041 (1).jpg" alt="Ioannoni Visuals Bench Celebration">
                         <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000642.jpg" data-filename="1000000642.jpg" alt="Huskies Bench Coaching Moment">
+                        <img src="1000000642 (1).jpg" alt="Huskies Bench Coaching Moment">
                         <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
                     </div>
                 </div>
@@ -1615,27 +1539,27 @@
                 </div>
                 <div class="photo-gallery-studio">
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9998.jpg" data-filename="JIOA9998.jpg" alt="Studio Portrait Key Light">
+                        <img src="JIOA9998.JPG" alt="Studio Portrait Key Light">
                         <span class="gallery-label">Studio Portrait &bull; Controlled Key Lighting</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9946.jpg" data-filename="JIOA9946.jpg" alt="Moody Studio Profile Portrait">
+                        <img src="JIOA9946.JPG" alt="Moody Studio Profile Portrait">
                         <span class="gallery-label">Studio Profile &bull; Directional Shadow Grade</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="IMG_1978.jpg" data-filename="IMG_1978.jpg" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
+                        <img src="IMG_1978.jpg" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
                         <span class="gallery-label">Mercedes-Benz Cockpit &bull; Automotive Detail</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5239.jpg" data-filename="_DSC5239.jpg" alt="Automotive Lifestyle Open Door Portrait">
+                        <img src="_DSC5239.jpg" alt="Automotive Lifestyle Open Door Portrait">
                         <span class="gallery-label">Automotive Lifestyle &bull; Autumn Color Grade</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5253.jpg" data-filename="_DSC5253.jpg" alt="Side Mirror Window Framing">
+                        <img src="_DSC5253.jpg" alt="Side Mirror Window Framing">
                         <span class="gallery-label">Window Framing &bull; Shallow Depth of Field</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5262.jpg" data-filename="_DSC5262.jpg" alt="Outdoor Autumn Portrait with Mercedes">
+                        <img src="_DSC5272.jpg" alt="Outdoor Autumn Portrait with Mercedes">
                         <span class="gallery-label">Location Portrait &bull; Natural Backlight</span>
                     </div>
                 </div>
@@ -1649,20 +1573,19 @@
                 </div>
                 <div class="photo-gallery-pov">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <!-- UPDATED FILE NAME HERE -->
-                        <img src="IMG_5669.jpg" data-filename="IMG_5669.jpg" alt="Trackside Fence POV with Canon 1DX">
+                        <img src="IMG_5669.jpg" alt="Trackside Fence POV with Canon 1DX">
                         <span class="gallery-label">Motorsport Trackside &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="20250112_102145~2.jpg" data-filename="20250112_102145~2.jpg" alt="Rinkside Bench POV with Canon 1DX">
+                        <img src="20250112_102145~2 (1).jpg" alt="Rinkside Bench POV with Canon 1DX">
                         <span class="gallery-label">Rinkside Bench POV &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="20260807_101658.jpg" data-filename="20260807_101658.jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
+                        <img src="20260807_101658 (1).jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
                         <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000129.jpg" data-filename="1000000129.jpg" alt="Rinkside Setup with Canon 1DX and 300mm">
+                        <img src="1000000129 (1).jpg" alt="Rinkside Setup with Canon 1DX and 300mm">
                         <span class="gallery-label">Arena Assignment &bull; 300mm f/2.8 Rig</span>
                     </div>
                 </div>
@@ -2061,79 +1984,7 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
-
-        // 4. Smart Image Path & Extension Resolver + Local Folder Relinker
-        var failedImageCount = 0;
-
-        function setupSmartImages() {
-            var images = document.querySelectorAll('img[data-filename]');
-            images.forEach(function(img) {
-                var baseFile = img.getAttribute('data-filename');
-                var nameWithoutExt = baseFile.replace(/\.[^/.]+$/, '');
-                var candidates = [
-                    baseFile,
-                    nameWithoutExt + '.JPG',
-                    nameWithoutExt + '.jpeg',
-                    nameWithoutExt + '.JPEG',
-                    nameWithoutExt + '.png',
-                    'images/' + baseFile,
-                    'images/' + nameWithoutExt + '.JPG',
-                    'photos/' + baseFile,
-                    'photos/' + nameWithoutExt + '.JPG',
-                    'assets/' + baseFile
-                ];
-                var attemptIndex = 0;
-
-                img.onerror = function() {
-                    attemptIndex++;
-                    if (attemptIndex < candidates.length) {
-                        img.src = candidates[attemptIndex];
-                    } else {
-                        img.onerror = null;
-                        failedImageCount++;
-                        document.getElementById('photo-rescue-banner').classList.add('visible');
-                        showViewfinderFallback(img, baseFile);
-                    }
-                };
-            });
-        }
-
-        function showViewfinderFallback(img, filename) {
-            var parent = img.parentElement;
-            if (!parent || parent.querySelector('.img-fallback-card')) return;
-            var fallback = document.createElement('div');
-            fallback.className = 'img-fallback-card';
-            fallback.innerHTML = '<span>📷 RAW CAPTURE</span><strong>' + filename + '</strong><span>Click "Select Photo Folder" above</span>';
-            parent.appendChild(fallback);
-        }
-
-        function handleLocalFolderSelect(event) {
-            var files = event.target.files;
-            if (!files || !files.length) return;
-
-            var fileMap = {};
-            for (var i = 0; i < files.length; i++) {
-                fileMap[files[i].name.toLowerCase()] = URL.createObjectURL(files[i]);
-            }
-
-            // Relink all <img> elements
-            document.querySelectorAll('img[data-filename]').forEach(function(img) {
-                var targetName = img.getAttribute('data-filename').toLowerCase();
-                if (fileMap[targetName]) {
-                    img.src = fileMap[targetName];
-                    var fb = img.parentElement.querySelector('.img-fallback-card');
-                    if (fb) fb.remove();
-                }
-            });
-
-            // Relink background photo (1000000769.jpg) if present
-            if (fileMap['1000000769.jpg']) {
-                document.body.style.backgroundImage = "linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('" + fileMap['1000000769.jpg'] + "')";
-            }
-
-            document.getElementById('photo-rescue-banner').classList.remove('visible');
-        }
-
+        
         // 5. Interactive Category Filter for Photography Showcase
         function filterGallery(category, btn) {
             document.querySelectorAll('.filter-btn').forEach(function(b) {
@@ -2237,9 +2088,6 @@
                 closeContactModal();
             }
         });
-
-        // Initialize image resolver on load
-        window.addEventListener('DOMContentLoaded', setupSmartImages);
     </script>
 
 </body>
