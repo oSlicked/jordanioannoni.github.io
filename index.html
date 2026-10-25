@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jordan Ioannoni | Portfolio</title>
     <style>
-        /* Apple Premium Light/Structural Design System */
+        /* Apple Premium Light/Structural Design System with Photo Background Integration */
         :root {
             --bg-base: #f5f5f7;
-            --bg-surface: #ffffff;
+            --bg-surface: rgba(255, 255, 255, 0.88);
             --text-primary: #1d1d1f;
-            --text-secondary: #86868b;
+            --text-secondary: #515154;
             --accent-blue: #0066cc;
-            --border-subtle: rgba(0, 0, 0, 0.08);
+            --border-subtle: rgba(0, 0, 0, 0.06);
             --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
@@ -23,7 +23,13 @@
         }
 
         body {
-            background-color: var(--bg-base);
+            /* Integrates your specific Banff photo file with a premium semi-transparent white-wash overlay tint */
+            background-image: linear-gradient(rgba(245, 245, 247, 0.82), rgba(245, 245, 247, 0.82)), url('1000000769.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            
             color: var(--text-primary);
             font-family: var(--font-family);
             letter-spacing: -0.011em;
@@ -39,7 +45,7 @@
             left: 0;
             width: 100%;
             height: 48px;
-            background: rgba(245, 245, 247, 0.8);
+            background: rgba(245, 245, 247, 0.75);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             z-index: 9999;
@@ -71,7 +77,7 @@
             background: rgba(0, 0, 0, 0.04);
             padding: 4px;
             border-radius: 30px;
-            border: 1px solid rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.01);
         }
 
         .nav-btn {
@@ -86,11 +92,6 @@
 
         .nav-btn:hover {
             background: rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-btn.active {
-            background: var(--bg-surface);
-            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .git-profile {
@@ -130,11 +131,13 @@
             letter-spacing: -0.015em;
         }
 
-        /* Statement Philosophy Panel */
+        /* Statement Philosophy Panel with frosted glass effect */
         .statement-banner {
             max-width: 944px;
             margin: 0 auto 50px auto;
             background-color: var(--bg-surface);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 28px;
             padding: 50px;
             border: 1px solid var(--border-subtle);
@@ -179,6 +182,8 @@
 
         .bento-card {
             background-color: var(--bg-surface);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 28px;
             padding: 40px;
             border: 1px solid var(--border-subtle);
@@ -186,14 +191,15 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: box-shadow 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
         }
 
         .bento-card:hover {
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.05);
+            transform: scale(1.005);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.04);
         }
 
-        /* Setting up varying structural sizes (Bento Grid Style) */
+        /* Bento Grid Width Spans */
         .size-wide { grid-column: span 12; min-height: 280px; }
         .size-left { grid-column: span 7; min-height: 340px; }
         .size-right { grid-column: span 5; min-height: 340px; }
@@ -243,7 +249,7 @@
             .hero h1 { font-size: 40px; }
             .hero p { font-size: 18px; }
             .statement-banner { margin: 0 20px 40px 20px; padding: 30px; }
-            .nav-menu { display: none; } /* Keeps layout clean on mobile */
+            .nav-menu { display: none; }
         }
     </style>
 </head>
@@ -280,18 +286,10 @@
     <!-- Asymmetric Bento Grid Layout Section -->
     <main class="showcase-grid">
         
-        <!-- Grid Item 1: Media (Spans Wide across the top layout) -->
+        <!-- Grid Item 1: Media -->
         <div class="bento-card size-wide" id="photography">
             <div class="card-content">
                 <div class="card-meta">Media Production</div>
                 <h2>Photography & Digital Asset Pipelines</h2>
                 <p><strong>The Core Workflow:</strong> Engineered asset ingestion architectures managing sports and event photography frameworks using uncompressed RAW asset streams.</p>
                 <p><strong>The Execution Profile:</strong> Building absolute end-to-end collection sorting, non-destructive color grading matrices, and lighting adjustments natively inside local Adobe Lightroom catalogs. Traditional certificates do not match visual reality because <strong>your work is your pitch deck</strong>.</p>
-            </div>
-        </div>
-
-        <!-- Grid Item 2: Technology (Asymmetric Left Card Setup) -->
-        <div class="bento-card size-left" id="automation">
-            <div class="card-content">
-                <div class="card-meta">Systems Architecture</div>
-                <h2>Automation & Scripting</h2>
