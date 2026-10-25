@@ -6,8 +6,8 @@
     <title>Jordan Ioannoni | Digital Portfolio</title>
     <style>
         :root {
-            --bg-surface: rgba(24, 24, 27, 0.78);
-            --bg-surface-elevated: rgba(38, 38, 42, 0.68);
+            --bg-surface: rgba(22, 22, 25, 0.82);
+            --bg-surface-elevated: rgba(36, 36, 40, 0.72);
             --text-primary: #ffffff;
             --text-secondary: #a1a1aa;
             --text-muted: #71717a;
@@ -15,7 +15,7 @@
             --accent-green: #30d158;
             --accent-amber: #ffd60a;
             --border-subtle: rgba(255, 255, 255, 0.12);
-            --border-highlight: rgba(255, 255, 255, 0.24);
+            --border-highlight: rgba(255, 255, 255, 0.26);
             --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
@@ -32,7 +32,7 @@
 
         body {
             background-color: #09090b;
-            background-image: linear-gradient(180deg, rgba(9, 9, 11, 0.58) 0%, rgba(9, 9, 11, 0.85) 100%), url('1000000769.jpg');
+            background-image: linear-gradient(180deg, rgba(9, 9, 11, 0.58) 0%, rgba(9, 9, 11, 0.88) 100%), url('1000000769.jpg');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
@@ -52,7 +52,7 @@
             left: 0;
             width: 100%;
             height: 56px;
-            background: rgba(15, 15, 18, 0.78);
+            background: rgba(15, 15, 18, 0.8);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             z-index: 9999;
@@ -60,7 +60,7 @@
         }
 
         .nav-container {
-            max-width: 1040px;
+            max-width: 1060px;
             margin: 0 auto;
             height: 100%;
             display: flex;
@@ -126,13 +126,13 @@
             font-weight: 600;
         }
 
-        /* Hero Section with Profile Portrait */
+        /* Hero Section with Trackside Portrait */
         .hero {
-            max-width: 1040px;
-            margin: 64px auto 40px auto;
+            max-width: 1060px;
+            margin: 60px auto 40px auto;
             padding: 0 24px;
             display: grid;
-            grid-template-columns: 1fr 290px;
+            grid-template-columns: 1fr 340px;
             gap: 36px;
             align-items: center;
         }
@@ -164,12 +164,30 @@
         }
 
         .hero p {
-            font-size: 21px;
+            font-size: 20px;
             color: var(--text-secondary);
             font-weight: 400;
-            line-height: 1.4;
+            line-height: 1.42;
             letter-spacing: -0.01em;
             text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+            margin-bottom: 24px;
+        }
+
+        .hero-Quick-Tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .hero-tag {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            padding: 6px 14px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .hero-portrait-card {
@@ -192,7 +210,7 @@
 
         .hero-portrait-inner {
             position: relative;
-            aspect-ratio: 4 / 5;
+            aspect-ratio: 4 / 3;
             border-radius: 18px;
             overflow: hidden;
         }
@@ -201,7 +219,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
+            object-position: center;
             transition: transform 0.4s ease;
         }
 
@@ -214,7 +232,7 @@
             bottom: 12px;
             left: 12px;
             right: 12px;
-            background: rgba(0, 0, 0, 0.72);
+            background: rgba(0, 0, 0, 0.76);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 7px 12px;
@@ -228,7 +246,7 @@
 
         /* Quick Metrics Row */
         .metrics-grid {
-            max-width: 1040px;
+            max-width: 1060px;
             margin: 0 auto 36px auto;
             padding: 0 24px;
             display: grid;
@@ -261,7 +279,7 @@
 
         /* Philosophy & Quote Banner */
         .statement-banner {
-            max-width: 992px;
+            max-width: 1012px;
             margin: 0 auto 40px auto;
             background-color: var(--bg-surface);
             backdrop-filter: blur(25px) saturate(140%);
@@ -281,10 +299,10 @@
         }
 
         .statement-banner p {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 500;
             color: var(--text-primary);
-            line-height: 1.5;
+            line-height: 1.52;
             margin-bottom: 28px;
         }
 
@@ -319,7 +337,7 @@
 
         /* Main Bento Grid */
         .showcase-grid {
-            max-width: 1040px;
+            max-width: 1060px;
             margin: 0 auto 80px auto;
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -346,7 +364,6 @@
         }
 
         .bento-card:hover {
-            transform: translateY(-3px);
             border-color: var(--border-highlight);
             box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
         }
@@ -361,6 +378,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .card-meta {
@@ -390,15 +409,26 @@
         }
 
         .sub-heading {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-secondary);
+            letter-spacing: 0.06em;
+            color: var(--accent-blue);
             margin-top: 28px;
             margin-bottom: 14px;
             padding-top: 24px;
             border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sub-heading span {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 400;
         }
 
         .card-content p {
@@ -411,6 +441,41 @@
         .card-content strong {
             color: var(--text-primary);
             font-weight: 600;
+        }
+
+        /* Interactive Gallery Filter Tabs */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-family);
+        }
+
+        .filter-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-blue);
+            color: #ffffff;
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 14px rgba(41, 151, 255, 0.35);
         }
 
         /* Skill & Spec Pills */
@@ -432,29 +497,48 @@
         }
 
         /* Photo Galleries */
+        .gallery-section {
+            transition: opacity 0.25s ease;
+        }
+
+        .gallery-section.hidden {
+            display: none;
+        }
+
         .photo-gallery-work {
-            margin-top: 22px;
+            margin-top: 16px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
             width: 100%;
         }
 
-        .photo-gallery-pov {
+        .photo-gallery-studio {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             width: 100%;
         }
 
+        .photo-gallery-pov {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            width: 100%;
+        }
+
         .gallery-item {
             position: relative;
             aspect-ratio: 16 / 10;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border-radius: 18px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
+        }
+
+        .gallery-item.portrait-ratio {
+            aspect-ratio: 4 / 5;
         }
 
         .gallery-item img {
@@ -465,23 +549,36 @@
             transition: transform 0.45s ease;
         }
 
+        .gallery-item img.crop-ig-overlay {
+            transform: scale(1.14);
+            object-position: center center;
+        }
+
         .gallery-item:hover img {
             transform: scale(1.05);
+        }
+
+        .gallery-item:hover img.crop-ig-overlay {
+            transform: scale(1.19);
         }
 
         .gallery-label {
             position: absolute;
             bottom: 12px;
-            left: 14px;
-            background: rgba(0, 0, 0, 0.75);
+            left: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.76);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            padding: 5px 12px;
-            border-radius: 20px;
+            padding: 6px 12px;
+            border-radius: 14px;
             font-size: 11px;
             font-weight: 500;
             color: #ffffff;
             border: 1px solid rgba(255, 255, 255, 0.15);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* Benchmark / Time Comparison Widget */
@@ -615,7 +712,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.92);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             z-index: 10000;
@@ -643,16 +740,16 @@
             margin-top: 14px;
             font-size: 13px;
             font-weight: 500;
-            color: var(--text-secondary);
-            background: rgba(255, 255, 255, 0.08);
-            padding: 6px 16px;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 18px;
             border-radius: 20px;
             border: 1px solid var(--border-subtle);
         }
 
         /* Footer */
         footer {
-            max-width: 1040px;
+            max-width: 1060px;
             margin: 0 auto;
             padding: 32px 24px 64px 24px;
             border-top: 1px solid var(--border-subtle);
@@ -670,14 +767,14 @@
             text-decoration: none;
         }
 
-        @media (max-width: 860px) {
+        @media (max-width: 900px) {
             .hero {
                 grid-template-columns: 1fr;
             }
             .hero-portrait-card {
-                max-width: 300px;
+                max-width: 380px;
             }
-            .metrics-grid, .quote-grid, .credentials-grid, .photo-gallery-work, .photo-gallery-pov {
+            .metrics-grid, .quote-grid, .credentials-grid, .photo-gallery-work, .photo-gallery-studio, .photo-gallery-pov {
                 grid-template-columns: 1fr;
             }
             .showcase-grid {
@@ -718,18 +815,24 @@
         </div>
     </header>
 
-    <!-- Hero Section with Rinkside Selfie Portrait -->
+    <!-- Hero Section with Trackside Portrait -->
     <section class="hero">
         <div class="hero-text">
             <div class="eyebrow">St. Catharines, ON &bull; Niagara College &bull; ID 4382028</div>
             <h1>Jordan Ioannoni</h1>
-            <p>Business General student combining hands on automotive trades, custom systems automation, operations forecasting, and professional sports photography.</p>
+            <p>Business General student combining hands on automotive trades, custom systems automation, operations forecasting, and professional sports, studio, and automotive photography.</p>
+            <div class="hero-Quick-Tags">
+                <span class="hero-tag">Ioannoni Visuals</span>
+                <span class="hero-tag">Digital Sports Photography</span>
+                <span class="hero-tag">Motive Power &amp; Durability Lab</span>
+                <span class="hero-tag">Operations &amp; Supply Chain Focus</span>
+            </div>
         </div>
 
         <div class="hero-portrait-card" onclick="openLightbox(this)">
             <div class="hero-portrait-inner">
-                <img src="1000000129 (1).jpg" alt="Jordan Ioannoni Rinkside with Canon 1DX">
-                <span class="portrait-badge">Rinkside &bull; Canon 1DX + 300mm f/2.8L</span>
+                <img data-src="IMG_2955_2.jpg" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
+                <span class="portrait-badge">Trackside &bull; Canon 1DX + L-Series Telephoto</span>
             </div>
         </div>
     </section>
@@ -778,58 +881,116 @@
     <!-- Main Bento Grid -->
     <main class="showcase-grid">
 
-        <!-- 1. Sports & Event Photography + Behind the Lens -->
+        <!-- 1. Multi-Genre Media Production Card -->
         <article id="photography" class="bento-card size-wide anchor-section">
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Media Production &bull; Ioannoni Visuals</span>
-                    <span class="card-badge">Digital Sports Photography</span>
+                    <span class="card-badge">Sports &bull; Studio &bull; Automotive</span>
                 </div>
-                <h2>Event &amp; Sports Photography</h2>
-                <p>Shooting live tournaments and sporting events across Ontario since 2018. Working in fast paced arenas and outdoor fields requires instant adjustments, reliable file management, and fast turnaround times from RAW capture to client gallery delivery.</p>
+                <h2>Visual Production &amp; Lightroom Workflow</h2>
+                <p>Shooting high speed tournament sports, controlled studio portraits, and automotive photography since 2018. My workflow covers on location lighting and fast telephoto tracking with a <strong>Canon 1DX</strong> and <strong>Canon EF 300mm f/2.8L IS II</strong> through to RAW color grading and client delivery in <strong>Adobe Lightroom Classic</strong> and <strong>Photoshop</strong>.</p>
+                
                 <div class="pill-row">
                     <span class="pill">Canon EOS 1DX</span>
                     <span class="pill">Canon EF 300mm f/2.8L IS II</span>
+                    <span class="pill">Studio Strobe &amp; Key Lighting</span>
+                    <span class="pill">Automotive &amp; Motorsport</span>
                     <span class="pill">Adobe Lightroom Classic</span>
-                    <span class="pill">Adobe Photoshop</span>
-                    <span class="pill">High Speed Action &amp; Color Grading</span>
+                </div>
+
+                <!-- Interactive Filter Buttons -->
+                <div class="filter-bar">
+                    <button class="filter-btn active" onclick="filterGallery('all', this)">All Captures (14)</button>
+                    <button class="filter-btn" onclick="filterGallery('sports', this)">Arena &amp; Sports (4)</button>
+                    <button class="filter-btn" onclick="filterGallery('studio', this)">Studio &amp; Automotive (6)</button>
+                    <button class="filter-btn" onclick="filterGallery('pov', this)">Behind the Lens POV (4)</button>
                 </div>
             </div>
 
-            <!-- 2x2 Grid of Finished Action & Bench Work -->
-            <div class="photo-gallery-work">
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="2DPX4122 (1).jpg" alt="Brock Jr. Badgers On Ice Action">
-                    <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
+            <!-- Section A: Arena & Tournament Sports (2x2 Landscape Grid) -->
+            <div id="gal-sports" class="gallery-section">
+                <div class="sub-heading">
+                    Arena &amp; Tournament Action
+                    <span>High Shutter Speed &bull; 300mm f/2.8L IS II</span>
                 </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="1000000644 (1).jpg" alt="Crease Save Action Shot">
-                    <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="1000000041 (1).jpg" alt="Ioannoni Visuals Bench Celebration">
-                    <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="1000000642 (1).jpg" alt="Huskies Bench Coaching Moment">
-                    <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
+                <div class="photo-gallery-work">
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img data-src="2DPX4122 (1).jpg" alt="Brock Jr. Badgers On Ice Action">
+                        <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img data-src="1000000644 (1).jpg" alt="Crease Save Action Shot">
+                        <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img data-src="1000000041 (1).jpg" alt="Ioannoni Visuals Bench Celebration">
+                        <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img data-src="1000000642 (1).jpg" alt="Huskies Bench Coaching Moment">
+                        <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- 3-Column Strip of Behind the Lens POV Shots -->
-            <div class="sub-heading">Behind the Lens &bull; Arena &amp; Field Operations</div>
-            <div class="photo-gallery-pov">
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="20250112_102145~2 (1).jpg" alt="Rinkside Bench POV with Canon 1DX">
-                    <span class="gallery-label">Rinkside Bench POV &bull; Canon 1DX</span>
+            <!-- Section B: Studio Portraiture & Automotive Lifestyle (3x2 Portrait Grid) -->
+            <div id="gal-studio" class="gallery-section">
+                <div class="sub-heading">
+                    Studio Portraiture &amp; Automotive Lifestyle
+                    <span>Controlled Lighting &bull; Automotive Framing &amp; Color Grading</span>
                 </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="20260807_101658 (1).jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
-                    <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
+                <div class="photo-gallery-studio">
+                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
+                        <img data-src="JIOA9998.jpg" alt="Studio Portrait Key Light">
+                        <span class="gallery-label">Studio Portrait &bull; Controlled Key Lighting</span>
+                    </div>
+                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
+                        <img data-src="JIOA9946.jpg" alt="Moody Studio Profile Portrait">
+                        <span class="gallery-label">Studio Profile &bull; Directional Shadow Grade</span>
+                    </div>
+                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
+                        <img data-src="IMG_1978.jpg" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
+                        <span class="gallery-label">Mercedes-Benz Cockpit &bull; Automotive Detail</span>
+                    </div>
+                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
+                        <img data-src="_DSC5239.jpg" alt="Automotive Lifestyle Open Door Portrait">
+                        <span class="gallery-label">Automotive Lifestyle &bull; Autumn Color Grade</span>
+                    </div>
+                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
+                        <img data-src="_DSC5253.jpg" alt="Side Mirror Window Framing">
+                        <span class="gallery-label">Window Framing &bull; Shallow Depth of Field</span>
+                    </div>
+                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
+                        <img data-src="_DSC5262.jpg" alt="Outdoor Autumn Portrait with Mercedes">
+                        <span class="gallery-label">Location Portrait &bull; Natural Backlight</span>
+                    </div>
                 </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).jpg" onerror="this.onerror=null; this.src='cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5.jpg';" alt="Ice Level Tracking Shot">
-                    <span class="gallery-label">Ice Level Tracking &bull; Tournament Coverage</span>
+            </div>
+
+            <!-- Section C: Behind the Lens POV (4-Column Strip) -->
+            <div id="gal-pov" class="gallery-section">
+                <div class="sub-heading">
+                    Behind the Lens &bull; Field, Track &amp; Arena Operations
+                    <span>On Location Gear &amp; Setup</span>
+                </div>
+                <div class="photo-gallery-pov">
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img data-src="IMG_5669_2.jpg" alt="Trackside Fence POV with Canon 1DX">
+                        <span class="gallery-label">Motorsport Trackside &bull; Canon 1DX</span>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img data-src="20250112_102145~2 (1).jpg" alt="Rinkside Bench POV with Canon 1DX">
+                        <span class="gallery-label">Rinkside Bench POV &bull; Canon 1DX</span>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img data-src="20260807_101658 (1).jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
+                        <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img data-src="1000000129 (1).jpg" alt="Rinkside Setup with Canon 1DX and 300mm">
+                        <span class="gallery-label">Arena Assignment &bull; 300mm f/2.8 Rig</span>
+                    </div>
                 </div>
             </div>
         </article>
@@ -1020,6 +1181,75 @@
     </footer>
 
     <script>
+        // Multi-Fallback Image Loader: Automatically checks exact name, (1) suffix, _2 suffix, and .JPG/.jpeg extensions
+        document.querySelectorAll('img[data-src]').forEach(function(img) {
+            var raw = img.getAttribute('data-src');
+            var dotIndex = raw.lastIndexOf('.');
+            var namePart = raw.substring(0, dotIndex);
+            var extPart = raw.substring(dotIndex);
+            var cleanBase = namePart.replace(' (1)', '').replace('_2', '');
+
+            var candidates = [
+                raw,
+                namePart + ' (1)' + extPart,
+                cleanBase + extPart,
+                cleanBase + '_2' + extPart,
+                cleanBase + '_2 (1)' + extPart,
+                cleanBase + ' (1)' + extPart,
+                cleanBase + '.JPG',
+                cleanBase + '_2.JPG',
+                cleanBase + '.jpeg',
+                cleanBase + '_2.jpeg'
+            ];
+
+            // Remove duplicate candidate names
+            var uniqueCandidates = candidates.filter(function(item, pos) {
+                return candidates.indexOf(item) === pos;
+            });
+
+            var attempt = 0;
+            img.onerror = function() {
+                attempt++;
+                if (attempt < uniqueCandidates.length) {
+                    this.src = uniqueCandidates[attempt];
+                } else {
+                    this.onerror = null;
+                }
+            };
+            img.src = uniqueCandidates[0];
+        });
+
+        // Interactive Category Filter for Photography Showcase
+        function filterGallery(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            btn.classList.add('active');
+
+            var sports = document.getElementById('gal-sports');
+            var studio = document.getElementById('gal-studio');
+            var pov = document.getElementById('gal-pov');
+
+            if (category === 'all') {
+                sports.classList.remove('hidden');
+                studio.classList.remove('hidden');
+                pov.classList.remove('hidden');
+            } else if (category === 'sports') {
+                sports.classList.remove('hidden');
+                studio.classList.add('hidden');
+                pov.classList.add('hidden');
+            } else if (category === 'studio') {
+                sports.classList.add('hidden');
+                studio.classList.remove('hidden');
+                pov.classList.add('hidden');
+            } else if (category === 'pov') {
+                sports.classList.add('hidden');
+                studio.classList.add('hidden');
+                pov.classList.remove('hidden');
+            }
+        }
+
+        // Lightbox Viewer
         function openLightbox(element) {
             var img = element.querySelector('img');
             var label = element.querySelector('.gallery-label, .portrait-badge');
