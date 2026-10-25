@@ -15,6 +15,11 @@
             --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
+        /* Native smooth scrolling transition for navigation anchors */
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -22,7 +27,6 @@
         }
 
         body {
-            /* This dark gradient drops the background brightness down, making the mountains clear but bringing the text forward */
             background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('1000000769.jpg');
             background-attachment: fixed;
             background-position: center;
@@ -181,6 +185,11 @@
             gap: 20px;
         }
 
+        /* Added a dedicated padding adjustment for target anchors so fixed header doesn't cover titles */
+        .anchor-section {
+            scroll-margin-top: 70px;
+        }
+
         .bento-card {
             background-color: var(--bg-surface);
             backdrop-filter: blur(25px) saturate(140%);
@@ -234,6 +243,53 @@
             font-weight: 600;
         }
 
+        /* Integrated Photo Gallery Grid Architecture */
+        .photo-gallery {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            width: 100%;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.04);
+        }
+
+        .gallery-label {
+            position: absolute;
+            bottom: 14px;
+            left: 16px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         /* Universal Site Footer */
         footer {
             max-width: 944px;
@@ -261,35 +317,10 @@
         <div class="nav-container">
             <a href="#" class="logo">Jordan Ioannoni</a>
             
-            <!-- Segmented Control Navigation Menu -->
+            <!-- Segmented Control Navigation Links connected via target IDs -->
             <nav class="nav-menu">
                 <a href="#photography" class="nav-btn">Media Production</a>
                 <a href="#automation" class="nav-btn">Systems Architecture</a>
                 <a href="#operations" class="nav-btn">Business Assets</a>
             </nav>
 
-            <a href="https://github.com" target="_blank" class="git-profile">GitHub</a>
-        </div>
-    </header>
-
-    
-    <section class="hero">
-        <h1>Built with my own hands.</h1>
-        <p>A traditional resume is just a flat piece of paper. This space offers direct empirical proof of asset execution, system builds, and custom production workflows.</p>
-    </section>
-
-    <!-- Philosophy Quote Block -->
-    <section class="statement-banner">
-        <p>"Keep your head down. Follow the rules. Do as you're told. Play it safe. Wait your turn. Ask permission. Learn to compromise. This is terrible advice."</p>
-        <a href="https://youtube.com" target="_blank">Casey Neistat — DO WHAT YOU CAN'T <span>&rarr;</span></a>
-    </section>
-
-    <!-- Asymmetric Bento Grid Layout Section -->
-    <main class="showcase-grid">
-        
-        <!-- Grid Item 1: Media -->
-        <div class="bento-card size-wide" id="photography">
-            <div class="card-content">
-                <div class="card-meta">Media Production</div>
-                <h2>Photography & Digital Asset Pipelines</h2>
-                <p><strong>The Core Workflow:</strong> Engineered asset ingestion architectures managing sports and event photography frameworks using uncompressed RAW asset streams.</p>
