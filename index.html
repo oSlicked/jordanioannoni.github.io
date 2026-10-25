@@ -58,8 +58,7 @@
 
         body {
             background-color: #09090b;
-            /* Added cache buster to background image */
-            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg?v=1');
+            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg?v=3');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
@@ -376,7 +375,6 @@
             to { transform: translateY(0.5px); }
         }
 
-        /* Dashed Center Track Line */
         .race-track-lines {
             position: absolute;
             left: 16px;
@@ -395,7 +393,6 @@
             pointer-events: none;
         }
 
-        /* Glowing Exhaust / Speed Streak Behind Car */
         .race-progress-streak {
             position: absolute;
             left: 0;
@@ -407,7 +404,6 @@
             pointer-events: none;
         }
 
-        /* SVG Race Car */
         .race-car-wrapper {
             position: absolute;
             left: 14px;
@@ -434,7 +430,6 @@
             opacity: 1;
         }
 
-        /* Checkered Finish Strip on Right */
         .finish-flag-strip {
             position: absolute;
             right: 12px;
@@ -1428,8 +1423,7 @@
 
         <div class="hero-portrait-card" onclick="openLightbox(this)">
             <div class="hero-portrait-inner">
-                <!-- Fallback trick appended to image -->
-                <img src="IMG_2955.jpg?v=1" onerror="this.onerror=null; this.src='IMG_2955.JPG?v=1';" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
+                <img src="IMG_2955.jpg?v=3" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
                 <span class="portrait-badge">Trackside &bull; Canon 1DX + L-Series Telephoto</span>
             </div>
         </div>
@@ -1499,9 +1493,9 @@
 
                 <!-- Interactive Filter Buttons -->
                 <div class="filter-bar">
-                    <button type="button" class="filter-btn active" onclick="filterGallery('all', this)">All Captures (14)</button>
+                    <button type="button" class="filter-btn active" onclick="filterGallery('all', this)">All Captures (11)</button>
                     <button type="button" class="filter-btn" onclick="filterGallery('sports', this)">Arena &amp; Sports (4)</button>
-                    <button type="button" class="filter-btn" onclick="filterGallery('studio', this)">Studio &amp; Automotive (6)</button>
+                    <button type="button" class="filter-btn" onclick="filterGallery('studio', this)">Studio &amp; Automotive (3)</button>
                     <button type="button" class="filter-btn" onclick="filterGallery('pov', this)">Behind the Lens POV (4)</button>
                 </div>
             </div>
@@ -1514,19 +1508,19 @@
                 </div>
                 <div class="photo-gallery-work">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="2DPX4122 (1).jpg?v=1" onerror="this.onerror=null; this.src='2DPX4122 (1).JPG?v=1';" alt="Brock Jr. Badgers On Ice Action">
+                        <img src="2DPX4122 (1).jpg?v=3" alt="Brock Jr. Badgers On Ice Action">
                         <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000644 (1).jpg?v=1" onerror="this.onerror=null; this.src='1000000644 (1).JPG?v=1';" alt="Crease Save Action Shot">
+                        <img src="1000000644 (1).jpg?v=3" alt="Crease Save Action Shot">
                         <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000041 (1).jpg?v=1" onerror="this.onerror=null; this.src='1000000041 (1).JPG?v=1';" alt="Ioannoni Visuals Bench Celebration">
+                        <img src="1000000041 (1).jpg?v=3" alt="Ioannoni Visuals Bench Celebration">
                         <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000642 (1).jpg?v=1" onerror="this.onerror=null; this.src='1000000642 (1).JPG?v=1';" alt="Huskies Bench Coaching Moment">
+                        <img src="1000000642 (1).jpg?v=3" alt="Huskies Bench Coaching Moment">
                         <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
                     </div>
                 </div>
@@ -1540,30 +1534,16 @@
                 </div>
                 <div class="photo-gallery-studio">
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9998.JPG?v=1" onerror="this.onerror=null; this.src='JIOA9998.jpg?v=1';" alt="Studio Portrait Key Light">
+                        <img src="JIOA9998.JPG?v=3" alt="Studio Portrait Key Light">
                         <span class="gallery-label">Studio Portrait &bull; Controlled Key Lighting</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9946.JPG?v=1" onerror="this.onerror=null; this.src='JIOA9946.jpg?v=1';" alt="Moody Studio Profile Portrait">
+                        <img src="JIOA9946.JPG?v=3" alt="Moody Studio Profile Portrait">
                         <span class="gallery-label">Studio Profile &bull; Directional Shadow Grade</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="IMG_1978.jpg?v=1" onerror="this.onerror=null; this.src='IMG_1978.JPG?v=1';" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
+                        <img src="IMG_1978.jpg?v=3" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
                         <span class="gallery-label">Mercedes-Benz Cockpit &bull; Automotive Detail</span>
-                    </div>
-                    
-                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <!-- Built-in fallbacks to bypass the case-sensitivity issue -->
-                        <img src="_DSC5284.jpg?v=1" onerror="this.onerror=null; this.src='_DSC5284.JPG?v=1';" alt="Automotive Lifestyle Open Door Portrait">
-                        <span class="gallery-label">Automotive Lifestyle &bull; Autumn Color Grade</span>
-                    </div>
-                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5253.jpg?v=1" onerror="this.onerror=null; this.src='_DSC5253.JPG?v=1';" alt="Side Mirror Window Framing">
-                        <span class="gallery-label">Window Framing &bull; Shallow Depth of Field</span>
-                    </div>
-                    <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5280.jpg?v=1" onerror="this.onerror=null; this.src='_DSC5280.JPG?v=1';" alt="Outdoor Autumn Portrait with Mercedes">
-                        <span class="gallery-label">Location Portrait &bull; Natural Backlight</span>
                     </div>
                 </div>
             </div>
@@ -1576,19 +1556,19 @@
                 </div>
                 <div class="photo-gallery-pov">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="IMG_5669.jpg?v=1" onerror="this.onerror=null; this.src='IMG_5669.JPG?v=1';" alt="Trackside Fence POV with Canon 1DX">
+                        <img src="IMG_5669.jpg?v=3" alt="Trackside Fence POV with Canon 1DX">
                         <span class="gallery-label">Motorsport Trackside &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).jpg?v=1" onerror="this.onerror=null; this.src='cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).JPG?v=1';" alt="Rinkside Over the Shoulder POV">
+                        <img src="cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).jpg?v=3" alt="Rinkside Over the Shoulder POV">
                         <span class="gallery-label">Rinkside POV &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="20260807_101658 (1).jpg?v=1" onerror="this.onerror=null; this.src='20260807_101658 (1).JPG?v=1';" alt="Outdoor Turf Field Coverage in Rain Gear">
+                        <img src="20260807_101658 (1).jpg?v=3" alt="Outdoor Turf Field Coverage in Rain Gear">
                         <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000129 (1).jpg?v=1" onerror="this.onerror=null; this.src='1000000129 (1).JPG?v=1';" alt="Rinkside Setup with Canon 1DX and 300mm">
+                        <img src="1000000129 (1).jpg?v=3" alt="Rinkside Setup with Canon 1DX and 300mm">
                         <span class="gallery-label">Arena Assignment &bull; 300mm f/2.8 Rig</span>
                     </div>
                 </div>
