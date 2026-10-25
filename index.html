@@ -22,6 +22,7 @@
             --accent-red: #f43f5e;
             --border-subtle: rgba(255, 255, 255, 0.16);
             --border-highlight: rgba(255, 255, 255, 0.34);
+            /* Low opacity dark overlay so background photo is vivid */
             --overlay-bg: rgba(9, 9, 11, 0.18);
             --font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
             --font-signature: "Alex Brush", "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
@@ -41,6 +42,7 @@
             --accent-red: #e11d48;
             --border-subtle: rgba(0, 0, 0, 0.12);
             --border-highlight: rgba(0, 0, 0, 0.25);
+            /* Very low opacity white gradient so background photo stays crisp in light mode */
             --overlay-bg: rgba(255, 255, 255, 0.08);
         }
 
@@ -56,7 +58,7 @@
 
         body {
             background-color: #09090b;
-            /* Background image loads via Auto-Fix script below to ignore extension case */
+            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
@@ -1543,17 +1545,19 @@
                         <img src="IMG_1978.jpg" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
                         <span class="gallery-label">Mercedes-Benz Cockpit &bull; Automotive Detail</span>
                     </div>
+                    
+                    <!-- NEW FRESH AUTOMOTIVE IMAGES (Fixes cache + uppercase errors) -->
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5239.jpg" alt="Automotive Lifestyle Open Door Portrait">
+                        <img src="_DSC5284.jpg" alt="Automotive Lifestyle Open Door Portrait">
                         <span class="gallery-label">Automotive Lifestyle &bull; Autumn Color Grade</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5253.jpg" alt="Side Mirror Window Framing">
-                        <span class="gallery-label">Window Framing &bull; Shallow Depth of Field</span>
+                        <img src="_DSC5272.jpg" alt="Outdoor Autumn Portrait with Mercedes">
+                        <span class="gallery-label">Location Portrait &bull; Natural Backlight</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5280.jpg" alt="Outdoor Autumn Portrait with Mercedes">
-                        <span class="gallery-label">Location Portrait &bull; Natural Backlight</span>
+                        <img src="_DSC5267.jpg" alt="Automotive Portrait Front">
+                        <span class="gallery-label">Automotive Portrait &bull; Fall Colors</span>
                     </div>
                 </div>
             </div>
