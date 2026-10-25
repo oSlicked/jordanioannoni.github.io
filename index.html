@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jordan Ioannoni | Portfolio</title>
     <style>
-        /* Apple Premium Dark/Structural Design System with Photo Depth Integration */
         :root {
-            --bg-surface: rgba(28, 28, 30, 0.75);
+            --bg-surface: rgba(28, 28, 30, 0.78);
             --text-primary: #ffffff;
             --text-secondary: #aeaeb2;
             --accent-blue: #2997ff;
-            --border-subtle: rgba(255, 255, 255, 0.1);
+            --border-subtle: rgba(255, 255, 255, 0.12);
             --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* Native smooth scrolling transition for navigation anchors */
         html {
             scroll-behavior: smooth;
         }
@@ -27,12 +25,12 @@
         }
 
         body {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('1000000769.jpg');
+            background-color: #0d0d0f;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url('1000000769.jpg');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
-            
             color: var(--text-primary);
             font-family: var(--font-family);
             letter-spacing: -0.011em;
@@ -41,7 +39,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Apple Compact Global Navigation Bar */
         header {
             position: fixed;
             top: 0;
@@ -73,7 +70,6 @@
             letter-spacing: -0.02em;
         }
 
-        /* Segmented Navigation Menu Controls */
         .nav-menu {
             display: flex;
             gap: 8px;
@@ -94,24 +90,23 @@
         }
 
         .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .git-profile {
             font-size: 12px;
             color: var(--accent-blue);
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 500;
         }
 
         .git-profile:hover {
             text-decoration: underline;
         }
 
-        /* Bold Hero Segment */
         .hero {
             max-width: 1024px;
-            margin: 110px auto 60px auto;
+            margin: 90px auto 50px auto;
             padding: 0 40px;
             text-align: left;
         }
@@ -131,12 +126,11 @@
             color: var(--text-secondary);
             font-weight: 500;
             max-width: 750px;
-            line-height: 1.25;
+            line-height: 1.3;
             letter-spacing: -0.015em;
             text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
         }
 
-        /* Philosophy Panel with a dark frosted glass effect */
         .statement-banner {
             max-width: 944px;
             margin: 0 auto 50px auto;
@@ -150,11 +144,11 @@
         }
 
         .statement-banner p {
-            font-size: 22px;
-            font-weight: 600;
+            font-size: 20px;
+            font-weight: 500;
             color: var(--text-primary);
-            line-height: 1.4;
-            letter-spacing: -0.02em;
+            line-height: 1.45;
+            letter-spacing: -0.015em;
             margin-bottom: 20px;
         }
 
@@ -176,7 +170,6 @@
             margin-left: 5px;
         }
 
-        /* Asymmetric Layout Grid wrapper */
         .showcase-grid {
             max-width: 944px;
             margin: 0 auto 100px auto;
@@ -186,7 +179,6 @@
             padding: 0 20px;
         }
 
-        /* Dedicated padding adjustment for target anchors so fixed header doesn't cover content */
         .anchor-section {
             scroll-margin-top: 70px;
         }
@@ -198,7 +190,7 @@
             border-radius: 28px;
             padding: 40px;
             border: 1px solid var(--border-subtle);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -207,13 +199,12 @@
 
         .bento-card:hover {
             transform: scale(1.005);
-            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.45);
         }
 
-        /* Card Width Configurations */
         .size-wide { grid-column: span 12; min-height: 280px; }
-        .size-left { grid-column: span 7; min-height: 340px; }
-        .size-right { grid-column: span 5; min-height: 340px; }
+        .size-left { grid-column: span 7; min-height: 320px; }
+        .size-right { grid-column: span 5; min-height: 320px; }
 
         .card-meta {
             font-size: 12px;
@@ -244,7 +235,6 @@
             font-weight: 600;
         }
 
-        /* Integrated Photo Gallery Grid Architecture */
         .photo-gallery {
             margin-top: 24px;
             display: grid;
@@ -256,10 +246,10 @@
         .gallery-item {
             position: relative;
             aspect-ratio: 16 / 10;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -280,7 +270,7 @@
             position: absolute;
             bottom: 14px;
             left: 16px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.65);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 4px 12px;
@@ -288,10 +278,9 @@
             font-size: 11px;
             font-weight: 500;
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        /* Universal Site Footer */
         footer {
             max-width: 944px;
             margin: 0 auto;
@@ -300,6 +289,10 @@
             font-size: 12px;
             color: var(--text-secondary);
             line-height: 1.5;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         @media (max-width: 768px) {
@@ -318,8 +311,108 @@
         <div class="nav-container">
             <a href="#" class="logo">Jordan Ioannoni</a>
             
-            <!-- Segmented Control Navigation Links connected via target IDs -->
             <nav class="nav-menu">
                 <a href="#photography" class="nav-btn">Media Production</a>
                 <a href="#automation" class="nav-btn">Systems Architecture</a>
                 <a href="#operations" class="nav-btn">Business Assets</a>
+            </nav>
+
+            <a href="#operations" class="git-profile">STDV 1115 Portfolio</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Jordan Ioannoni</h1>
+        <p>Business General student combining hands on automotive trades, systems automation, and professional sports photography.</p>
+    </section>
+
+    <!-- Philosophy Statement Banner -->
+    <section class="statement-banner">
+        <p>A traditional resume is just a flat list of job titles and classes that never really shows how someone solves problems. I built this portfolio to put real proof of my work in one place, mixing hands on technical projects with business operations, media production, and digital literacy.</p>
+        <a href="#photography">Explore Featured Work <span>&rarr;</span></a>
+    </section>
+
+    <!-- Main Bento Grid Showcase -->
+    <main class="showcase-grid">
+
+        <!-- Media Production Card -->
+        <article id="photography" class="bento-card size-wide anchor-section">
+            <div class="card-content">
+                <div class="card-meta">Media Production</div>
+                <h2>Event &amp; Sports Photography</h2>
+                <p>Working in live sports and tournament photography since 2018 using a <strong>Canon 1DX</strong> body paired with a <strong>Canon EF 300mm f/2.8L IS II</strong> lens. My workflow covers high speed capture on the field through to color grading, batch organization, and final delivery in <strong>Adobe Lightroom Classic</strong> and <strong>Photoshop</strong>.</p>
+            </div>
+            <div class="photo-gallery">
+                <div class="gallery-item">
+                    <img src="1000000769.jpg" alt="Featured Photography">
+                    <span class="gallery-label">Featured Capture</span>
+                </div>
+                <div class="gallery-item">
+                    <img src="1000000769.jpg" alt="RAW to Lightroom Workflow">
+                    <span class="gallery-label">Lightroom Classic Grading</span>
+                </div>
+                <div class="gallery-item">
+                    <img src="1000000769.jpg" alt="Live Tournament Coverage">
+                    <span class="gallery-label">300mm f/2.8 Action</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Systems Architecture Card -->
+        <article id="automation" class="bento-card size-left anchor-section">
+            <div class="card-content">
+                <div class="card-meta">Systems Architecture</div>
+                <h2>AI File Automation &amp; Cloud Deployment</h2>
+                <p>When tasked with organizing a company hard drive and migrating it to a cloud server, I built a custom coded <strong>AI LLM sorting workflow</strong> to categorize every file by type, date, content, size, and importance.</p>
+                <p>While the script ran, I configured a web based cloud server for the company data, turning an estimated <strong>2 day manual job into a 1 hour automated deployment</strong>.</p>
+            </div>
+        </article>
+
+        <!-- Hardware & Diagnostics Card -->
+        <article class="bento-card size-right">
+            <div class="card-content">
+                <div class="card-meta">Technical Diagnostics</div>
+                <h2>Motive Power &amp; Hardware Testing</h2>
+                <p>Backed by <strong>Motive Power Techniques</strong> training and durability test lab co-op experience. Experienced in OBDII fault diagnostics, electrical schematics, and PC thermal and hardware benchmarking using <strong>HWiNFO64</strong> and <strong>Cinebench</strong>.</p>
+            </div>
+        </article>
+
+        <!-- Business Assets / Operations Card -->
+        <article id="operations" class="bento-card size-wide anchor-section">
+            <div class="card-content">
+                <div class="card-meta">Business &amp; Operations Assets</div>
+                <h2>Data Forecasting &amp; Operations Management</h2>
+                <p>Completed credentials in <strong>Business Sales &amp; Marketing</strong>, <strong>Motive Power Techniques</strong>, and <strong>Office Administration</strong>, now completing the <strong>Business General</strong> program at Niagara College.</p>
+                <p>Built quantitative <strong>Trend Projection forecasting models</strong> in Excel for Operations Management (OPER1401) to project multi year product demand, isolate historical data outliers, and improve inventory planning accuracy.</p>
+            </div>
+        </article>
+
+        <!-- HR & Job Analysis Card -->
+        <article class="bento-card size-left">
+            <div class="card-content">
+                <div class="card-meta">Human Resources Management</div>
+                <h2>Technical Job Analysis &amp; Compliance</h2>
+                <p>Developed structured HR job analysis frameworks (PERS1301) breaking down essential shop duties, KSA requirements, WHMIS and ODP safety compliance, and objective performance metrics for automotive service operations.</p>
+            </div>
+        </article>
+
+        <!-- Digital Literacy & Wellbeing Card -->
+        <article class="bento-card size-right">
+            <div class="card-content">
+                <div class="card-meta">Digital Literacy (STDV 1115)</div>
+                <h2>Media Evaluation &amp; Digital Wellbeing</h2>
+                <p>Applied the <strong>CRAAP framework</strong> to evaluate national intelligence reporting and disinformation risks, alongside adopting a <strong>Semi Analog workflow</strong> (A5 leather notebook and rOtring 600) to maintain focus and prevent digital burnout.</p>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <span>Jordan Ioannoni &bull; Niagara College Student ID: 4382028</span>
+        <span>Built with custom HTML &amp; CSS &bull; Hosted on GitHub Pages</span>
+    </footer>
+
+</body>
+</html>
