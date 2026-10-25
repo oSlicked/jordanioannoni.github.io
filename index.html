@@ -5,19 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jordan Ioannoni | Digital Portfolio</title>
     <style>
+        /* Light / Dark Mode Theme Variables */
         :root {
-            --bg-surface: rgba(22, 22, 25, 0.82);
-            --bg-surface-elevated: rgba(36, 36, 40, 0.72);
+            --bg-surface: rgba(24, 24, 27, 0.85);
+            --bg-surface-elevated: rgba(39, 39, 42, 0.75);
             --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
-            --accent-blue: #2997ff;
-            --accent-green: #30d158;
-            --accent-amber: #ffd60a;
-            --border-subtle: rgba(255, 255, 255, 0.12);
-            --border-highlight: rgba(255, 255, 255, 0.26);
+            --text-secondary: #d4d4d8;
+            --text-muted: #a1a1aa;
+            --accent-blue: #38bdf8;
+            --accent-green: #34d399;
+            --accent-amber: #fbbf24;
+            --border-subtle: rgba(255, 255, 255, 0.15);
+            --border-highlight: rgba(255, 255, 255, 0.3);
+            --overlay-bg: rgba(9, 9, 11, 0.72);
             --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        [data-theme="light"] {
+            --bg-surface: rgba(255, 255, 255, 0.88);
+            --bg-surface-elevated: rgba(244, 244, 245, 0.85);
+            --text-primary: #18181b;
+            --text-secondary: #3f3f46;
+            --text-muted: #71717a;
+            --accent-blue: #0284c7;
+            --accent-green: #059669;
+            --accent-amber: #d97706;
+            --border-subtle: rgba(0, 0, 0, 0.12);
+            --border-highlight: rgba(0, 0, 0, 0.22);
+            --overlay-bg: rgba(240, 240, 242, 0.75);
         }
 
         html {
@@ -32,7 +48,7 @@
 
         body {
             background-color: #09090b;
-            background-image: linear-gradient(180deg, rgba(9, 9, 11, 0.58) 0%, rgba(9, 9, 11, 0.88) 100%), url('1000000769.jpg');
+            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
@@ -43,6 +59,7 @@
             line-height: 1.5;
             padding-top: 56px;
             -webkit-font-smoothing: antialiased;
+            transition: background-image 0.3s ease;
         }
 
         /* Sticky Glass Navigation */
@@ -52,11 +69,12 @@
             left: 0;
             width: 100%;
             height: 56px;
-            background: rgba(15, 15, 18, 0.8);
+            background: var(--bg-surface);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             z-index: 9999;
             border-bottom: 1px solid var(--border-subtle);
+            transition: background 0.3s ease;
         }
 
         .nav-container {
@@ -94,10 +112,10 @@
         .nav-menu {
             display: flex;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.06);
+            background: var(--bg-surface-elevated);
             padding: 4px;
             border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-subtle);
         }
 
         .nav-btn {
@@ -112,15 +130,38 @@
 
         .nav-btn:hover {
             color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.12);
+            background: var(--border-subtle);
+        }
+
+        .nav-right-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-surface-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-family);
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--border-subtle);
         }
 
         .course-pill {
             font-size: 12px;
             color: var(--accent-blue);
-            background: rgba(41, 151, 255, 0.12);
-            border: 1px solid rgba(41, 151, 255, 0.3);
-            padding: 5px 12px;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            padding: 6px 14px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
@@ -146,8 +187,8 @@
             text-transform: uppercase;
             letter-spacing: 0.06em;
             color: var(--accent-blue);
-            background: rgba(41, 151, 255, 0.12);
-            border: 1px solid rgba(41, 151, 255, 0.25);
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
             padding: 6px 14px;
             border-radius: 30px;
             margin-bottom: 20px;
@@ -160,7 +201,6 @@
             line-height: 1.05;
             margin-bottom: 18px;
             color: var(--text-primary);
-            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
         }
 
         .hero p {
@@ -169,7 +209,6 @@
             font-weight: 400;
             line-height: 1.42;
             letter-spacing: -0.01em;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
             margin-bottom: 24px;
         }
 
@@ -183,11 +222,10 @@
             font-size: 12px;
             font-weight: 500;
             color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
             padding: 6px 14px;
             border-radius: 20px;
-            backdrop-filter: blur(10px);
         }
 
         .hero-portrait-card {
@@ -198,14 +236,14 @@
             border: 1px solid var(--border-highlight);
             border-radius: 26px;
             padding: 10px;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
             cursor: pointer;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
         .hero-portrait-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
         }
 
         .hero-portrait-inner {
@@ -232,15 +270,15 @@
             bottom: 12px;
             left: 12px;
             right: 12px;
-            background: rgba(0, 0, 0, 0.76);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 7px 12px;
             border-radius: 14px;
             font-size: 11px;
             font-weight: 500;
-            color: var(--text-primary);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
         }
 
@@ -287,7 +325,7 @@
             border-radius: 28px;
             padding: 44px;
             border: 1px solid var(--border-subtle);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
         }
 
         .statement-banner h3 {
@@ -316,7 +354,7 @@
 
         .quote-box {
             background: var(--bg-surface-elevated);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--border-subtle);
             border-radius: 16px;
             padding: 18px;
         }
@@ -356,7 +394,7 @@
             border-radius: 28px;
             padding: 36px;
             border: 1px solid var(--border-subtle);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -365,7 +403,7 @@
 
         .bento-card:hover {
             border-color: var(--border-highlight);
-            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.28);
         }
 
         .size-wide { grid-column: span 12; }
@@ -394,10 +432,10 @@
             font-size: 11px;
             font-family: var(--font-mono);
             color: var(--text-secondary);
-            background: rgba(255, 255, 255, 0.07);
+            background: var(--bg-surface-elevated);
             padding: 4px 10px;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-subtle);
         }
 
         .bento-card h2 {
@@ -424,7 +462,7 @@
         }
 
         .sub-heading span {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 12px;
             text-transform: none;
             letter-spacing: 0;
@@ -454,9 +492,9 @@
         }
 
         .filter-btn {
-            background: rgba(255, 255, 255, 0.06);
+            background: var(--bg-surface-elevated);
             color: var(--text-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-subtle);
             padding: 7px 16px;
             border-radius: 20px;
             font-size: 12px;
@@ -468,7 +506,7 @@
 
         .filter-btn:hover {
             color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.12);
+            background: var(--border-subtle);
         }
 
         .filter-btn.active {
@@ -490,8 +528,8 @@
             font-size: 12px;
             font-weight: 500;
             color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
             padding: 5px 12px;
             border-radius: 16px;
         }
@@ -530,10 +568,10 @@
         .gallery-item {
             position: relative;
             aspect-ratio: 16 / 10;
-            background: rgba(255, 255, 255, 0.04);
+            background: var(--bg-surface-elevated);
             border-radius: 18px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-subtle);
             cursor: pointer;
         }
 
@@ -575,7 +613,7 @@
             font-size: 11px;
             font-weight: 500;
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -609,7 +647,7 @@
         .bench-bar-bg {
             width: 100%;
             height: 8px;
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--border-subtle);
             border-radius: 8px;
             overflow: hidden;
         }
@@ -617,7 +655,7 @@
         .bench-bar-fill-slow {
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--text-muted);
             border-radius: 8px;
         }
 
@@ -646,7 +684,7 @@
         }
 
         .data-table th {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--border-subtle);
             color: var(--text-secondary);
             font-weight: 600;
             padding: 10px 14px;
@@ -656,7 +694,7 @@
         .data-table td {
             padding: 10px 14px;
             color: var(--text-primary);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border-subtle);
             font-family: var(--font-mono);
         }
 
@@ -666,10 +704,12 @@
 
         .highlight-warn {
             color: var(--accent-amber);
+            font-weight: 600;
         }
 
         .highlight-blue {
             color: var(--accent-blue);
+            font-weight: 600;
         }
 
         /* Education & Credentials Timeline Grid */
@@ -692,6 +732,7 @@
             font-family: var(--font-mono);
             color: var(--accent-blue);
             margin-bottom: 6px;
+            font-weight: 600;
         }
 
         .cred-title {
@@ -740,11 +781,11 @@
             margin-top: 14px;
             font-size: 13px;
             font-weight: 500;
-            color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.85);
             padding: 6px 18px;
             border-radius: 20px;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         /* Footer */
@@ -793,7 +834,7 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
 
     <!-- Top Navigation -->
     <header>
@@ -811,7 +852,10 @@
                 <a href="#credentials" class="nav-btn">Credentials</a>
             </nav>
 
-            <a href="#literacy" class="course-pill">STDV 1115 Portfolio</a>
+            <div class="nav-right-controls">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" id="theme-btn">☀️ Light Mode</button>
+                <a href="#literacy" class="course-pill">STDV 1115</a>
+            </div>
         </div>
     </header>
 
@@ -916,19 +960,19 @@
                 </div>
                 <div class="photo-gallery-work">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="2DPX4122 (1).jpg" alt="Brock Jr. Badgers On Ice Action">
+                        <img data-src="2DPX4122.jpg" alt="Brock Jr. Badgers On Ice Action">
                         <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="1000000644 (1).jpg" alt="Crease Save Action Shot">
+                        <img data-src="1000000644.jpg" alt="Crease Save Action Shot">
                         <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="1000000041 (1).jpg" alt="Ioannoni Visuals Bench Celebration">
+                        <img data-src="1000000041.jpg" alt="Ioannoni Visuals Bench Celebration">
                         <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="1000000642 (1).jpg" alt="Huskies Bench Coaching Moment">
+                        <img data-src="1000000642.jpg" alt="Huskies Bench Coaching Moment">
                         <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
                     </div>
                 </div>
@@ -980,15 +1024,15 @@
                         <span class="gallery-label">Motorsport Trackside &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="20250112_102145~2 (1).jpg" alt="Rinkside Bench POV with Canon 1DX">
+                        <img data-src="20250112_102145~2.jpg" alt="Rinkside Bench POV with Canon 1DX">
                         <span class="gallery-label">Rinkside Bench POV &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="20260807_101658 (1).jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
+                        <img data-src="20260807_101658.jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
                         <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img data-src="1000000129 (1).jpg" alt="Rinkside Setup with Canon 1DX and 300mm">
+                        <img data-src="1000000129.jpg" alt="Rinkside Setup with Canon 1DX and 300mm">
                         <span class="gallery-label">Arena Assignment &bull; 300mm f/2.8 Rig</span>
                     </div>
                 </div>
@@ -1181,7 +1225,7 @@
     </footer>
 
     <script>
-        // Multi-Fallback Image Loader: Automatically checks exact name, (1) suffix, _2 suffix, and .JPG/.jpeg extensions
+        // Multi-Fallback Image Loader: Automatically checks exact name, (1) suffix, _2 suffix, and alternate extensions
         document.querySelectorAll('img[data-src]').forEach(function(img) {
             var raw = img.getAttribute('data-src');
             var dotIndex = raw.lastIndexOf('.');
@@ -1202,7 +1246,6 @@
                 cleanBase + '_2.jpeg'
             ];
 
-            // Remove duplicate candidate names
             var uniqueCandidates = candidates.filter(function(item, pos) {
                 return candidates.indexOf(item) === pos;
             });
@@ -1216,8 +1259,21 @@
                     this.onerror = null;
                 }
             };
-            img.src = uniqueCandidates[0];
+            this.src = uniqueCandidates[0];
         });
+
+        // Light / Dark Mode Toggle Functionality
+        function toggleTheme() {
+            var body = document.body;
+            var btn = document.getElementById('theme-btn');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                btn.textContent = '🌙 Dark Mode';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀️ Light Mode';
+            }
+        }
 
         // Interactive Category Filter for Photography Showcase
         function filterGallery(category, btn) {
