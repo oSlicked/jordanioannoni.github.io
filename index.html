@@ -22,8 +22,8 @@
             --accent-red: #f43f5e;
             --border-subtle: rgba(255, 255, 255, 0.16);
             --border-highlight: rgba(255, 255, 255, 0.34);
-            /* Low opacity dark overlay so background photo is vivid */
             --overlay-bg: rgba(9, 9, 11, 0.18);
+            --hero-text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75); /* Dark shadow to lift text off bright clouds */
             --font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
             --font-signature: "Alex Brush", "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
             --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -42,8 +42,8 @@
             --accent-red: #e11d48;
             --border-subtle: rgba(0, 0, 0, 0.12);
             --border-highlight: rgba(0, 0, 0, 0.25);
-            /* Very low opacity white gradient so background photo stays crisp in light mode */
             --overlay-bg: rgba(255, 255, 255, 0.08);
+            --hero-text-shadow: 0 2px 12px rgba(255, 255, 255, 0.9); /* White glow for dark backgrounds */
         }
 
         html {
@@ -58,7 +58,7 @@
 
         body {
             background-color: #09090b;
-            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg?v=3');
+            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('1000000769.jpg?v=4');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
@@ -277,7 +277,7 @@
             line-height: 1.02;
             color: var(--text-primary);
             padding-right: 12px;
-            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+            text-shadow: var(--hero-text-shadow);
         }
 
         .signature-flourish {
@@ -300,12 +300,13 @@
         }
 
         .hero p {
-            font-size: 19px;
-            color: var(--text-secondary);
-            font-weight: 400;
+            font-size: 20px; /* Made slightly larger */
+            color: var(--text-primary); /* Changed to pure white */
+            font-weight: 500; /* Made slightly thicker */
             line-height: 1.48;
             letter-spacing: -0.01em;
             margin-bottom: 22px;
+            text-shadow: var(--hero-text-shadow); /* Drop shadow to pop off the clouds */
         }
 
         .hero-Quick-Tags {
@@ -1423,7 +1424,8 @@
 
         <div class="hero-portrait-card" onclick="openLightbox(this)">
             <div class="hero-portrait-inner">
-                <img src="IMG_2955.jpg?v=3" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
+                <!-- Auto-Fixer: tries .jpg, then .JPG -->
+                <img src="IMG_2955.jpg?v=4" onerror="this.onerror=null; this.src='IMG_2955.JPG?v=4';" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
                 <span class="portrait-badge">Trackside &bull; Canon 1DX + L-Series Telephoto</span>
             </div>
         </div>
@@ -1508,19 +1510,19 @@
                 </div>
                 <div class="photo-gallery-work">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="2DPX4122 (1).jpg?v=3" alt="Brock Jr. Badgers On Ice Action">
+                        <img src="2DPX4122 (1).jpg?v=4" onerror="this.onerror=null; this.src='2DPX4122 (1).JPG?v=4';" alt="Brock Jr. Badgers On Ice Action">
                         <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000644 (1).jpg?v=3" alt="Crease Save Action Shot">
+                        <img src="1000000644 (1).jpg?v=4" onerror="this.onerror=null; this.src='1000000644 (1).JPG?v=4';" alt="Crease Save Action Shot">
                         <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000041 (1).jpg?v=3" alt="Ioannoni Visuals Bench Celebration">
+                        <img src="1000000041 (1).jpg?v=4" onerror="this.onerror=null; this.src='1000000041 (1).JPG?v=4';" alt="Ioannoni Visuals Bench Celebration">
                         <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000642 (1).jpg?v=3" alt="Huskies Bench Coaching Moment">
+                        <img src="1000000642 (1).jpg?v=4" onerror="this.onerror=null; this.src='1000000642 (1).JPG?v=4';" alt="Huskies Bench Coaching Moment">
                         <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
                     </div>
                 </div>
@@ -1534,15 +1536,15 @@
                 </div>
                 <div class="photo-gallery-studio">
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9998.JPG?v=3" alt="Studio Portrait Key Light">
+                        <img src="JIOA9998.JPG?v=4" onerror="this.onerror=null; this.src='JIOA9998.jpg?v=4';" alt="Studio Portrait Key Light">
                         <span class="gallery-label">Studio Portrait &bull; Controlled Key Lighting</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9946.JPG?v=3" alt="Moody Studio Profile Portrait">
+                        <img src="JIOA9946.JPG?v=4" onerror="this.onerror=null; this.src='JIOA9946.jpg?v=4';" alt="Moody Studio Profile Portrait">
                         <span class="gallery-label">Studio Profile &bull; Directional Shadow Grade</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="IMG_1978.jpg?v=3" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
+                        <img src="IMG_1978.jpg?v=4" onerror="this.onerror=null; this.src='IMG_1978.JPG?v=4';" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
                         <span class="gallery-label">Mercedes-Benz Cockpit &bull; Automotive Detail</span>
                     </div>
                 </div>
@@ -1556,19 +1558,19 @@
                 </div>
                 <div class="photo-gallery-pov">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="IMG_5669.jpg?v=3" alt="Trackside Fence POV with Canon 1DX">
+                        <img src="IMG_5669.jpg?v=4" onerror="this.onerror=null; this.src='IMG_5669.JPG?v=4';" alt="Trackside Fence POV with Canon 1DX">
                         <span class="gallery-label">Motorsport Trackside &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).jpg?v=3" alt="Rinkside Over the Shoulder POV">
+                        <img src="cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).jpg?v=4" onerror="this.onerror=null; this.src='cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5 (1).JPG?v=4';" alt="Rinkside Over the Shoulder POV">
                         <span class="gallery-label">Rinkside POV &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="20260807_101658 (1).jpg?v=3" alt="Outdoor Turf Field Coverage in Rain Gear">
+                        <img src="20260807_101658 (1).jpg?v=4" onerror="this.onerror=null; this.src='20260807_101658 (1).JPG?v=4';" alt="Outdoor Turf Field Coverage in Rain Gear">
                         <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000129 (1).jpg?v=3" alt="Rinkside Setup with Canon 1DX and 300mm">
+                        <img src="1000000129 (1).jpg?v=4" onerror="this.onerror=null; this.src='1000000129 (1).JPG?v=4';" alt="Rinkside Setup with Canon 1DX and 300mm">
                         <span class="gallery-label">Arena Assignment &bull; 300mm f/2.8 Rig</span>
                     </div>
                 </div>
