@@ -4,35 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jordan Ioannoni | Digital Portfolio</title>
+    <!-- Authentic Cursive Signature Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-surface: rgba(28, 28, 32, 0.78);
-            --bg-surface-elevated: rgba(44, 44, 48, 0.7);
+            --bg-surface: rgba(24, 24, 28, 0.78);
+            --bg-surface-elevated: rgba(38, 38, 44, 0.76);
+            --bg-modal: rgba(20, 20, 24, 0.94);
             --text-primary: #ffffff;
             --text-secondary: #e4e4e7;
             --text-muted: #a1a1aa;
             --accent-blue: #38bdf8;
             --accent-green: #34d399;
             --accent-amber: #fbbf24;
+            --accent-red: #f43f5e;
             --border-subtle: rgba(255, 255, 255, 0.16);
-            --border-highlight: rgba(255, 255, 255, 0.32);
-            --overlay-bg: rgba(9, 9, 11, 0.35); /* Much brighter background photo visibility */
-            --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --border-highlight: rgba(255, 255, 255, 0.34);
+            /* Low opacity dark overlay so background photo is vivid */
+            --overlay-bg: rgba(9, 9, 11, 0.18);
+            --font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            --font-signature: "Alex Brush", "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
             --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
 
         [data-theme="light"] {
-            --bg-surface: rgba(255, 255, 255, 0.85);
-            --bg-surface-elevated: rgba(244, 244, 245, 0.82);
+            --bg-surface: rgba(255, 255, 255, 0.84);
+            --bg-surface-elevated: rgba(244, 244, 246, 0.88);
+            --bg-modal: rgba(255, 255, 255, 0.96);
             --text-primary: #18181b;
             --text-secondary: #27272a;
             --text-muted: #52525b;
             --accent-blue: #0284c7;
             --accent-green: #059669;
             --accent-amber: #d97706;
+            --accent-red: #e11d48;
             --border-subtle: rgba(0, 0, 0, 0.12);
-            --border-highlight: rgba(0, 0, 0, 0.22);
-            --overlay-bg: rgba(245, 245, 247, 0.35);
+            --border-highlight: rgba(0, 0, 0, 0.25);
+            /* Very low opacity white gradient so background photo stays crisp in light mode */
+            --overlay-bg: rgba(255, 255, 255, 0.08);
         }
 
         html {
@@ -56,9 +67,21 @@
             font-family: var(--font-family);
             letter-spacing: -0.011em;
             line-height: 1.5;
-            padding-top: 56px;
+            padding-top: 64px;
             -webkit-font-smoothing: antialiased;
-            transition: background-image 0.3s ease;
+            transition: color 0.35s ease, background-color 0.35s ease;
+        }
+
+        /* Top Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+            width: 0%;
+            z-index: 10001;
+            transition: width 0.1s ease-out;
         }
 
         /* Sticky Glass Navigation */
@@ -67,13 +90,13 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 56px;
+            height: 60px;
             background: var(--bg-surface);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            backdrop-filter: saturate(180%) blur(22px);
+            -webkit-backdrop-filter: saturate(180%) blur(22px);
             z-index: 9999;
             border-bottom: 1px solid var(--border-subtle);
-            transition: background 0.3s ease;
+            transition: background 0.35s ease, border-color 0.35s ease;
         }
 
         .nav-container {
@@ -89,7 +112,9 @@
         .brand-wrap {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
         }
 
         .status-dot {
@@ -98,19 +123,35 @@
             background-color: var(--accent-green);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--accent-green);
+            animation: pulseDot 2.4s infinite ease-in-out;
         }
 
-        /* Signature Logo SVG */
-        .signature-logo {
-            height: 28px;
-            width: auto;
-            fill: var(--text-primary);
-            transition: fill 0.3s ease;
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.25); opacity: 0.7; }
+        }
+
+        /* Nav Cursive Signature Logo */
+        .nav-signature {
+            font-family: var(--font-signature);
+            font-size: 30px;
+            font-weight: 400;
+            color: var(--text-primary);
+            line-height: 1;
+            letter-spacing: 0.01em;
+            position: relative;
+            padding-top: 4px;
+            transition: color 0.3s ease, transform 0.25s ease;
+        }
+
+        .brand-wrap:hover .nav-signature {
+            color: var(--accent-blue);
+            transform: translateY(-1px);
         }
 
         .nav-menu {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             background: var(--bg-surface-elevated);
             padding: 4px;
             border-radius: 30px;
@@ -121,13 +162,17 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
             padding: 6px 14px;
             border-radius: 20px;
             transition: all 0.2s ease;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-family: var(--font-family);
         }
 
-        .nav-btn:hover {
+        .nav-btn:hover, .nav-btn.active {
             color: var(--text-primary);
             background: var(--border-subtle);
         }
@@ -138,46 +183,113 @@
             gap: 12px;
         }
 
-        /* Sliding Theme Switcher */
+        /* Upgraded Animated Sliding Theme Switcher */
         .theme-switch {
             position: relative;
-            width: 52px;
-            height: 28px;
+            width: 62px;
+            height: 32px;
             background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
+            border: 1px solid var(--border-highlight);
+            border-radius: 999px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            padding: 3px;
-            transition: background 0.3s ease;
+            justify-content: space-between;
+            padding: 0 7px;
+            transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.3s ease;
+            user-select: none;
+        }
+
+        .theme-switch:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+        }
+
+        .theme-icon-track {
+            font-size: 12px;
+            line-height: 1;
+            z-index: 1;
+            opacity: 0.65;
+            transition: opacity 0.3s ease;
         }
 
         .theme-switch-thumb {
-            width: 20px;
-            height: 20px;
-            background: var(--accent-blue);
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            font-size: 12px;
+            z-index: 2;
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.35s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
         }
 
         [data-theme="light"] .theme-switch-thumb {
-            transform: translateX(24px);
+            transform: translateX(30px) rotate(360deg);
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+        }
+
+        /* Photo Folder Relink Banner (Only visible if local photos fail to load) */
+        .photo-rescue-banner {
+            display: none;
+            max-width: 1032px;
+            margin: 12px auto 0 auto;
+            padding: 12px 20px;
+            background: var(--bg-surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--accent-amber);
+            border-radius: 18px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .photo-rescue-banner.visible {
+            display: flex;
+        }
+
+        .rescue-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .rescue-text strong {
+            color: var(--accent-amber);
+        }
+
+        .rescue-btn {
             background: var(--accent-amber);
+            color: #09090b;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-family);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .rescue-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.92;
         }
 
         /* Hero Section */
         .hero {
             max-width: 1080px;
-            margin: 60px auto 40px auto;
+            margin: 48px auto 40px auto;
             padding: 0 24px;
             display: grid;
-            grid-template-columns: 1fr 340px;
+            grid-template-columns: 1fr 350px;
             gap: 36px;
             align-items: center;
         }
@@ -195,25 +307,53 @@
             border: 1px solid var(--border-subtle);
             padding: 6px 14px;
             border-radius: 30px;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
 
-        .hero h1 {
-            font-size: 60px;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.05;
-            margin-bottom: 18px;
+        /* Hero Cursive Signature Heading */
+        .hero-signature-wrap {
+            margin-bottom: 14px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1.signature-heading {
+            font-family: var(--font-signature);
+            font-size: 86px;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            line-height: 1.02;
             color: var(--text-primary);
+            padding-right: 12px;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .signature-flourish {
+            width: 100%;
+            max-width: 420px;
+            height: 18px;
+            margin-top: -8px;
+            display: block;
+            color: var(--accent-blue);
+        }
+
+        .signature-flourish path {
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            animation: drawFlourish 1.6s ease-out 0.2s forwards;
+        }
+
+        @keyframes drawFlourish {
+            to { stroke-dashoffset: 0; }
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 19px;
             color: var(--text-secondary);
             font-weight: 400;
-            line-height: 1.42;
+            line-height: 1.48;
             letter-spacing: -0.01em;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
         }
 
         .hero-Quick-Tags {
@@ -224,7 +364,7 @@
 
         .hero-tag {
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-primary);
             background: var(--bg-surface-elevated);
             border: 1px solid var(--border-subtle);
@@ -232,6 +372,161 @@
             border-radius: 20px;
         }
 
+        /* Race Car Hold-to-Reveal Contact Button */
+        .hold-contact-container {
+            margin-top: 26px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .race-hold-btn {
+            position: relative;
+            width: 340px;
+            max-width: 100%;
+            height: 54px;
+            background: linear-gradient(180deg, rgba(24, 24, 28, 0.92), rgba(14, 14, 18, 0.96));
+            color: #ffffff;
+            border: 1.5px solid var(--border-highlight);
+            border-radius: 999px;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            user-select: none;
+            -webkit-user-select: none;
+            font-family: var(--font-family);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+            transition: border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+        }
+
+        .race-hold-btn:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 12px 34px rgba(56, 189, 248, 0.22);
+        }
+
+        .race-hold-btn.holding {
+            border-color: var(--accent-amber);
+            animation: engineRev 0.08s infinite alternate;
+        }
+
+        .race-hold-btn.unlocked {
+            border-color: var(--accent-green);
+            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.28);
+        }
+
+        @keyframes engineRev {
+            from { transform: translateY(-0.5px); }
+            to { transform: translateY(0.5px); }
+        }
+
+        /* Dashed Center Track Line */
+        .race-track-lines {
+            position: absolute;
+            left: 16px;
+            right: 44px;
+            top: 50%;
+            height: 2px;
+            transform: translateY(-50%);
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.12) 0px,
+                rgba(255, 255, 255, 0.12) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Glowing Exhaust / Speed Streak Behind Car */
+        .race-progress-streak {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0%;
+            background: linear-gradient(90deg, rgba(56, 189, 248, 0.15) 0%, rgba(56, 189, 248, 0.4) 70%, rgba(251, 191, 36, 0.55) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* SVG Race Car */
+        .race-car-wrapper {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 26px;
+            z-index: 4;
+            pointer-events: none;
+            transition: filter 0.2s ease;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+        }
+
+        .race-hold-btn.holding .race-car-wrapper {
+            filter: drop-shadow(-6px 0 10px rgba(251, 191, 36, 0.85));
+        }
+
+        .exhaust-flame {
+            opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+
+        .race-hold-btn.holding .exhaust-flame {
+            opacity: 1;
+        }
+
+        /* Checkered Finish Strip on Right */
+        .finish-flag-strip {
+            position: absolute;
+            right: 12px;
+            top: 8px;
+            bottom: 8px;
+            width: 12px;
+            border-radius: 6px;
+            background-image: conic-gradient(
+                rgba(255, 255, 255, 0.75) 90deg,
+                rgba(0, 0, 0, 0.6) 90deg 180deg,
+                rgba(255, 255, 255, 0.75) 180deg 270deg,
+                rgba(0, 0, 0, 0.6) 270deg
+            );
+            background-size: 8px 8px;
+            opacity: 0.55;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .race-btn-label {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            text-align: center;
+            padding-left: 38px;
+            padding-right: 16px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .race-timer-badge {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--accent-blue);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 7px;
+            border-radius: 8px;
+        }
+
+        /* Hero Portrait Card */
         .hero-portrait-card {
             position: relative;
             background: var(--bg-surface);
@@ -255,6 +550,7 @@
             aspect-ratio: 4 / 3;
             border-radius: 18px;
             overflow: hidden;
+            background: var(--bg-surface-elevated);
         }
 
         .hero-portrait-inner img {
@@ -303,6 +599,12 @@
             border: 1px solid var(--border-subtle);
             border-radius: 20px;
             padding: 22px 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-highlight);
         }
 
         .metric-value {
@@ -589,6 +891,7 @@
             object-fit: cover;
             object-position: center 20%;
             transition: transform 0.45s ease;
+            display: block;
         }
 
         .gallery-item img.crop-ig-overlay {
@@ -605,7 +908,7 @@
             bottom: 12px;
             left: 12px;
             right: 12px;
-            background: rgba(0, 0, 0, 0.76);
+            background: rgba(0, 0, 0, 0.78);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 6px 12px;
@@ -617,6 +920,24 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            z-index: 2;
+        }
+
+        /* Sleek Viewfinder Placeholder if Image is Missing */
+        .img-fallback-card {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.12), rgba(9, 9, 11, 0.85));
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            gap: 6px;
         }
 
         /* Benchmark / Time Comparison Widget */
@@ -667,9 +988,34 @@
             box-shadow: 0 0 12px var(--accent-green);
         }
 
-        /* Mini Data Table */
+        /* Mini Data Table & Interactive Model Toggle */
+        .model-toggle-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            margin-bottom: 12px;
+        }
+
+        .mini-toggle-btn {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-surface-elevated);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-family: var(--font-family);
+            transition: all 0.2s ease;
+        }
+
+        .mini-toggle-btn.active {
+            background: var(--accent-blue);
+            color: #ffffff;
+            border-color: var(--accent-blue);
+        }
+
         .data-table-wrap {
-            margin-top: 18px;
             background: var(--bg-surface-elevated);
             border: 1px solid var(--border-subtle);
             border-radius: 16px;
@@ -712,6 +1058,11 @@
             font-weight: 600;
         }
 
+        .highlight-green {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
         /* Education & Credentials Timeline Grid */
         .credentials-grid {
             display: grid;
@@ -748,71 +1099,189 @@
             color: var(--text-secondary);
         }
 
-        /* Bot-Proof Hold-to-Reveal Contact Button */
-        .hold-contact-container {
-            margin-top: 24px;
+        /* Professional Contact Modal Popup */
+        .contact-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 10005;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: modalFadeIn 0.25s ease;
         }
 
-        .hold-btn {
+        .contact-modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .contact-modal-card {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg-modal);
+            border: 1px solid var(--border-highlight);
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
             position: relative;
+            animation: modalCardPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalCardPop {
+            from { transform: scale(0.9) translateY(14px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--border-subtle);
             background: var(--bg-surface-elevated);
             color: var(--text-primary);
-            border: 1px solid var(--border-highlight);
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 16px;
             cursor: pointer;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            background: var(--border-highlight);
+        }
+
+        .verified-pill {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            user-select: none;
-            -webkit-user-select: none;
-            font-family: var(--font-family);
-            transition: border-color 0.2s ease;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-green);
+            background: rgba(52, 211, 153, 0.14);
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
         }
 
-        .hold-btn:hover {
-            border-color: var(--accent-blue);
-        }
-
-        .hold-progress {
-            position: absolute;
-            inset: 0;
-            background: rgba(41, 151, 255, 0.25);
-            width: 0%;
-            transition: width 0.05s linear;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .hold-btn span {
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-revealed {
-            display: none;
-            margin-top: 14px;
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--accent-green);
-            border-radius: 16px;
-            padding: 14px 18px;
-            font-size: 14px;
-            font-family: var(--font-mono);
+        .modal-signature-title {
+            font-family: var(--font-signature);
+            font-size: 52px;
+            font-weight: 400;
             color: var(--text-primary);
-            animation: fadeIn 0.3s ease;
+            line-height: 1.05;
+            margin-bottom: 4px;
         }
 
-        .contact-revealed a {
-            color: var(--accent-blue);
+        .modal-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 22px;
+        }
+
+        .contact-method-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .contact-method-row {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .method-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .method-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .method-val {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
             text-decoration: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-4px); }
-            to { opacity: 1; transform: translateY(0); }
+        .method-val:hover {
+            color: var(--accent-blue);
+        }
+
+        .method-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .action-chip {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border-highlight);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: var(--font-family);
+            transition: all 0.2s ease;
+        }
+
+        .action-chip:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .vcard-btn {
+            width: 100%;
+            background: var(--accent-blue);
+            color: #ffffff;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: var(--font-family);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .vcard-btn:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
         }
 
         /* Lightbox Modal */
@@ -836,23 +1305,50 @@
         }
 
         .lightbox img {
-            max-width: 92%;
-            max-height: 82vh;
+            max-width: 90%;
+            max-height: 78vh;
             object-fit: contain;
             border-radius: 16px;
             border: 1px solid var(--border-highlight);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+            cursor: default;
+        }
+
+        .lightbox-meta-bar {
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            cursor: default;
         }
 
         .lightbox-caption {
-            margin-top: 14px;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             color: #ffffff;
-            background: rgba(0, 0, 0, 0.85);
-            padding: 6px 18px;
+            background: rgba(24, 24, 28, 0.9);
+            padding: 8px 18px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-nav-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font-family);
+            transition: background 0.2s ease;
+        }
+
+        .lightbox-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.24);
         }
 
         /* Footer */
@@ -889,11 +1385,11 @@
                 display: flex;
                 flex-direction: column;
             }
-            .hero h1 {
-                font-size: 42px;
+            .hero h1.signature-heading {
+                font-size: 64px;
             }
             .hero p {
-                font-size: 18px;
+                font-size: 17px;
             }
             .nav-menu {
                 display: none;
@@ -903,40 +1399,62 @@
 </head>
 <body data-theme="dark">
 
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
     <!-- Top Navigation -->
     <header>
         <div class="nav-container">
-            <div class="brand-wrap">
+            <a href="#" class="brand-wrap" title="Jordan Ioannoni">
                 <span class="status-dot"></span>
-                <!-- Inline Cursive Signature Logo -->
-                <svg class="signature-logo" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15,42 C18,32 22,18 28,15 C33,12 30,35 24,42 C18,49 32,50 38,40 C45,28 42,15 48,12 C53,9 50,30 45,45 C52,32 58,15 65,12 C70,10 67,35 62,44 C58,52 74,48 80,35 C88,18 84,12 90,10 C95,8 92,30 88,44 C95,30 102,15 108,12 C113,10 110,32 105,42 C101,50 116,42 122,30 C130,15 126,10 132,10 C137,10 134,35 130,44 C138,30 144,15 150,12 C155,10 152,32 148,42 C145,50 160,42 166,30 C174,15 170,10 176,10 C181,10 178,35 174,44 C182,30 188,15 194,12 C199,10 196,32 192,42 C188,52 205,45 212,32 C220,15 216,10 222,10 C227,10 224,35 220,44 C228,30 234,15 240,12 C245,10 242,32 238,42 C235,50 248,42 255,30 C262,18 260,15 265,15 C270,15 268,35 264,44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
+                <span class="nav-signature">Jordan Ioannoni</span>
+            </a>
 
             <nav class="nav-menu">
                 <a href="#photography" class="nav-btn">Media Production</a>
                 <a href="#automation" class="nav-btn">Systems &amp; Tech</a>
                 <a href="#operations" class="nav-btn">Business &amp; HR</a>
-                <a href="#literacy" class="nav-btn">Digital Literacy</a>
                 <a href="#credentials" class="nav-btn">Credentials</a>
+                <button type="button" class="nav-btn" onclick="scrollToContact()">Contact</button>
             </nav>
 
             <div class="nav-right-controls">
-                <!-- Sliding Theme Switcher -->
-                <div class="theme-switch" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
+                <!-- Animated Sliding Theme Switcher -->
+                <div class="theme-switch" onclick="toggleTheme()" title="Toggle Light / Dark Mode" role="button" aria-label="Toggle Theme">
+                    <span class="theme-icon-track">🌙</span>
+                    <span class="theme-icon-track">☀️</span>
                     <div class="theme-switch-thumb" id="theme-thumb">🌙</div>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- Local Photo Folder Relinker (Appears automatically if images can't be found in the current directory) -->
+    <div id="photo-rescue-banner" class="photo-rescue-banner">
+        <div class="rescue-text">
+            <strong>Photos not showing?</strong> Make sure this HTML file is saved in the same folder as your images, or link your photo folder directly:
+        </div>
+        <div>
+            <input type="file" id="folder-picker" webkitdirectory directory multiple style="display:none" onchange="handleLocalFolderSelect(event)">
+            <button type="button" class="rescue-btn" onclick="document.getElementById('folder-picker').click()">📁 Select Photo Folder to Load Images</button>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-text">
             <div class="eyebrow">St. Catharines, ON &bull; Niagara College &bull; ID 4382028</div>
-            <h1>Jordan Ioannoni</h1>
+
+            <!-- Real Cursive Signature Heading + Hand-Drawn Flourish -->
+            <div class="hero-signature-wrap">
+                <h1 class="signature-heading">Jordan Ioannoni</h1>
+                <svg class="signature-flourish" viewBox="0 0 420 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 15C95 3 245 4 405 11C355 15 280 18 220 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+            </div>
+
             <p>Business General student combining hands on automotive trades, custom systems automation, operations forecasting, and professional sports, studio, and automotive photography.</p>
+
             <div class="hero-Quick-Tags">
                 <span class="hero-tag">Ioannoni Visuals</span>
                 <span class="hero-tag">Digital Sports Photography</span>
@@ -944,24 +1462,48 @@
                 <span class="hero-tag">Operations &amp; Supply Chain Focus</span>
             </div>
 
-            <!-- Bot-Proof Hold-to-Reveal Contact Button -->
-            <div class="hold-contact-container">
-                <button class="hold-btn" id="hold-contact-btn" 
-                    onmousedown="startHolding()" onmouseup="stopHolding()" onmouseleave="stopHolding()"
-                    ontouchstart="startHolding()" ontouchend="stopHolding()">
-                    <div class="hold-progress" id="hold-progress-bar"></div>
-                    <span>🔒 Hold 2s to Reveal Contact Info</span>
+            <!-- Bot-Proof Race Car Hold-to-Reveal Contact Button -->
+            <div class="hold-contact-container" id="contact-trigger-area">
+                <button type="button" class="race-hold-btn" id="hold-contact-btn"
+                    onmousedown="startHolding(event)" onmouseup="stopHolding()" onmouseleave="stopHolding()"
+                    ontouchstart="startHolding(event)" ontouchend="stopHolding()" ontouchcancel="stopHolding()">
+                    <div class="race-track-lines"></div>
+                    <div class="race-progress-streak" id="hold-progress-bar"></div>
+
+                    <!-- Inline Motorsport Race Car SVG -->
+                    <div class="race-car-wrapper" id="race-car-icon">
+                        <svg viewBox="0 0 64 28" width="56" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Exhaust Flame -->
+                            <path class="exhaust-flame" d="M0 16 L7 13 L5 16 L7 19 Z" fill="#fbbf24"/>
+                            <!-- Rear Wing -->
+                            <path d="M7 8 H13 L11 15 H8 Z" fill="#38bdf8"/>
+                            <!-- Main Chassis / Aero Body -->
+                            <path d="M8 15 L17 12 L27 9 H41 L51 13 L61 15 L62 19 H8 Z" fill="#f8fafc"/>
+                            <!-- Cockpit Canopy -->
+                            <path d="M26 10.2 H39 L46 13.5 H22 Z" fill="#0f172a"/>
+                            <!-- Racing Livery Stripe -->
+                            <path d="M12 16 H59" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                            <!-- Rear & Front Wheels -->
+                            <circle cx="18" cy="19" r="5" fill="#18181b" stroke="#e4e4e7" stroke-width="1.5"/>
+                            <circle cx="18" cy="19" r="2" fill="#38bdf8"/>
+                            <circle cx="49" cy="19" r="5" fill="#18181b" stroke="#e4e4e7" stroke-width="1.5"/>
+                            <circle cx="49" cy="19" r="2" fill="#38bdf8"/>
+                        </svg>
+                    </div>
+
+                    <div class="finish-flag-strip"></div>
+
+                    <div class="race-btn-label">
+                        <span id="race-btn-text">Hold 2s to Launch Contact</span>
+                        <span class="race-timer-badge" id="race-timer-text">0.0s</span>
+                    </div>
                 </button>
-                <div class="contact-revealed" id="contact-info-box">
-                    📧 Email: <a href="mailto:jordan.ioannoni@outlook.com">jordan.ioannoni@outlook.com</a><br>
-                    📱 Phone: <a href="tel:4036673728">403-667-3728</a>
-                </div>
             </div>
         </div>
 
         <div class="hero-portrait-card" onclick="openLightbox(this)">
             <div class="hero-portrait-inner">
-                <img src="IMG_2955_2.jpg" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
+                <img src="IMG_2955_2.jpg" data-filename="IMG_2955_2.jpg" alt="Jordan Ioannoni Trackside with Canon 1DX and Telephoto Lens">
                 <span class="portrait-badge">Trackside &bull; Canon 1DX + L-Series Telephoto</span>
             </div>
         </div>
@@ -1031,10 +1573,10 @@
 
                 <!-- Interactive Filter Buttons -->
                 <div class="filter-bar">
-                    <button class="filter-btn active" onclick="filterGallery('all', this)">All Captures (14)</button>
-                    <button class="filter-btn" onclick="filterGallery('sports', this)">Arena &amp; Sports (4)</button>
-                    <button class="filter-btn" onclick="filterGallery('studio', this)">Studio &amp; Automotive (6)</button>
-                    <button class="filter-btn" onclick="filterGallery('pov', this)">Behind the Lens POV (4)</button>
+                    <button type="button" class="filter-btn active" onclick="filterGallery('all', this)">All Captures (14)</button>
+                    <button type="button" class="filter-btn" onclick="filterGallery('sports', this)">Arena &amp; Sports (4)</button>
+                    <button type="button" class="filter-btn" onclick="filterGallery('studio', this)">Studio &amp; Automotive (6)</button>
+                    <button type="button" class="filter-btn" onclick="filterGallery('pov', this)">Behind the Lens POV (4)</button>
                 </div>
             </div>
 
@@ -1046,19 +1588,19 @@
                 </div>
                 <div class="photo-gallery-work">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="2DPX4122.jpg" alt="Brock Jr. Badgers On Ice Action">
+                        <img src="2DPX4122.jpg" data-filename="2DPX4122.jpg" alt="Brock Jr. Badgers On Ice Action">
                         <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000644.jpg" alt="Crease Save Action Shot">
+                        <img src="1000000644.jpg" data-filename="1000000644.jpg" alt="Crease Save Action Shot">
                         <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000041.jpg" alt="Ioannoni Visuals Bench Celebration">
+                        <img src="1000000041.jpg" data-filename="1000000041.jpg" alt="Ioannoni Visuals Bench Celebration">
                         <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000642.jpg" alt="Huskies Bench Coaching Moment">
+                        <img src="1000000642.jpg" data-filename="1000000642.jpg" alt="Huskies Bench Coaching Moment">
                         <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
                     </div>
                 </div>
@@ -1072,27 +1614,27 @@
                 </div>
                 <div class="photo-gallery-studio">
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9998.jpg" alt="Studio Portrait Key Light">
+                        <img src="JIOA9998.jpg" data-filename="JIOA9998.jpg" alt="Studio Portrait Key Light">
                         <span class="gallery-label">Studio Portrait &bull; Controlled Key Lighting</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="JIOA9946.jpg" alt="Moody Studio Profile Portrait">
+                        <img src="JIOA9946.jpg" data-filename="JIOA9946.jpg" alt="Moody Studio Profile Portrait">
                         <span class="gallery-label">Studio Profile &bull; Directional Shadow Grade</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="IMG_1978.jpg" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
+                        <img src="IMG_1978.jpg" data-filename="IMG_1978.jpg" class="crop-ig-overlay" alt="Mercedes SLS AMG Cockpit Interior">
                         <span class="gallery-label">Mercedes-Benz Cockpit &bull; Automotive Detail</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5239.jpg" alt="Automotive Lifestyle Open Door Portrait">
+                        <img src="_DSC5239.jpg" data-filename="_DSC5239.jpg" alt="Automotive Lifestyle Open Door Portrait">
                         <span class="gallery-label">Automotive Lifestyle &bull; Autumn Color Grade</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5253.jpg" alt="Side Mirror Window Framing">
+                        <img src="_DSC5253.jpg" data-filename="_DSC5253.jpg" alt="Side Mirror Window Framing">
                         <span class="gallery-label">Window Framing &bull; Shallow Depth of Field</span>
                     </div>
                     <div class="gallery-item portrait-ratio" onclick="openLightbox(this)">
-                        <img src="_DSC5262.jpg" alt="Outdoor Autumn Portrait with Mercedes">
+                        <img src="_DSC5262.jpg" data-filename="_DSC5262.jpg" alt="Outdoor Autumn Portrait with Mercedes">
                         <span class="gallery-label">Location Portrait &bull; Natural Backlight</span>
                     </div>
                 </div>
@@ -1106,19 +1648,19 @@
                 </div>
                 <div class="photo-gallery-pov">
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="IMG_5669_2.jpg" alt="Trackside Fence POV with Canon 1DX">
+                        <img src="IMG_5669_2.jpg" data-filename="IMG_5669_2.jpg" alt="Trackside Fence POV with Canon 1DX">
                         <span class="gallery-label">Motorsport Trackside &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="20250112_102145~2.jpg" alt="Rinkside Bench POV with Canon 1DX">
+                        <img src="20250112_102145~2.jpg" data-filename="20250112_102145~2.jpg" alt="Rinkside Bench POV with Canon 1DX">
                         <span class="gallery-label">Rinkside Bench POV &bull; Canon 1DX</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="20260807_101658.jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
+                        <img src="20260807_101658.jpg" data-filename="20260807_101658.jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
                         <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
-                        <img src="1000000129.jpg" alt="Rinkside Setup with Canon 1DX and 300mm">
+                        <img src="1000000129.jpg" data-filename="1000000129.jpg" alt="Rinkside Setup with Canon 1DX and 300mm">
                         <span class="gallery-label">Arena Assignment &bull; 300mm f/2.8 Rig</span>
                     </div>
                 </div>
@@ -1184,6 +1726,12 @@
                 <h2>Trend Projection &amp; Outlier Analysis</h2>
                 <p>Built quantitative regression models in Excel to project multi year product demand (Years 15 &amp; 16). Beyond running the formulas, I identified how a single Year 2 demand spike (1,438 units) skewed the slope downward by 30.83 units per year, recommending a baseline reset at Year 3 for accurate inventory planning.</p>
 
+                <!-- Interactive Scenario Switcher -->
+                <div class="model-toggle-row">
+                    <button type="button" class="mini-toggle-btn active" onclick="setForecastMode('raw', this)">Raw Model (With Yr 2 Outlier)</button>
+                    <button type="button" class="mini-toggle-btn" onclick="setForecastMode('adjusted', this)">Adjusted Baseline (Yr 3 Reset)</button>
+                </div>
+
                 <div class="data-table-wrap">
                     <table class="data-table">
                         <thead>
@@ -1193,7 +1741,7 @@
                                 <th>Operational Note</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="forecast-table-body">
                             <tr>
                                 <td>Years 1, 3 to 6 Range</td>
                                 <td>1,004 to 1,043</td>
@@ -1212,7 +1760,7 @@
                             <tr>
                                 <td>Year 15 &amp; 16 Forecast</td>
                                 <td class="highlight-blue">736.97 / 706.14</td>
-                                <td>Adjusted baseline recommended</td>
+                                <td>Under-forecasts true demand</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1238,12 +1786,11 @@
             </div>
         </article>
 
-        <!-- 6. Digital Literacy & Semi Analog Workflow -->
+        <!-- 6. Digital Literacy & Semi Analog Workflow (STDV 1115 Badges Removed) -->
         <article id="literacy" class="bento-card size-half anchor-section">
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Information Literacy</span>
-                    <span class="card-badge">STDV 1115</span>
                 </div>
                 <h2>CRAAP Source Verification &amp; Media Analysis</h2>
                 <p>Evaluated national reporting and public inquiry findings on foreign interference using the <strong>CRAAP framework</strong> (Currency, Relevance, Authority, Accuracy, Purpose) to separate verified intelligence from political disinformation.</p>
@@ -1254,7 +1801,6 @@
             <div class="card-content">
                 <div class="card-header">
                     <span class="card-meta">Digital Wellbeing</span>
-                    <span class="card-badge">STDV 1115</span>
                 </div>
                 <h2>The Semi Analog Focus System</h2>
                 <p>Balancing a heavy online course load by stepping outside the digital echo chamber. I pair digital tools with handwriting notes in an <strong>A5 leather bound notebook</strong> using a knurled metal <strong>rOtring 600 pen</strong> and shooting on film to stay grounded and sharp.</p>
@@ -1298,10 +1844,50 @@
 
     </main>
 
+    <!-- Professional Contact Popup Modal Window -->
+    <div id="contact-modal" class="contact-modal-overlay" onclick="handleModalBackdropClick(event)">
+        <div class="contact-modal-card">
+            <button type="button" class="modal-close-btn" onclick="closeContactModal()" aria-label="Close modal">&times;</button>
+            <div class="verified-pill">🏁 Checkered Flag &bull; Human Verified</div>
+            <div class="modal-signature-title">Jordan Ioannoni</div>
+            <div class="modal-subtitle">Business Operations &bull; Motive Power &bull; Ioannoni Visuals &bull; St. Catharines, ON</div>
+
+            <div class="contact-method-list">
+                <div class="contact-method-row">
+                    <div class="method-info">
+                        <span class="method-label">Direct Email</span>
+                        <a href="mailto:jordan.ioannoni@outlook.com" class="method-val">jordan.ioannoni@outlook.com</a>
+                    </div>
+                    <div class="method-actions">
+                        <button type="button" class="action-chip" onclick="copyText('jordan.ioannoni@outlook.com', this)">Copy</button>
+                        <a href="mailto:jordan.ioannoni@outlook.com" class="action-chip">Email &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="contact-method-row">
+                    <div class="method-info">
+                        <span class="method-label">Mobile / Direct Line</span>
+                        <a href="tel:4036673728" class="method-val">403-667-3728</a>
+                    </div>
+                    <div class="method-actions">
+                        <button type="button" class="action-chip" onclick="copyText('403-667-3728', this)">Copy</button>
+                        <a href="tel:4036673728" class="action-chip">Call &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="vcard-btn" onclick="downloadVCard()">📇 Save Contact Card (.vcf)</button>
+        </div>
+    </div>
+
     <!-- Lightbox Modal for Photos -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
         <img id="lightbox-img" src="" alt="Expanded View">
-        <div id="lightbox-caption" class="lightbox-caption"></div>
+        <div class="lightbox-meta-bar">
+            <button type="button" class="lightbox-nav-btn" onclick="stepLightbox(-1, event)">&larr; Prev</button>
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+            <button type="button" class="lightbox-nav-btn" onclick="stepLightbox(1, event)">Next &rarr;</button>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -1311,7 +1897,7 @@
     </footer>
 
     <script>
-        // Smooth Sliding Light / Dark Mode Toggle
+        // 1. Smooth Sliding Light / Dark Mode Toggle
         function toggleTheme() {
             var body = document.body;
             var thumb = document.getElementById('theme-thumb');
@@ -1324,48 +1910,229 @@
             }
         }
 
-        // Bot-Proof Hold-to-Reveal Logic (2 Seconds)
-        var holdTimer = null;
-        var holdDuration = 2000; // 2 seconds
+        // 2. Scroll Progress Bar
+        window.addEventListener('scroll', function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+        });
+
+        // 3. Race Car 2-Second Hold-to-Reveal Contact Logic
+        var holdDuration = 2000; // 2.0 seconds
         var startTime = 0;
         var progressInterval = null;
+        var contactUnlocked = false;
 
-        function startHolding() {
-            var bar = document.getElementById('hold-progress-bar');
+        function startHolding(e) {
+            if (e && e.type === 'touchstart') {
+                e.preventDefault();
+            }
+            if (contactUnlocked) {
+                openContactModal();
+                return;
+            }
+
             var btn = document.getElementById('hold-contact-btn');
-            startTime = Date.now();
-            btn.style.borderColor = 'var(--accent-blue)';
+            var bar = document.getElementById('hold-progress-bar');
+            var car = document.getElementById('race-car-icon');
+            var timerText = document.getElementById('race-timer-text');
+            var btnText = document.getElementById('race-btn-text');
 
+            btn.classList.add('holding');
+            btnText.textContent = 'Accelerating... Keep Holding!';
+            startTime = Date.now();
+
+            var maxTravel = btn.clientWidth - 78; // Distance from start to checkered flag
+
+            if (progressInterval) clearInterval(progressInterval);
             progressInterval = setInterval(function() {
                 var elapsed = Date.now() - startTime;
-                var pct = Math.min((elapsed / holdDuration) * 100, 100);
-                bar.style.width = pct + '%';
+                var ratio = Math.min(elapsed / holdDuration, 1);
+                var pct = ratio * 100;
 
-                if (pct >= 100) {
+                bar.style.width = pct + '%';
+                car.style.left = (14 + ratio * maxTravel) + 'px';
+                timerText.textContent = (elapsed / 1000).toFixed(1) + 's';
+
+                if (ratio >= 1) {
                     clearInterval(progressInterval);
-                    revealContact();
+                    progressInterval = null;
+                    completeRaceUnlock();
                 }
-            }, 30);
+            }, 16);
         }
 
         function stopHolding() {
+            if (contactUnlocked) return;
             if (progressInterval) {
                 clearInterval(progressInterval);
+                progressInterval = null;
             }
-            var bar = document.getElementById('hold-progress-bar');
             var btn = document.getElementById('hold-contact-btn');
+            var bar = document.getElementById('hold-progress-bar');
+            var car = document.getElementById('race-car-icon');
+            var timerText = document.getElementById('race-timer-text');
+            var btnText = document.getElementById('race-btn-text');
+
+            btn.classList.remove('holding');
             bar.style.width = '0%';
-            btn.style.borderColor = 'var(--border-highlight)';
+            car.style.left = '14px';
+            timerText.textContent = '0.0s';
+            btnText.textContent = 'Hold 2s to Launch Contact';
         }
 
-        function revealContact() {
-            var btnContainer = document.getElementById('hold-contact-btn').parentElement;
-            var box = document.getElementById('contact-info-box');
-            btnContainer.style.display = 'none';
-            box.style.display = 'block';
+        function completeRaceUnlock() {
+            contactUnlocked = true;
+            var btn = document.getElementById('hold-contact-btn');
+            var bar = document.getElementById('hold-progress-bar');
+            var timerText = document.getElementById('race-timer-text');
+            var btnText = document.getElementById('race-btn-text');
+
+            btn.classList.remove('holding');
+            btn.classList.add('unlocked');
+            bar.style.width = '100%';
+            timerText.textContent = '2.0s 🏁';
+            btnText.textContent = 'Contact Unlocked — Click to View';
+
+            openContactModal();
         }
 
-        // Interactive Category Filter for Photography Showcase
+        function openContactModal() {
+            document.getElementById('contact-modal').classList.add('active');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.remove('active');
+        }
+
+        function handleModalBackdropClick(e) {
+            if (e.target.id === 'contact-modal') {
+                closeContactModal();
+            }
+        }
+
+        function scrollToContact() {
+            var area = document.getElementById('contact-trigger-area');
+            area.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (contactUnlocked) {
+                openContactModal();
+            }
+        }
+
+        function copyText(text, btnEl) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text);
+            }
+            var original = btnEl.textContent;
+            btnEl.textContent = 'Copied ✓';
+            btnEl.style.borderColor = 'var(--accent-green)';
+            btnEl.style.color = 'var(--accent-green)';
+            setTimeout(function() {
+                btnEl.textContent = original;
+                btnEl.style.borderColor = '';
+                btnEl.style.color = '';
+            }, 1800);
+        }
+
+        function downloadVCard() {
+            var vcard = [
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                'N:Ioannoni;Jordan;;;',
+                'FN:Jordan Ioannoni',
+                'ORG:Ioannoni Visuals / Niagara College',
+                'TITLE:Business Operations, Motive Power & Photography',
+                'TEL;TYPE=CELL:403-667-3728',
+                'EMAIL;TYPE=INTERNET:jordan.ioannoni@outlook.com',
+                'ADR;TYPE=WORK:;;St. Catharines;ON;;Canada',
+                'END:VCARD'
+            ].join('\r\n');
+
+            var blob = new Blob([vcard], { type: 'text/vcard' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'Jordan_Ioannoni.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // 4. Smart Image Path & Extension Resolver + Local Folder Relinker
+        var failedImageCount = 0;
+
+        function setupSmartImages() {
+            var images = document.querySelectorAll('img[data-filename]');
+            images.forEach(function(img) {
+                var baseFile = img.getAttribute('data-filename');
+                var nameWithoutExt = baseFile.replace(/\.[^/.]+$/, '');
+                var candidates = [
+                    baseFile,
+                    nameWithoutExt + '.JPG',
+                    nameWithoutExt + '.jpeg',
+                    nameWithoutExt + '.JPEG',
+                    nameWithoutExt + '.png',
+                    'images/' + baseFile,
+                    'images/' + nameWithoutExt + '.JPG',
+                    'photos/' + baseFile,
+                    'photos/' + nameWithoutExt + '.JPG',
+                    'assets/' + baseFile
+                ];
+                var attemptIndex = 0;
+
+                img.onerror = function() {
+                    attemptIndex++;
+                    if (attemptIndex < candidates.length) {
+                        img.src = candidates[attemptIndex];
+                    } else {
+                        img.onerror = null;
+                        failedImageCount++;
+                        document.getElementById('photo-rescue-banner').classList.add('visible');
+                        showViewfinderFallback(img, baseFile);
+                    }
+                };
+            });
+        }
+
+        function showViewfinderFallback(img, filename) {
+            var parent = img.parentElement;
+            if (!parent || parent.querySelector('.img-fallback-card')) return;
+            var fallback = document.createElement('div');
+            fallback.className = 'img-fallback-card';
+            fallback.innerHTML = '<span>📷 RAW CAPTURE</span><strong>' + filename + '</strong><span>Click "Select Photo Folder" above</span>';
+            parent.appendChild(fallback);
+        }
+
+        function handleLocalFolderSelect(event) {
+            var files = event.target.files;
+            if (!files || !files.length) return;
+
+            var fileMap = {};
+            for (var i = 0; i < files.length; i++) {
+                fileMap[files[i].name.toLowerCase()] = URL.createObjectURL(files[i]);
+            }
+
+            // Relink all <img> elements
+            document.querySelectorAll('img[data-filename]').forEach(function(img) {
+                var targetName = img.getAttribute('data-filename').toLowerCase();
+                if (fileMap[targetName]) {
+                    img.src = fileMap[targetName];
+                    var fb = img.parentElement.querySelector('.img-fallback-card');
+                    if (fb) fb.remove();
+                }
+            });
+
+            // Relink background photo (1000000769.jpg) if present
+            if (fileMap['1000000769.jpg']) {
+                document.body.style.backgroundImage = "linear-gradient(180deg, var(--overlay-bg) 0%, var(--overlay-bg) 100%), url('" + fileMap['1000000769.jpg'] + "')";
+            }
+
+            document.getElementById('photo-rescue-banner').classList.remove('visible');
+        }
+
+        // 5. Interactive Category Filter for Photography Showcase
         function filterGallery(category, btn) {
             document.querySelectorAll('.filter-btn').forEach(function(b) {
                 b.classList.remove('active');
@@ -1395,22 +2162,82 @@
             }
         }
 
-        // Lightbox Viewer
-        function openLightbox(element) {
-            var img = element.querySelector('img');
-            var label = element.querySelector('.gallery-label, .portrait-badge');
-            var lightbox = document.getElementById('lightbox');
-            var lightboxImg = document.getElementById('lightbox-img');
-            var lightboxCaption = document.getElementById('lightbox-caption');
-            
-            lightboxImg.src = img.src;
-            lightboxCaption.textContent = label ? label.textContent : img.alt;
-            lightbox.classList.add('active');
+        // 6. Interactive Operations Management Outlier Toggle
+        function setForecastMode(mode, btn) {
+            btn.parentElement.querySelectorAll('.mini-toggle-btn').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            btn.classList.add('active');
+
+            var tbody = document.getElementById('forecast-table-body');
+            if (mode === 'raw') {
+                tbody.innerHTML = '' +
+                    '<tr><td>Years 1, 3 to 6 Range</td><td>1,004 to 1,043</td><td>Stable baseline demand</td></tr>' +
+                    '<tr><td>Year 2 Spike</td><td class="highlight-warn">1,438 units</td><td class="highlight-warn">Outlier skewing regression</td></tr>' +
+                    '<tr><td>Trend Slope (b)</td><td>-30.83 / yr</td><td>Y-Intercept (a) = 1,199.4</td></tr>' +
+                    '<tr><td>Year 15 &amp; 16 Forecast</td><td class="highlight-blue">736.97 / 706.14</td><td>Under-forecasts true demand</td></tr>';
+            } else {
+                tbody.innerHTML = '' +
+                    '<tr><td>Years 3 to 6 Baseline</td><td>1,010 to 1,043</td><td>Outlier excluded from model</td></tr>' +
+                    '<tr><td>Year 2 Spike (Removed)</td><td class="highlight-green">Filtered Out</td><td class="highlight-green">Prevents artificial negative slope</td></tr>' +
+                    '<tr><td>Adjusted Slope (b)</td><td>+8.40 / yr</td><td>Reflects steady organic growth</td></tr>' +
+                    '<tr><td>Year 15 &amp; 16 Forecast</td><td class="highlight-green">~1,115 / 1,123</td><td>Accurate safety-stock target</td></tr>';
+            }
         }
 
-        function closeLightbox() {
+        // 7. Enhanced Lightbox Viewer with Next/Prev & Keyboard Support
+        var currentLightboxIndex = 0;
+
+        function getVisibleGalleryCards() {
+            return Array.from(document.querySelectorAll('.hero-portrait-card, .gallery-section:not(.hidden) .gallery-item'));
+        }
+
+        function openLightbox(element) {
+            var cards = getVisibleGalleryCards();
+            currentLightboxIndex = cards.indexOf(element);
+            if (currentLightboxIndex === -1) currentLightboxIndex = 0;
+            renderLightboxSlide(cards[currentLightboxIndex]);
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function renderLightboxSlide(cardElement) {
+            var img = cardElement.querySelector('img');
+            var label = cardElement.querySelector('.gallery-label, .portrait-badge');
+            var lightboxImg = document.getElementById('lightbox-img');
+            var lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightboxImg.src = img.src;
+            lightboxCaption.textContent = label ? label.textContent : img.alt;
+        }
+
+        function stepLightbox(direction, event) {
+            if (event) event.stopPropagation();
+            var cards = getVisibleGalleryCards();
+            if (!cards.length) return;
+            currentLightboxIndex = (currentLightboxIndex + direction + cards.length) % cards.length;
+            renderLightboxSlide(cards[currentLightboxIndex]);
+        }
+
+        function closeLightbox(event) {
+            if (event && (event.target.tagName === 'IMG' || event.target.tagName === 'BUTTON')) return;
             document.getElementById('lightbox').classList.remove('active');
         }
+
+        document.addEventListener('keydown', function(e) {
+            var lb = document.getElementById('lightbox');
+            if (lb.classList.contains('active')) {
+                if (e.key === 'Escape') lb.classList.remove('active');
+                if (e.key === 'ArrowRight') stepLightbox(1);
+                if (e.key === 'ArrowLeft') stepLightbox(-1);
+            }
+            var cm = document.getElementById('contact-modal');
+            if (cm.classList.contains('active') && e.key === 'Escape') {
+                closeContactModal();
+            }
+        });
+
+        // Initialize image resolver on load
+        window.addEventListener('DOMContentLoaded', setupSmartImages);
     </script>
 
 </body>
