@@ -22,7 +22,7 @@
             --accent-red: #f43f5e;
             --border-subtle: rgba(255, 255, 255, 0.08);
             --border-highlight: rgba(255, 255, 255, 0.25);
-            --overlay-bg: rgba(5, 5, 8, 0.4);
+            --overlay-bg: rgba(5, 5, 8, 0.6);
             --font-family: "Plus Jakarta Sans", sans-serif;
             --font-signature: "Alex Brush", cursive;
             --font-mono: "Space Mono", monospace;
@@ -57,34 +57,34 @@
             overflow-x: hidden;
         }
 
-        /* Cinematic Film Grain Overlay */
+        /* Cinematic Film Grain Overlay - Toned down */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.04;
+            opacity: 0.02; /* Reduced from 0.04 */
             pointer-events: none;
             z-index: 99999;
         }
 
         body {
             background-color: #000;
-            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, rgba(0,0,0,0.8) 100%), url('1000000769.jpg?v=6');
+            background-image: linear-gradient(180deg, var(--overlay-bg) 0%, rgba(0,0,0,0.95) 100%), url('1000000769.jpg?v=6');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
             color: var(--text-primary);
             font-family: var(--font-family);
             letter-spacing: -0.02em;
-            line-height: 1.5;
+            line-height: 1.6;
             padding-top: 80px;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
             transition: color 0.3s ease;
         }
 
-        /* --- MAGNETIC CUSTOM CURSOR --- */
+        /* --- MAGNETIC CUSTOM CURSOR - Toned down --- */
         .cursor-dot, .cursor-ring {
             position: fixed;
             top: 0; left: 0;
@@ -94,23 +94,22 @@
             z-index: 100000;
         }
         .cursor-dot {
-            width: 6px; height: 6px;
-            background: var(--accent-blue);
-            transition: width 0.2s, height 0.2s, background 0.2s;
+            width: 5px; height: 5px;
+            background: var(--text-primary);
+            transition: width 0.15s, height 0.15s, background 0.15s;
         }
         .cursor-ring {
-            width: 36px; height: 36px;
-            border: 1px solid var(--accent-blue);
-            transition: width 0.3s, height 0.3s, transform 0.1s ease-out, border-color 0.3s;
-            box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+            width: 28px; height: 28px;
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: width 0.2s, height 0.2s, transform 0.05s linear, border-color 0.2s;
         }
         /* Hover states applied via JS */
         .cursor-hover .cursor-dot { width: 0; height: 0; }
         .cursor-hover .cursor-ring { 
-            width: 50px; height: 50px; 
-            background: rgba(14, 165, 233, 0.1); 
-            border-color: var(--accent-green);
-            backdrop-filter: blur(2px);
+            width: 40px; height: 40px; 
+            background: rgba(255, 255, 255, 0.05); 
+            border-color: var(--accent-blue);
+            backdrop-filter: blur(1px);
         }
 
         /* Header */
@@ -118,8 +117,8 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 70px;
             background: linear-gradient(to bottom, var(--bg-surface) 0%, transparent 100%);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 9999;
             border-bottom: 1px solid var(--border-subtle);
         }
@@ -147,49 +146,49 @@
             border-left: 2px solid var(--accent-green); padding-left: 12px;
         }
         
-        /* Hacker Decode Text Class */
+        /* Hacker Decode Text Class - Toned down sizing */
         .scramble-text {
-            font-size: 5rem; font-weight: 800; line-height: 1; letter-spacing: -0.04em;
+            font-size: 4.5rem; font-weight: 800; line-height: 1; letter-spacing: -0.03em;
             margin-bottom: 24px; color: var(--text-primary);
-            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
             min-height: 1em;
         }
 
         .hero p {
-            font-size: 22px; color: #fff; font-weight: 500; line-height: 1.5;
-            text-shadow: 0 4px 16px rgba(0,0,0,0.9); margin-bottom: 32px;
+            font-size: 20px; color: var(--text-secondary); font-weight: 400; line-height: 1.6;
+            margin-bottom: 32px;
         }
 
-        /* 3D Hero Portrait */
+        /* 3D Hero Portrait - Reduced effect */
         .hero-portrait-scene { perspective: 1000px; }
         .hero-portrait-card {
             position: relative; border-radius: 20px; padding: 12px;
             background: var(--bg-surface); border: 1px solid var(--border-highlight);
-            transform-style: preserve-3d; transition: transform 0.1s;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            transform-style: preserve-3d; transition: transform 0.2s ease-out;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
         .hero-portrait-inner {
-            border-radius: 12px; overflow: hidden; transform: translateZ(30px); /* Pops out in 3D */
+            border-radius: 12px; overflow: hidden; transform: translateZ(15px);
             position: relative; aspect-ratio: 4/3;
         }
         .hero-portrait-inner img { width: 100%; height: 100%; object-fit: cover; }
         
         .hero-glare {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.2) 25%, transparent 30%);
-            transform: translateZ(40px); pointer-events: none; mix-blend-mode: overlay;
+            background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.1) 25%, transparent 30%);
+            transform: translateZ(20px); pointer-events: none; mix-blend-mode: overlay;
         }
 
-        /* Race Car Button (Snappier) */
+        /* Race Car Button */
         .race-hold-btn {
             position: relative; width: 360px; max-width: 100%; height: 60px;
             background: rgba(10, 10, 15, 0.8); border: 1px solid var(--border-highlight);
             border-radius: 12px; overflow: hidden; display: flex; align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); backdrop-filter: blur(10px);
         }
         .race-progress-streak {
             position: absolute; left: 0; top: 0; bottom: 0; width: 0%;
-            background: linear-gradient(90deg, transparent, var(--accent-blue)); opacity: 0.5;
+            background: linear-gradient(90deg, transparent, var(--accent-blue)); opacity: 0.3;
         }
         .race-car-wrapper { position: absolute; left: 14px; z-index: 4; }
         .race-btn-label {
@@ -205,79 +204,72 @@
         
         .bento-card {
             position: relative; border-radius: 24px; padding: 40px;
-            background: var(--bg-surface); backdrop-filter: blur(30px); border: 1px solid var(--border-subtle);
-            transform-style: preserve-3d; transition: border-color 0.3s;
+            background: var(--bg-surface); backdrop-filter: blur(20px); border: 1px solid var(--border-subtle);
+            transform-style: preserve-3d; transition: border-color 0.3s, transform 0.2s ease-out;
         }
         .bento-card:hover { border-color: var(--border-highlight); }
         
         /* The floating content inside the 3D card */
-        .card-content { transform: translateZ(40px); pointer-events: none; }
+        .card-content { transform: translateZ(20px); pointer-events: none; }
         .card-content * { pointer-events: auto; }
 
         .size-wide { grid-column: span 12; }
         .size-left { grid-column: span 7; }
         .size-right { grid-column: span 5; }
+        .size-half { grid-column: span 6; }
 
-        .bento-card h2 { font-size: 32px; font-weight: 700; margin: 16px 0; color: var(--text-primary); }
+        .bento-card h2 { font-size: 28px; font-weight: 700; margin: 16px 0; color: var(--text-primary); }
         .bento-card p { color: var(--text-secondary); font-size: 16px; line-height: 1.6; }
 
-        /* THE AMBILIGHT PHOTO ENGINE */
+        /* THE AMBILIGHT PHOTO ENGINE - Toned down */
         .photo-gallery-work, .photo-gallery-studio, .photo-gallery-pov {
-            display: grid; gap: 20px; margin-top: 30px; transform: translateZ(30px);
+            display: grid; gap: 20px; margin-top: 30px; transform: translateZ(10px);
         }
         .photo-gallery-work { grid-template-columns: repeat(2, 1fr); }
         .photo-gallery-studio { grid-template-columns: repeat(3, 1fr); }
-        .photo-gallery-pov { grid-template-columns: repeat(4, 1fr); }
 
         .ambi-wrap {
-            position: relative; aspect-ratio: 16/10; border-radius: 16px; 
+            position: relative; aspect-ratio: 16/10; border-radius: 12px; 
             border: 1px solid var(--border-highlight); transition: 0.3s ease;
         }
         .ambi-wrap.portrait { aspect-ratio: 4/5; }
         
         /* The actual photo */
         .ambi-front {
-            position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 15px; z-index: 2;
+            position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 11px; z-index: 2;
         }
         
-        /* The magical glowing aura behind it */
+        /* The magical glowing aura behind it - less intense */
         .ambi-glow {
             position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-            filter: blur(25px) saturate(150%) brightness(1.2); opacity: 0; z-index: 1;
-            transition: opacity 0.4s ease, transform 0.4s ease; transform: scale(0.9);
+            filter: blur(15px) saturate(120%) brightness(1.1); opacity: 0; z-index: 1;
+            transition: opacity 0.3s ease, transform 0.3s ease; transform: scale(0.95);
         }
 
-        .ambi-wrap:hover { transform: scale(1.03) translateY(-5px); border-color: #fff; }
-        .ambi-wrap:hover .ambi-glow { opacity: 1; transform: scale(1.1); }
+        .ambi-wrap:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.6); }
+        .ambi-wrap:hover .ambi-glow { opacity: 0.6; transform: scale(1.03); }
 
-        /* Data Tables */
-        .data-table-wrap { transform: translateZ(20px); margin-top: 24px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-subtle); }
-        .data-table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.4); font-family: var(--font-mono); font-size: 13px; }
+        /* Data Tables & Tags */
+        .data-table-wrap { transform: translateZ(10px); margin-top: 24px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-subtle); }
+        .data-table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.3); font-family: var(--font-mono); font-size: 13px; }
         .data-table th { background: rgba(255,255,255,0.05); padding: 12px; text-align: left; color: var(--text-muted); }
         .data-table td { padding: 12px; border-top: 1px solid var(--border-subtle); color: var(--text-secondary); }
-        .highlight-warn { color: var(--accent-amber); font-weight: bold; }
-        .highlight-green { color: var(--accent-green); font-weight: bold; }
-
-        /* Contact Modal */
-        .contact-modal-overlay {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(20px); z-index: 10005; align-items: center; justify-content: center;
-        }
-        .contact-modal-overlay.active { display: flex; }
-        .contact-modal-card {
-            width: 100%; max-width: 500px; background: var(--bg-surface); border: 1px solid var(--border-highlight);
-            border-radius: 24px; padding: 40px; text-align: center; font-family: var(--font-mono);
-        }
-        .method-val { font-size: 18px; color: var(--accent-blue); display: block; margin: 10px 0 20px 0; text-decoration: none; }
-        .vcard-btn {
-            background: var(--text-primary); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: bold;
-            border: none; width: 100%; margin-top: 20px; font-family: var(--font-family);
+        
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+        .tech-tag { 
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border-highlight); 
+            padding: 6px 12px; border-radius: 6px; font-family: var(--font-mono); 
+            font-size: 12px; color: var(--text-secondary);
         }
 
-        /* Lightbox */
-        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10000; align-items: center; justify-content: center; }
-        .lightbox.active { display: flex; }
-        .lightbox img { max-width: 90%; max-height: 85vh; border-radius: 12px; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
+        /* Media Queries for smaller screens */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .eyebrow { border-left: none; border-bottom: 2px solid var(--accent-green); padding-left: 0; padding-bottom: 8px; }
+            .size-left, .size-right, .size-half { grid-column: span 12; }
+            .race-hold-btn { margin: 0 auto; }
+            .photo-gallery-work, .photo-gallery-studio { grid-template-columns: 1fr; }
+        }
 
     </style>
 </head>
@@ -290,13 +282,12 @@
     <header>
         <div class="nav-container">
             <a href="#" class="brand-wrap magnetic" title="Jordan Ioannoni">
-                <span class="status-dot"></span>
                 <span class="nav-signature">Jordan Ioannoni</span>
             </a>
             <nav class="nav-menu">
                 <a href="#photography" class="nav-btn magnetic">Media</a>
-                <a href="#automation" class="nav-btn magnetic">Systems</a>
-                <a href="#operations" class="nav-btn magnetic">Operations</a>
+                <a href="#systems" class="nav-btn magnetic">Systems</a>
+                <a href="#automotive" class="nav-btn magnetic">Auto & DIY</a>
                 <button type="button" class="nav-btn magnetic" onclick="scrollToContact()">Contact</button>
             </nav>
         </div>
@@ -305,14 +296,12 @@
     <section class="hero">
         <div class="hero-text">
             <div class="eyebrow">St. Catharines, ON &bull; Niagara College &bull; ID 4382028</div>
-            <!-- Matrix Scramble Text -->
             <h1 class="scramble-text" data-scramble="Jordan Ioannoni">Jordan Ioannoni</h1>
             <p>Business General student combining hands-on automotive trades, custom systems automation, operations forecasting, and professional digital photography.</p>
 
             <div class="hold-contact-container" id="contact-trigger-area">
                 <button type="button" class="race-hold-btn magnetic" id="hold-contact-btn"
                     onmousedown="startHolding()" onmouseup="stopHolding()" onmouseleave="stopHolding()">
-                    <div class="race-track-lines"></div>
                     <div class="race-progress-streak" id="hold-progress-bar"></div>
                     <div class="race-car-wrapper" id="race-car-icon">
                         <svg viewBox="0 0 64 28" width="56" height="26" fill="none">
@@ -325,7 +314,6 @@
                             <circle cx="49" cy="19" r="5" fill="#18181b" stroke="#e4e4e7" stroke-width="1.5"/>
                         </svg>
                     </div>
-                    <div class="finish-flag-strip"></div>
                     <div class="race-btn-label">
                         <span id="race-btn-text">Hold to Decrypt Contact</span>
                         <span class="race-timer-badge" id="race-timer-text">0.0s</span>
@@ -348,12 +336,12 @@
 
     <main class="showcase-grid">
 
-        <!-- Media Production (Ambilight Gallery) -->
+        <!-- Media Production -->
         <article id="photography" class="bento-card size-wide">
             <div class="card-content">
                 <div class="eyebrow">Ioannoni Visuals</div>
-                <h2 class="scramble-text" style="font-size: 2.5rem;" data-scramble="Visual Production Engine">Visual Production Engine</h2>
-                <p>High-speed tournament sports, studio portraiture, and automotive photography powered by Canon 1DX and L-Series telemetry, processed through Adobe CC.</p>
+                <h2 class="scramble-text" style="font-size: 2.2rem;" data-scramble="Visual Production Engine">Visual Production Engine</h2>
+                <p>High-speed tournament sports, studio portraiture, and automotive photography powered by Canon 1DX and EF 300mm f/2.8L IS II telemetry, processed natively through Adobe Lightroom Classic and Photoshop.</p>
                 
                 <div class="photo-gallery-work">
                     <div class="ambi-wrap magnetic"><img src="2DPX4122 (1).jpg" class="ambi-glow"><img src="2DPX4122 (1).jpg" class="ambi-front" onclick="openLightbox(this)"></div>
@@ -366,36 +354,36 @@
                     <div class="ambi-wrap portrait magnetic"><img src="JIOA9998.JPG" class="ambi-glow"><img src="JIOA9998.JPG" class="ambi-front" onclick="openLightbox(this)"></div>
                     <div class="ambi-wrap portrait magnetic"><img src="JIOA9946.JPG" class="ambi-glow"><img src="JIOA9946.JPG" class="ambi-front" onclick="openLightbox(this)"></div>
                     <div class="ambi-wrap portrait magnetic"><img src="IMG_1978.jpg" class="ambi-glow"><img src="IMG_1978.jpg" class="ambi-front" onclick="openLightbox(this)"></div>
-                    <div class="ambi-wrap portrait magnetic"><img src="_DSC5284.jpg" class="ambi-glow"><img src="_DSC5284.jpg" class="ambi-front" onclick="openLightbox(this)"></div>
-                    <div class="ambi-wrap portrait magnetic"><img src="_DSC5253.jpg" class="ambi-glow"><img src="_DSC5253.jpg" class="ambi-front" onclick="openLightbox(this)"></div>
-                    <div class="ambi-wrap portrait magnetic"><img src="_DSC5272.jpg" class="ambi-glow"><img src="_DSC5272.jpg" class="ambi-front" onclick="openLightbox(this)"></div>
                 </div>
             </div>
         </article>
 
-        <!-- Automation -->
-        <article id="automation" class="bento-card size-left">
+        <!-- Hardware & Systems -->
+        <article id="systems" class="bento-card size-half">
             <div class="card-content">
-                <div class="eyebrow">Systems Architecture</div>
-                <h2 class="scramble-text" style="font-size: 2rem;" data-scramble="AI Script Deployment">AI Script Deployment</h2>
-                <p>Replaced a 48-hour manual hard drive sorting process with a custom Python/LLM script that organized, tagged, and deployed the archive to a cloud server in under 60 minutes.</p>
+                <div class="eyebrow">Hardware Architecture</div>
+                <h2 class="scramble-text" style="font-size: 2rem;" data-scramble="Systems & Deployment">Systems & Deployment</h2>
+                <p>Extensive background in custom PC building, hardware diagnostics, and thermal management tuning using industry-standard benchmarking tools.</p>
+                <div class="tag-container">
+                    <span class="tech-tag">Apple M5 Pro (24GB/1TB)</span>
+                    <span class="tech-tag">Lenovo Yoga 7 OLED</span>
+                    <span class="tech-tag">HWiNFO64</span>
+                    <span class="tech-tag">3DMark</span>
+                    <span class="tech-tag">Cinebench 2024</span>
+                </div>
             </div>
         </article>
 
-        <!-- Operations -->
-        <article id="operations" class="bento-card size-right">
+        <!-- Operations / Automation -->
+        <article class="bento-card size-half">
             <div class="card-content">
                 <div class="eyebrow">OPER1401</div>
                 <h2 class="scramble-text" style="font-size: 2rem;" data-scramble="Data Forecasting">Data Forecasting</h2>
-                <p>Quantitative regression modeling in Excel identifying demand outliers to prevent massive safety-stock over-ordering.</p>
-                <div class="model-toggle-row">
-                    <button type="button" class="mini-toggle-btn magnetic active" onclick="setForecastMode('raw', this)">Raw Model</button>
-                    <button type="button" class="mini-toggle-btn magnetic" onclick="setForecastMode('adjusted', this)">Adjusted Baseline</button>
-                </div>
+                <p>Quantitative regression modeling in Excel identifying demand outliers to prevent massive safety-stock over-ordering, paired with Python/LLM deployment scripts.</p>
                 <div class="data-table-wrap">
                     <table class="data-table">
                         <tbody id="forecast-table-body">
-                            <tr><td>Yr 2 Spike</td><td class="highlight-warn">1,438 units</td></tr>
+                            <tr><td>Yr 2 Spike</td><td style="color: var(--accent-amber); font-weight: bold;">1,438 units</td></tr>
                             <tr><td>Slope</td><td>-30.83 / yr</td></tr>
                         </tbody>
                     </table>
@@ -403,41 +391,54 @@
             </div>
         </article>
 
+        <!-- Automotive -->
+        <article id="automotive" class="bento-card size-half">
+            <div class="card-content">
+                <div class="eyebrow">Motive Power Techniques</div>
+                <h2 class="scramble-text" style="font-size: 2rem;" data-scramble="Automotive Diagnostics">Automotive Diagnostics</h2>
+                <p>Level 2 apprentice schooling completion. Proficient in DIY mechanical maintenance, specifically front suspension, steering, and tire maintenance on my 2009 Toyota Highlander V6 AWD.</p>
+                <div class="tag-container">
+                    <span class="tech-tag">DeWalt DCF845</span>
+                    <span class="tech-tag">Gearwrench</span>
+                    <span class="tech-tag">Snap-on</span>
+                    <span class="tech-tag">Milwaukee Shockwave</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Craft & DIY -->
+        <article class="bento-card size-half">
+            <div class="card-content">
+                <div class="eyebrow">Design & Assembly</div>
+                <h2 class="scramble-text" style="font-size: 2rem;" data-scramble="Industrial DIY & Horology">Industrial DIY & Horology</h2>
+                <p>Experience ranging from heavy-duty dimensional lumber furniture construction (custom 65-inch loveseat frames) to the micro-mechanics of collecting and resizing automatic wristwatches.</p>
+                <div class="tag-container">
+                    <span class="tech-tag">Hamilton Khaki Field 42mm</span>
+                    <span class="tech-tag">2x6 SPF Construction</span>
+                </div>
+            </div>
+        </article>
+
     </main>
 
-    <!-- Contact Modal -->
-    <div id="contact-modal" class="contact-modal-overlay" onclick="handleModalBackdropClick(event)">
-        <div class="contact-modal-card">
-            <div class="eyebrow" style="margin-bottom: 0;">Identity Verified</div>
-            <h2 style="margin: 20px 0;">Jordan Ioannoni</h2>
-            <p>jordan.ioannoni@outlook.com</p>
-            <p style="margin-bottom: 30px;">403-667-3728</p>
-            <button class="vcard-btn magnetic" onclick="downloadVCard()">Download Root Credentials (.vcf)</button>
-        </div>
-    </div>
-
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-        <img id="lightbox-img" src="" alt="Expanded View">
-    </div>
-
     <script>
-        // --- 1. HACKER TEXT SCRAMBLE ENGINE ---
+        // --- 1. HACKER TEXT SCRAMBLE ENGINE - Sped up ---
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!<>-_\\/[]{}—=+*^?#_";
         document.querySelectorAll('.scramble-text').forEach(el => {
             let iterations = 0;
             const originalText = el.dataset.scramble;
+            // Sped up interval from 30ms to 20ms, and increased iteration steps
             const interval = setInterval(() => {
                 el.innerText = originalText.split("").map((letter, index) => {
                     if(index < iterations) return originalText[index];
                     return letters[Math.floor(Math.random() * 26)];
                 }).join("");
                 if(iterations >= originalText.length) clearInterval(interval);
-                iterations += 1 / 3;
-            }, 30);
+                iterations += 1; // Increased from 1/3 for faster resolve
+            }, 20);
         });
 
-        // --- 2. MAGNETIC & FLUID CURSOR ---
+        // --- 2. MAGNETIC & FLUID CURSOR - More responsive ---
         const cursorDot = document.getElementById('cursor-dot');
         const cursorRing = document.getElementById('cursor-ring');
         let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
@@ -448,10 +449,10 @@
             cursorDot.style.top = mouseY + 'px';
         });
 
-        // Smooth trailing ring loop
+        // Smooth trailing ring loop (increased follow speed)
         function renderCursor() {
-            ringX += (mouseX - ringX) * 0.15;
-            ringY += (mouseY - ringY) * 0.15;
+            ringX += (mouseX - ringX) * 0.25; // Increased from 0.15 for tighter follow
+            ringY += (mouseY - ringY) * 0.25;
             cursorRing.style.left = ringX + 'px';
             cursorRing.style.top = ringY + 'px';
             requestAnimationFrame(renderCursor);
@@ -464,18 +465,18 @@
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
 
-        // --- 3. 3D GLASS PARALLAX ENGINE ---
+        // --- 3. 3D GLASS PARALLAX ENGINE - Toned down angle ---
         document.querySelectorAll('.bento-card, .hero-portrait-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 
-                // Calculate rotation (max 6 degrees)
+                // Reduced rotation from max 6 degrees to max 2 degrees
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -6;
-                const rotateY = ((x - centerX) / centerX) * 6;
+                const rotateX = ((y - centerY) / centerY) * -2;
+                const rotateY = ((x - centerX) / centerX) * 2;
 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
@@ -486,18 +487,16 @@
         });
 
         // --- 4. RACE CAR BOOTUP SEQUENCE ---
-        let holdTimer, holdDuration = 1500, startTime;
+        let holdTimer, holdDuration = 1200, startTime; // Sped up unlock slightly
         let isHolding = false, isUnlocked = false;
 
         function startHolding() {
-            if(isUnlocked) { document.getElementById('contact-modal').classList.add('active'); return; }
+            if(isUnlocked) return;
             isHolding = true; startTime = Date.now();
             const bar = document.getElementById('hold-progress-bar');
             const car = document.getElementById('race-car-icon');
             const timer = document.getElementById('race-timer-text');
             const btn = document.getElementById('hold-contact-btn');
-            
-            btn.classList.add('holding');
             
             holdTimer = setInterval(() => {
                 if(!isHolding) return;
@@ -510,10 +509,8 @@
                 if(ratio >= 1) {
                     clearInterval(holdTimer);
                     isUnlocked = true;
-                    btn.classList.remove('holding');
-                    btn.classList.add('unlocked');
-                    document.getElementById('race-btn-text').innerText = "Access Granted";
-                    document.getElementById('contact-modal').classList.add('active');
+                    document.getElementById('race-btn-text').innerText = "Email: jordan.ioannoni@outlook.com";
+                    timer.style.display = "none";
                 }
             }, 16);
         }
@@ -522,44 +519,9 @@
             isHolding = false;
             if(isUnlocked) return;
             clearInterval(holdTimer);
-            document.getElementById('hold-contact-btn').classList.remove('holding');
             document.getElementById('hold-progress-bar').style.width = '0%';
             document.getElementById('race-car-icon').style.left = '14px';
             document.getElementById('race-timer-text').innerText = '0.0s';
-        }
-
-        function handleModalBackdropClick(e) {
-            if(e.target.id === 'contact-modal') e.target.classList.remove('active');
-        }
-
-        // --- 5. LIGHTBOX & DATA TOGGLES ---
-        function setForecastMode(mode, btn) {
-            document.querySelectorAll('.mini-toggle-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const tbody = document.getElementById('forecast-table-body');
-            if(mode === 'raw') {
-                tbody.innerHTML = '<tr><td>Yr 2 Spike</td><td class="highlight-warn">1,438 units</td></tr><tr><td>Slope</td><td>-30.83 / yr</td></tr>';
-            } else {
-                tbody.innerHTML = '<tr><td>Yr 2 Spike</td><td class="highlight-green">Filtered Out</td></tr><tr><td>Adjusted Slope</td><td class="highlight-green">+8.40 / yr</td></tr>';
-            }
-        }
-
-        function openLightbox(img) {
-            const lb = document.getElementById('lightbox');
-            document.getElementById('lightbox-img').src = img.src;
-            lb.classList.add('active');
-        }
-        function closeLightbox(e) {
-            if(e.target.tagName !== 'IMG') document.getElementById('lightbox').classList.remove('active');
-        }
-        
-        function downloadVCard() {
-            const vcard = 'BEGIN:VCARD\nVERSION:3.0\nN:Ioannoni;Jordan;;;\nFN:Jordan Ioannoni\nORG:Ioannoni Visuals\nTEL;TYPE=CELL:403-667-3728\nEMAIL:jordan.ioannoni@outlook.com\nEND:VCARD';
-            const blob = new Blob([vcard], { type: 'text/vcard' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url; a.download = 'Jordan_Ioannoni.vcf';
-            document.body.appendChild(a); a.click(); document.body.removeChild(a);
         }
     </script>
 </body>
