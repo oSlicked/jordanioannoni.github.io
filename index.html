@@ -7,7 +7,7 @@
     <style>
         :root {
             --bg-surface: rgba(24, 24, 27, 0.78);
-            --bg-surface-elevated: rgba(38, 38, 42, 0.65);
+            --bg-surface-elevated: rgba(38, 38, 42, 0.68);
             --text-primary: #ffffff;
             --text-secondary: #a1a1aa;
             --text-muted: #71717a;
@@ -15,7 +15,7 @@
             --accent-green: #30d158;
             --accent-amber: #ffd60a;
             --border-subtle: rgba(255, 255, 255, 0.12);
-            --border-highlight: rgba(255, 255, 255, 0.22);
+            --border-highlight: rgba(255, 255, 255, 0.24);
             --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
@@ -32,7 +32,7 @@
 
         body {
             background-color: #09090b;
-            background-image: linear-gradient(180deg, rgba(9, 9, 11, 0.55) 0%, rgba(9, 9, 11, 0.82) 100%), url('1000000769.jpg');
+            background-image: linear-gradient(180deg, rgba(9, 9, 11, 0.58) 0%, rgba(9, 9, 11, 0.85) 100%), url('1000000769.jpg');
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
@@ -126,11 +126,15 @@
             font-weight: 600;
         }
 
-        /* Hero Section */
+        /* Hero Section with Profile Portrait */
         .hero {
             max-width: 1040px;
-            margin: 80px auto 40px auto;
+            margin: 64px auto 40px auto;
             padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 290px;
+            gap: 36px;
+            align-items: center;
         }
 
         .eyebrow {
@@ -150,7 +154,7 @@
         }
 
         .hero h1 {
-            font-size: 64px;
+            font-size: 60px;
             font-weight: 700;
             letter-spacing: -0.03em;
             line-height: 1.05;
@@ -160,13 +164,66 @@
         }
 
         .hero p {
-            font-size: 22px;
+            font-size: 21px;
             color: var(--text-secondary);
             font-weight: 400;
-            max-width: 760px;
-            line-height: 1.38;
+            line-height: 1.4;
             letter-spacing: -0.01em;
             text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-portrait-card {
+            position: relative;
+            background: var(--bg-surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-highlight);
+            border-radius: 26px;
+            padding: 10px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .hero-portrait-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+        }
+
+        .hero-portrait-inner {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .hero-portrait-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-portrait-card:hover .hero-portrait-inner img {
+            transform: scale(1.03);
+        }
+
+        .portrait-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 7px 12px;
+            border-radius: 14px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
         }
 
         /* Quick Metrics Row */
@@ -332,6 +389,18 @@
             line-height: 1.2;
         }
 
+        .sub-heading {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-top: 28px;
+            margin-bottom: 14px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
         .card-content p {
             color: var(--text-secondary);
             font-size: 15px;
@@ -362,9 +431,16 @@
             border-radius: 16px;
         }
 
-        /* Photo Gallery */
-        .photo-gallery {
-            margin-top: 24px;
+        /* Photo Galleries */
+        .photo-gallery-work {
+            margin-top: 22px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            width: 100%;
+        }
+
+        .photo-gallery-pov {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
@@ -385,6 +461,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 20%;
             transition: transform 0.45s ease;
         }
 
@@ -396,7 +473,7 @@
             position: absolute;
             bottom: 12px;
             left: 14px;
-            background: rgba(0, 0, 0, 0.72);
+            background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 5px 12px;
@@ -538,13 +615,14 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             z-index: 10000;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            padding: 32px;
             cursor: zoom-out;
         }
 
@@ -553,11 +631,23 @@
         }
 
         .lightbox img {
-            max-width: 90%;
-            max-height: 85vh;
+            max-width: 92%;
+            max-height: 82vh;
+            object-fit: contain;
             border-radius: 16px;
             border: 1px solid var(--border-highlight);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+        }
+
+        .lightbox-caption {
+            margin-top: 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
         }
 
         /* Footer */
@@ -581,7 +671,13 @@
         }
 
         @media (max-width: 860px) {
-            .metrics-grid, .quote-grid, .credentials-grid, .photo-gallery {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .hero-portrait-card {
+                max-width: 300px;
+            }
+            .metrics-grid, .quote-grid, .credentials-grid, .photo-gallery-work, .photo-gallery-pov {
                 grid-template-columns: 1fr;
             }
             .showcase-grid {
@@ -622,11 +718,20 @@
         </div>
     </header>
 
-    <!-- Hero -->
+    <!-- Hero Section with Rinkside Selfie Portrait -->
     <section class="hero">
-        <div class="eyebrow">St. Catharines, ON &bull; Niagara College &bull; ID 4382028</div>
-        <h1>Jordan Ioannoni</h1>
-        <p>Business General student combining hands on automotive trades, custom systems automation, operations forecasting, and professional sports photography.</p>
+        <div class="hero-text">
+            <div class="eyebrow">St. Catharines, ON &bull; Niagara College &bull; ID 4382028</div>
+            <h1>Jordan Ioannoni</h1>
+            <p>Business General student combining hands on automotive trades, custom systems automation, operations forecasting, and professional sports photography.</p>
+        </div>
+
+        <div class="hero-portrait-card" onclick="openLightbox(this)">
+            <div class="hero-portrait-inner">
+                <img src="1000000129.jpg" alt="Jordan Ioannoni Rinkside with Canon 1DX">
+                <span class="portrait-badge">Rinkside &bull; Canon 1DX + 300mm f/2.8L</span>
+            </div>
+        </div>
     </section>
 
     <!-- Quick Metrics Strip -->
@@ -673,11 +778,11 @@
     <!-- Main Bento Grid -->
     <main class="showcase-grid">
 
-        <!-- 1. Sports & Event Photography -->
+        <!-- 1. Sports & Event Photography + Behind the Lens -->
         <article id="photography" class="bento-card size-wide anchor-section">
             <div class="card-content">
                 <div class="card-header">
-                    <span class="card-meta">Media Production</span>
+                    <span class="card-meta">Media Production &bull; Ioannoni Visuals</span>
                     <span class="card-badge">Digital Sports Photography</span>
                 </div>
                 <h2>Event &amp; Sports Photography</h2>
@@ -691,18 +796,40 @@
                 </div>
             </div>
 
-            <div class="photo-gallery">
+            <!-- 2x2 Grid of Finished Action & Bench Work -->
+            <div class="photo-gallery-work">
                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="1000000769.jpg" alt="Featured Capture">
-                    <span class="gallery-label">Featured Capture &bull; Click to Expand</span>
+                    <img src="2DPX4122.jpg" alt="Brock Jr. Badgers On Ice Action">
+                    <span class="gallery-label">Brock Jr. Badgers &bull; 300mm f/2.8 Action</span>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="1000000769.jpg" alt="Lightroom Workflow">
-                    <span class="gallery-label">Lightroom Classic Grading</span>
+                    <img src="1000000644.jpg" alt="Crease Save Action Shot">
+                    <span class="gallery-label">Crease Save &bull; High Shutter Speed Freeze</span>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="1000000769.jpg" alt="Tournament Action">
-                    <span class="gallery-label">300mm f/2.8 Telephoto Action</span>
+                    <img src="1000000041.jpg" alt="Ioannoni Visuals Bench Celebration">
+                    <span class="gallery-label">Ioannoni Visuals &bull; Bench Emotion</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="1000000642.jpg" alt="Huskies Bench Coaching Moment">
+                    <span class="gallery-label">Huskies Bench &bull; Lightroom Color Grade</span>
+                </div>
+            </div>
+
+            <!-- 3-Column Strip of Behind the Lens POV Shots -->
+            <div class="sub-heading">Behind the Lens &bull; Arena &amp; Field Operations</div>
+            <div class="photo-gallery-pov">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="20250112_102145~2.jpg" alt="Rinkside Bench POV with Canon 1DX">
+                    <span class="gallery-label">Rinkside Bench POV &bull; Canon 1DX</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="20260807_101658.jpg" alt="Outdoor Turf Field Coverage in Rain Gear">
+                    <span class="gallery-label">Outdoor Field Coverage &bull; Weather Rig</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="cfb1f4c5-2842-4aa9-a2ac-7ed7039bc2e5.jpg" alt="Ice Level Tracking Shot">
+                    <span class="gallery-label">Ice Level Tracking &bull; Tournament Coverage</span>
                 </div>
             </div>
         </article>
@@ -883,6 +1010,7 @@
     <!-- Lightbox Modal for Photos -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <img id="lightbox-img" src="" alt="Expanded View">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
     <!-- Footer -->
@@ -894,9 +1022,13 @@
     <script>
         function openLightbox(element) {
             var img = element.querySelector('img');
+            var label = element.querySelector('.gallery-label, .portrait-badge');
             var lightbox = document.getElementById('lightbox');
             var lightboxImg = document.getElementById('lightbox-img');
+            var lightboxCaption = document.getElementById('lightbox-caption');
+            
             lightboxImg.src = img.src;
+            lightboxCaption.textContent = label ? label.textContent : img.alt;
             lightbox.classList.add('active');
         }
 
